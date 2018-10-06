@@ -1,20 +1,72 @@
 import React, {Component} from 'react';
-import AssetProcess, {test1, test2, sum as change} from './AssetProcess';
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import sideRouter, {contentRoute} from './router';
+import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import './style.main.less';
 
-console.log(test1, test2, change(test1, test2));
-
-// 引入的文件==>模块中改变值后,在延迟获取会获取到最新值
-setTimeout(() => {
-    console.log(test1, 'delay')
-}, 1000);
+const {Header, Content, Sider} = Layout;
 
 export default class App extends Component {
+
+    renderHeader() {
+        return (
+            <Header className="header">
+                <div className="logo"/>
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={['2']}
+                    style={{lineHeight: '64px'}}
+                >
+                    <Menu.Item key="1">nav 1</Menu.Item>
+                    <Menu.Item key="2">nav 2</Menu.Item>
+                    <Menu.Item key="3">nav 3</Menu.Item>
+                </Menu>
+            </Header>
+        )
+    }
+
+    renderSider() {
+        return (
+            <Sider width={200} style={{background: '#fff'}}>
+                {sideRouter()}
+            </Sider>
+        )
+    }
+
+    renderContent() {
+        return (
+            <Layout style={{padding: '0 24px 24px', height: '90vh'}}>
+                <Breadcrumb style={{margin: '16px 0'}}>
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item>List</Breadcrumb.Item>
+                    <Breadcrumb.Item>App</Breadcrumb.Item>
+                </Breadcrumb>
+                <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 280}}>
+                    {contentRoute()}
+                </Content>
+            </Layout>
+        )
+    }
+
+    renderContainer() {
+        return (
+            <Layout>
+                {this.renderHeader()}
+                <Layout>
+                    {this.renderSider()}
+                    {this.renderContent()}
+                </Layout>
+            </Layout>
+        )
+    }
+
     render() {
         return (
-            <div className={'text-color'}>
-                dasd
-                <AssetProcess/>
+            <div>
+                <Router>
+                    {this.renderContainer()}
+                </Router>
             </div>
         )
     }

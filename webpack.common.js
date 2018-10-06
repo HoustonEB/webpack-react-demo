@@ -14,17 +14,20 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-react']
+                        presets: ['@babel/preset-react'],
+                        plugins: [
+                            ['import', { libraryName: 'antd', style: 'css' }]
+                        ]
                     }
                 }
             },
-            // {
-            //     test: /\.css$/,
-            //     use: [
-            //         'style-loader',
-            //         'css-loader'
-            //     ]
-            // },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
             {
                 test: /\.(png|jpg|gif|svg)$/,
                 use: [
@@ -43,6 +46,12 @@ module.exports = {
                     'style-loader', // creates style nodes from JS strings
                     'css-loader', // translates CSS into CommonJS
                     'less-loader' // compiles Less to CSS
+                ]
+            },
+            {
+                test: /\.md$/,
+                use: [
+                    'text-loader'
                 ]
             }
         ]
