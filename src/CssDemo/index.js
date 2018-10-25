@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './style.use.less';
-import {Card} from 'antd';
-import TextDisposeDraw from '../component/draw';
-import GradientDraw from '../component/draw';
+import Modal from '../component/ModalPopup';
 import TextDisposeMd from './文本处理.md';
 import Gradient from './渐变.md';
 
@@ -12,69 +10,48 @@ const md = require('markdown-it')({
 const result1 = md.render(TextDisposeMd);
 const result2 = md.render(Gradient);
 
-const gridStyle = {
-    width: '25%',
-    textAlign: 'center',
-};
+/**
+ * 1.传递事件函数时可以通过箭头函数,不用再在constructor中通过bind再绑定this
+ *
+ *
+ *
+ * **/
 
 export default class CssDemo extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isShowTextDispose: false,
-            isShowGradient: false,
+            showModal: false
         };
-        this.showTextDispose = this.showTextDispose.bind(this);
-        this.showGradient = this.showGradient.bind(this);
-    }
-
-    showTextDispose() {
-        this.setState({
-            isShowTextDispose: true
-        });
-    }
-
-    showGradient() {
-        this.setState({
-            isShowGradient: true
-        });
     }
 
     componentDidMount() {}
 
-    componentWillUnmount() {
-        // this.setState({
-        //     isShowTextDispose: false
-        // });
+    componentWillUnmount() {}
+
+    showModal() {
+        this.setState({
+            showModal: true
+        });
     }
 
-    renderTextDispose(show) {
-        return (
-            <TextDisposeDraw enable={show} text={result1}/>
-        )
-    }
-
-    renderGradient(show) {
-        return (
-            <GradientDraw enable={show} text={result2}/>
-        )
+    handleCloseModal() {
+        this.setState({
+            showModal: false
+        })
     }
 
     render() {
         return (
             <div>
-                <Card title="Card Title">
-                    <Card.Grid style={gridStyle} onClick={this.showTextDispose}>文本处理</Card.Grid>
-                    <Card.Grid style={gridStyle} onClick={this.showGradient}>渐变</Card.Grid>
-                    {/*<Card.Grid style={gridStyle}>Content</Card.Grid>*/}
-                    {/*<Card.Grid style={gridStyle}>Content</Card.Grid>*/}
-                    {/*<Card.Grid style={gridStyle}>Content</Card.Grid>*/}
-                    {/*<Card.Grid style={gridStyle}>Content</Card.Grid>*/}
-                    {/*<Card.Grid style={gridStyle}>Content</Card.Grid>*/}
-                </Card>
-                {this.state.isShowTextDispose ? this.renderTextDispose(true) : this.renderTextDispose(false)}
-                {this.state.isShowGradient ? this.renderGradient(true) : this.renderGradient(false)}
+                <button onClick={() => this.showModal()}>trigger modal</button>
+                <Modal
+                    show={this.state.showModal}
+                    onClose={() => this.handleCloseModal()}>
+                    <h3 style={{textAlign: 'center'}}>Modal</h3>
+                    </ Modal>
+                <div style={{width: '400px',height: '400px',backgroundColor: '#000'}}></div>
             </div>
         )
     }

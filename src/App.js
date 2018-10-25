@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import sideRouter, {contentRoute} from './router';
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import './style.main.less';
+import CssDemo from "./CssDemo";
+import ExcelDemo from "./ExcelDemo";
 
 const {Header, Content, Sider} = Layout;
 
@@ -15,7 +17,7 @@ export default class App extends Component {
                 <Menu
                     theme="dark"
                     mode="horizontal"
-                    defaultSelectedKeys={['2']}
+                    defaultSelectedKeys={['1']}
                     style={{lineHeight: '64px'}}
                 >
                     <Menu.Item key="1">nav 1</Menu.Item>
@@ -39,11 +41,10 @@ export default class App extends Component {
             <Layout style={{padding: '0 24px 24px', height: '90vh'}}>
                 <Breadcrumb style={{margin: '16px 0'}}>
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
                 </Breadcrumb>
                 <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 280}}>
-                    {contentRoute()}
+                    <Route path="/css-demo" component={CssDemo}/>
+                    <Route exact path="/excel-demo" component={ExcelDemo}/>
                 </Content>
             </Layout>
         )

@@ -17,18 +17,13 @@ const sideRouter = () => (
             <span>Css</span>
             <Link to="/css-demo"></Link>
         </Menu.Item>
-        <Menu.Item key="5">
+        <Menu.Item key="2">
             <Icon type="pie-chart" />
             <span>Excel</span>
-            <Link to="/ExcelDemo"></Link>
+            <Link to="/excel-demo"></Link>
         </Menu.Item>
-        <Menu.Item key="9">option9</Menu.Item>
+        <Menu.Item key="3">option9</Menu.Item>
     </Menu>
 );
 
-const contentRoute = () => (
-    <Route exact path="/css-demo" component={CssDemo}/>
-);
-
 export default sideRouter;
-export {contentRoute};
