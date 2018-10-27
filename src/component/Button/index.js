@@ -13,7 +13,7 @@ export default class Button extends Component {
     render() {
         return (
             <button className={'boxshadow-btn'} onClick={this.props.handleClick}>
-                <p>{this.props.content}1</p>
+                <p>{this.props.content}</p>
             </button>
         )
     }
