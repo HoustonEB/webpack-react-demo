@@ -1,10 +1,6 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {Layout, Menu, Breadcrumb, Icon} from 'antd';
-import CssDemo from './CssDemo';
-import ExcelDemo from './ExcelDemo';
-
-const {SubMenu} = Menu;
+import {Route, Link} from "react-router-dom";
+import {Menu, Icon} from 'antd';
 
 const sideRouter = () => (
     <Menu
@@ -22,7 +18,11 @@ const sideRouter = () => (
             <span>Excel</span>
             <Link to="/excel-demo"></Link>
         </Menu.Item>
-        <Menu.Item key="3">option9</Menu.Item>
+        <Menu.Item key="3">
+            <Icon type="pie-chart" />
+            <span>Tree</span>
+            <Link to="/tree"></Link>
+        </Menu.Item>
     </Menu>
 );
 

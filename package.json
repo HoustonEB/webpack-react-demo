@@ -22,6 +22,8 @@
   "homepage": "https://github.com/HoustonEB/webpack-react-demo#readme",
   "devDependencies": {
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-import": "^1.9.1",
@@ -42,6 +44,8 @@
   },
   "dependencies": {
     "antd": "^3.9.3",
+    "mobx": "^5.5.2",
+    "mobx-react": "^5.3.6",
     "react-router-dom": "^4.3.1"
   }
 }

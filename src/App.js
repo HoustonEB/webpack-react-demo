@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {HashRouter, Route, Link} from "react-router-dom";
 import sideRouter, {contentRoute} from './router';
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import './style.main.less';
 import CssDemo from "./CssDemo";
 import ExcelDemo from "./ExcelDemo";
+import Tree from "./Tree";
 
 const {Header, Content, Sider} = Layout;
 
@@ -38,13 +39,11 @@ export default class App extends Component {
 
     renderContent() {
         return (
-            <Layout style={{padding: '0 24px 24px', height: '90vh'}}>
-                <Breadcrumb style={{margin: '16px 0'}}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                </Breadcrumb>
-                <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 280}}>
+            <Layout style={{padding: '24px', height: '90vh'}}>
+                <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 350}}>
                     <Route path="/css-demo" component={CssDemo}/>
                     <Route exact path="/excel-demo" component={ExcelDemo}/>
+                    <Route exact path="/tree" component={new Tree().defaultComp}/>
                 </Content>
             </Layout>
         )
@@ -65,9 +64,10 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <Router>
+                {/*react-router 4.0.0 version router删除用hashRouter替代 => 解决原地刷新页面报错(get不到页面)*/}
+                <HashRouter>
                     {this.renderContainer()}
-                </Router>
+                </HashRouter>
             </div>
         )
     }
