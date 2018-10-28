@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {observable, extendObservable} from 'mobx';
 import { Icon } from 'antd';
+import { Table } from 'antd';
 import {observer} from 'mobx-react'; // mobx-react提供将react组件转换为响应式组件
 import './style.use.less';
 
@@ -35,7 +36,7 @@ export default class Tree extends Component {
             {'parentId': 99999, 'dept': 'CC', 'organizationName': '无父级', 'organizationId': 9000},
         ];
         let map = [];
-        data.forEach(item => {
+        data.forEach((item, index) => {
             map[item.organizationId] = item;
             item.children = [];
             extendObservable(item, {close: false, open: true});
@@ -66,6 +67,7 @@ export default class Tree extends Component {
     renderUl() {
         let tagArr = [];
         this.result.forEach((item, index) => {
+            item.key = index;
             tagArr.push(<li
                 key={index}
                 style={{display: item.open ? 'block' : 'none'}}
@@ -134,7 +136,34 @@ export default class Tree extends Component {
                     {this.renderUl()}
                 </div>
                 <div className={'right'}>
+                    {this.renderTable()}
                 </div>
+            </div>
+        )
+    }
+
+    renderTable() {
+        const columns = [{
+            title: 'ParentId',
+            key: '1',
+            dataIndex: 'parentId',
+        }, {
+            title: 'Dept',
+            key: '2',
+            dataIndex: 'dept',
+        }, {
+            title: 'OrganizationName',
+            key: '3',
+            dataIndex: 'organizationName',
+        }, {
+            title: 'OrganizationId',
+            key: '4',
+            dataIndex: 'organizationId',
+        }];
+
+        return (
+            <div className={'table-wrapper'}>
+                <Table childrenColumnName={'io'} expandIconColumnIndex={-1} sortOrder={false} scroll={{ x: 0, y: 240 }} pagination={false} columns={columns} dataSource={this.result} size="middle" />
             </div>
         )
     }
