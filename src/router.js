@@ -28,6 +28,11 @@ const sideRouter = () => (
             <span>穿梭框</span>
             <Link to="/transfer"></Link>
         </Menu.Item>
+        <Menu.Item key="5">
+            <Icon type="pie-chart" />
+            <span>结构树对比</span>
+            <Link to="/structure-tree-contrast"></Link>
+        </Menu.Item>
     </Menu>
 );
 
