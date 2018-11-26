@@ -1,6 +1,7 @@
 .transfer-wrapper {
   width: 800px;
   height: 300px;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",SimSun,sans-serif;
 }
 
 .transfer-left {
@@ -8,6 +9,7 @@
   height: 100%;
   float: left;
   border: 1px solid #e8e8e8;
+  overflow-y: scroll;
 
   ul {
     padding: 0;
@@ -28,4 +30,26 @@
   height: 100%;
   float: left;
   border: 1px solid #e8e8e8;
+  padding: 10px;
+
+  .label-item {
+    display: inline-block;
+    margin: 0 10px 5px 0;
+    padding: 0 10px 0;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 5px;
+    background-color: #87d068;
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+
+    i {
+      margin-left: 3px;
+      cursor: pointer;
+      &:hover {
+        color: #d3d3d3;
+      }
+    }
+  }
 }
