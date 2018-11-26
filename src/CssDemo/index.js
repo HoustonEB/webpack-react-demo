@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './style.use.less';
 import Modal from '../component/ModalPopup';
 import Button from '../component/Button';
+import Accordion from './Accordion';
 import TextDisposeMd from './文本处理.md';
 import Gradient from './渐变.md';
 
@@ -57,6 +58,7 @@ export default class CssDemo extends Component {
                     onClose={() => this.handleCloseModal()}>
                     <h3 style={{textAlign: 'center'}}>Modal</h3>
                 </Modal>
+                <Accordion/>
             </div>
         )
     }
