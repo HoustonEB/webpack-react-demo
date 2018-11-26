@@ -6,6 +6,7 @@ import './style.main.less';
 import CssDemo from "./CssDemo";
 import ExcelDemo from "./ExcelDemo";
 import Tree from "./Tree";
+import Transfer from "./Transfer";
 
 const {Header, Content, Sider} = Layout;
 
@@ -44,6 +45,7 @@ export default class App extends Component {
                     <Route path="/css-demo" component={CssDemo}/>
                     <Route exact path="/excel-demo" component={ExcelDemo}/>
                     <Route exact path="/tree" component={new Tree().defaultComp}/>
+                    <Route exact path="/transfer" component={new Transfer().defaultComp}/>
                 </Content>
             </Layout>
         )

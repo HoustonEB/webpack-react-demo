@@ -23,6 +23,11 @@ const sideRouter = () => (
             <span>Tree</span>
             <Link to="/tree"></Link>
         </Menu.Item>
+        <Menu.Item key="4">
+            <Icon type="pie-chart" />
+            <span>穿梭框</span>
+            <Link to="/transfer"></Link>
+        </Menu.Item>
     </Menu>
 );
 
