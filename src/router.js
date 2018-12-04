@@ -33,6 +33,11 @@ const sideRouter = () => (
             <span>结构树对比</span>
             <Link to="/structure-tree-contrast"></Link>
         </Menu.Item>
+        <Menu.Item key="6">
+            <Icon type="pie-chart" />
+            <span>JsDemo</span>
+            <Link to="/js-demo"></Link>
+        </Menu.Item>
     </Menu>
 );
 

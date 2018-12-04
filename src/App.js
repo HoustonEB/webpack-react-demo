@@ -8,6 +8,7 @@ import ExcelDemo from "./ExcelDemo";
 import Tree from "./Tree";
 import Transfer from "./Transfer";
 import StructureTreeContrast from "./StructureTreeContrast";
+import JsDemo from "./JsDemo";
 
 const {Header, Content, Sider} = Layout;
 
@@ -48,6 +49,7 @@ export default class App extends Component {
                     <Route exact path="/tree" component={new Tree().defaultComp}/>
                     <Route exact path="/transfer" component={new Transfer().defaultComp}/>
                     <Route exact path="/structure-tree-contrast" component={new StructureTreeContrast().defaultComp}/>
+                    <Route exact path="/js-demo" component={new JsDemo().defaultComp}/>
                 </Content>
             </Layout>
         )
