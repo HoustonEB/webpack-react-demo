@@ -38,6 +38,11 @@ const sideRouter = () => (
             <span>JsDemo</span>
             <Link to="/js-demo"></Link>
         </Menu.Item>
+        <Menu.Item key="7">
+            <Icon type="pie-chart" />
+            <span>draggable</span>
+            <Link to="/draggable"></Link>
+        </Menu.Item>
     </Menu>
 );
 
