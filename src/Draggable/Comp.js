@@ -27,7 +27,7 @@ export default class View extends Component {
         dropDom.addEventListener('drop', e => {
             e.preventDefault();
             let data = e.dataTransfer.getData("Text");
-            console.log(data, 'data');
+            console.log(data, 'data1');
             dropDom.innerHTML = data;
             e.target.appendChild(imgDom);
             console.log('drop')
