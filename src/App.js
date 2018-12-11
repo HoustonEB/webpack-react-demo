@@ -10,6 +10,7 @@ import Transfer from "./Transfer";
 import StructureTreeContrast from "./StructureTreeContrast";
 import JsDemo from "./JsDemo";
 import Draggable from './Draggable';
+import RegExr from './RegExr';
 
 const {Header, Content, Sider} = Layout;
 
@@ -52,6 +53,7 @@ export default class App extends Component {
                     <Route exact path="/structure-tree-contrast" component={new StructureTreeContrast().defaultComp}/>
                     <Route exact path="/js-demo" component={new JsDemo().defaultComp}/>
                     <Route exact path="/draggable" component={new Draggable().defaultComp}/>
+                    <Route exact path="/reg-exr" component={new RegExr().defaultComp}/>
                 </Content>
             </Layout>
         )

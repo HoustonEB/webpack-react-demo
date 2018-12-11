@@ -43,6 +43,11 @@ const sideRouter = () => (
             <span>draggable</span>
             <Link to="/draggable"></Link>
         </Menu.Item>
+        <Menu.Item key="8">
+            <Icon type="pie-chart" />
+            <span>RegExr</span>
+            <Link to="/reg-exr"></Link>
+        </Menu.Item>
     </Menu>
 );
 
