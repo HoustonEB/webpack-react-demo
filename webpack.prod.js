@@ -11,14 +11,16 @@ module.exports = merge(common, {
     },
     output: {
         path: path.resolve(__dirname, "dist/prod/"),
-        filename: "main[hash]bundle.js",
+        filename: "dist/main[hash]bundle.js",
         chunkFilename: "[name].[chunkhash].js"
     },
     plugins: [
         new CleanWebpackPlugin(["dist/prod/"]),
         new HtmlWebpackPlugin({
             title: "Prod ko", // 模板中有title就会替代
-            template: "template/prod-template.html" // 生成的html模板
+            template: "template/prod-template.html", // html模板
+            filename: "pages/prod.html",
+            hash: true
         })
     ],
     mode: "production",

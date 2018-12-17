@@ -9,13 +9,14 @@ module.exports = merge(common, {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist/dev/'),
-        filename: 'main[hash].js'
+        filename: 'dist/main[hash].js'
     },
     plugins: [
         new CleanWebpackPlugin(['dist/dev/']),
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代
-            template: 'template/dev-template.html' // 生成的html模板
+            template: 'template/dev-template.html', // html模板
+            filename: 'pages/index.html'
         })
     ],
     mode: 'development', // 开发模式不会压缩代码
@@ -27,7 +28,7 @@ module.exports = merge(common, {
     //   poll: 1000 // 每一秒检查文件是否change, true=>rebuild
     // },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),// 对哪个目录下的文件进行热加载
+        contentBase: path.join(__dirname, 'dist/'),// 对哪个目录下的文件进行热加载
         compress: true,
         port: 9000
     }
