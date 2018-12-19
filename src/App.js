@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {HashRouter, Route, Link} from "react-router-dom";
-import sideRouter, {contentRoute} from './router';
+import {HashRouter, Route, Redirect, Link} from "react-router-dom";
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
+import SideRouter from './router';
 import './style.main.less';
 import CssDemo from "./CssDemo";
 import ExcelDemo from "./ExcelDemo";
@@ -35,9 +35,10 @@ export default class App extends Component {
     }
 
     renderSider() {
+        console.log(this, 'this')
         return (
             <Sider width={200} style={{background: '#fff'}}>
-                {sideRouter()}
+                <SideRouter />
             </Sider>
         )
     }
@@ -46,7 +47,8 @@ export default class App extends Component {
         return (
             <Layout style={{padding: '24px', height: '90vh'}}>
                 <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 350}}>
-                    <Route path="/css-demo" component={CssDemo}/>
+                    <Route exact path="/" render={() => (<Redirect to="/css-demo"/>)}/> {/*首次进入跳转到指定路由*/}
+                    <Route exact path="/css-demo" component={CssDemo}/>
                     <Route exact path="/excel-demo" component={ExcelDemo}/>
                     <Route exact path="/tree" component={new Tree().defaultComp}/>
                     <Route exact path="/transfer" component={new Transfer().defaultComp}/>

@@ -12,7 +12,7 @@ module.exports = merge(common, {
         filename: 'dist/main[hash].js'
     },
     plugins: [
-        new CleanWebpackPlugin(['dist/dev/']),
+        // new CleanWebpackPlugin(['dist/dev/']),
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代
             template: 'template/dev-template.html', // html模板
@@ -28,7 +28,7 @@ module.exports = merge(common, {
     //   poll: 1000 // 每一秒检查文件是否change, true=>rebuild
     // },
     devServer: {
-        contentBase: path.join(__dirname, 'dist/'),// 对哪个目录下的文件进行热加载
+        contentBase: path.join(__dirname, '/dist/dev/'),// 对哪个目录下的文件进行热加载
         compress: true,
         port: 9000
     }
