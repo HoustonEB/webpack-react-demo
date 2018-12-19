@@ -4,7 +4,6 @@ import {Menu, Icon} from 'antd';
 
 const SideRouter = withRouter(
     (history) => {
-        console.log(history, 'history')
         return (
             <Menu
                 mode="inline"
@@ -51,6 +50,11 @@ const SideRouter = withRouter(
                     <Icon type="pie-chart" />
                     <span>RegExr</span>
                     <Link to="/reg-exr"></Link>
+                </Menu.Item>
+                <Menu.Item key="/canvas">
+                    <Icon type="pie-chart" />
+                    <span>Canvas</span>
+                    <Link to="/canvas"></Link>
                 </Menu.Item>
             </Menu>
         )

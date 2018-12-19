@@ -11,6 +11,7 @@ import StructureTreeContrast from "./StructureTreeContrast";
 import JsDemo from "./JsDemo";
 import Draggable from './Draggable';
 import RegExr from './RegExr';
+import Canvas from './Canvas';
 
 const {Header, Content, Sider} = Layout;
 
@@ -35,7 +36,6 @@ export default class App extends Component {
     }
 
     renderSider() {
-        console.log(this, 'this')
         return (
             <Sider width={200} style={{background: '#fff'}}>
                 <SideRouter />
@@ -56,6 +56,7 @@ export default class App extends Component {
                     <Route exact path="/js-demo" component={new JsDemo().defaultComp}/>
                     <Route exact path="/draggable" component={new Draggable().defaultComp}/>
                     <Route exact path="/reg-exr" component={new RegExr().defaultComp}/>
+                    <Route exact path="/canvas" component={new Canvas().defaultComp}/>
                 </Content>
             </Layout>
         )
