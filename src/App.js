@@ -65,7 +65,7 @@ export default class App extends Component {
     renderContainer() {
         return (
             <Layout>
-                {this.renderHeader()}
+                {/*{this.renderHeader()}*/}
                 <Layout>
                     {this.renderSider()}
                     {this.renderContent()}
