@@ -26,7 +26,9 @@ export default class ModalPopup extends Component {
         return (
             <div className={'modal-wrapper' + ` ${this.props.show ? 'show-modal' : ''}`}>
                 <div className={'modal-content'}>
-                    <button onClick={this.props.onClose} style={{marginLeft: '10px'}}>关闭</button>
+                    <button
+                        onClick={this.props.onClose}
+                        style={{marginLeft: '10px'}}>关闭</button>
                     {this.props.children}
                 </div>
             </div>

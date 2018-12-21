@@ -12,7 +12,7 @@ export default class Button extends Component {
 
     render() {
         return (
-            <button className={'boxshadow-btn'} onClick={this.props.handleClick}>
+            <button className={'boxshadow-btn'} onClick={this.props.handleClick} style={this.props.style}>
                 <p>{this.props.content}</p>
             </button>
         )
