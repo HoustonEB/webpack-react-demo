@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './style.use.less';
 import Modal from '../component/ModalPopup';
 import Button from '../component/Button';
+import CircleLoading from '../component/circleLoading';
+import Accordion from './Accordion';
 import TextDisposeMd from './文本处理.md';
 import Gradient from './渐变.md';
 
@@ -50,13 +52,20 @@ export default class CssDemo extends Component {
     render() {
         return (
             <div>
-                <button onClick={() => this.showModal()}>trigger modal</button>
-                <Button handleClick={() => this.handleClick()} content={'ENTRY'} />
+                <button
+                    onClick={() => this.showModal()}
+                    style={{verticalAlign: 'top'}}>trigger modal</button>
+                <Button
+                    handleClick={() => this.handleClick()}
+                    content={'ENTRY'}
+                    style={{verticalAlign: 'top'}}/>
                 <Modal
                     show={this.state.showModal}
                     onClose={() => this.handleCloseModal()}>
                     <h3 style={{textAlign: 'center'}}>Modal</h3>
                 </Modal>
+                {/*<Accordion/>*/}
+                <CircleLoading/>
             </div>
         )
     }
