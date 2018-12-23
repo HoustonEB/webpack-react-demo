@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box;
-}
+
 .circle-progress-bar-wrapper {
   width: 50px;
   height: 50px;
@@ -16,8 +14,8 @@
     overflow: hidden;
 
     .left-circle {
-      width: 25px;
-      height: 25px;
+      // width: 25px;
+      // height: 25px;
       position: absolute;
       left: 0;
       border-top: 25px solid rgb(229, 233, 13);
@@ -29,6 +27,27 @@
     }
   }
 
+  .process-num {
+    width: 20px;
+    height: 20px;
+    border: 20px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+    border-radius: 50%;
+    text-align: center;
+    color: rgb(207, 22, 22);
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+
   .right-circle-wrapper {
     width: 50%;
     height: 100%;
@@ -37,8 +56,8 @@
     overflow: hidden;
 
     .right-circle {
-      width: 25px;
-      height: 25px;
+      // width: 25px;
+      // height: 25px;
       position: absolute;
       right: 0;
       border-top: 25px solid #fff;
