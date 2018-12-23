@@ -14,7 +14,8 @@ export default class CircleProgressBar extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.progressNum = this.props.progressNum || 0;
+    // 注意: this.props.progressNum是旧值.新值从形参props获取
+    this.progressNum = props.progressNum;
     let leftCircle = document.querySelector('.circle-progress-bar-wrapper .left-circle');
     let rightCircle = document.querySelector('.circle-progress-bar-wrapper .right-circle');
     console.log(this.props.progressNum, 'num2');
@@ -34,6 +35,7 @@ export default class CircleProgressBar extends Component {
         <div className={'left-circle-wrapper'}>
         <div className={'left-circle'}></div>
       </div>
+      <div className={'process-num'}><span>{this.progressNum}</span></div>
       <div className={'right-circle-wrapper'}>
         <div className={'right-circle'}></div>
       </div>
