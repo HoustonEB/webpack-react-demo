@@ -81,8 +81,14 @@ export default class CssDemo extends Component {
                 </Modal>
                 {/*<Accordion/>*/}
                 <CircleLoading/>
-                <input className={'percent-num'} type='range' value={this.progressNum} min='0' max='100' step='1' onChange={() => this.handleChangeNum()}></input>
-                {this.progressNum}
+                <input 
+                className={'percent-num'} 
+                type='range' 
+                value={this.progressNum} 
+                min='0' 
+                max='100' 
+                step='1' 
+                onChange={() => this.handleChangeNum()}></input>
                 <CircleProgressBar progressNum={this.progressNum}/>
             </div>
         )
