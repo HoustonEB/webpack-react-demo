@@ -7,6 +7,7 @@ import Button from '../component/Button';
 import CircleLoading from '../component/circleLoading';
 import Accordion from './Accordion';
 import CircleProgressBar from '../component/CircleProgressBar';
+import Counter from '../component/Counter';
 import TextDisposeMd from './文本处理.md';
 import Gradient from './渐变.md';
 
@@ -25,6 +26,7 @@ const result2 = md.render(Gradient);
 @observer
 export default class CssDemo extends Component {
 @observable progressNum = 0;
+@observable counterNum = 2;
 
     constructor(props) {
         super(props);
@@ -64,6 +66,10 @@ export default class CssDemo extends Component {
     //     this.progressNum = percent.value;
     // }
 
+    hadnleCounterChange(value) {
+        this.counterNum = value;
+    }
+
     render() {
         return (
             <div>
@@ -90,6 +96,8 @@ export default class CssDemo extends Component {
                 step='1' 
                 onChange={() => this.handleChangeNum()}></input>
                 <CircleProgressBar progressNum={this.progressNum}/>
+                <Counter counterNum={this.counterNum} onChange={(value) => this.hadnleCounterChange(value)}/>
+                <span>{this.counterNum}</span>
             </div>
         )
     }
