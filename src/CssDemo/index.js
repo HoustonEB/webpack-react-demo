@@ -98,6 +98,7 @@ export default class CssDemo extends Component {
                 <CircleProgressBar progressNum={this.progressNum}/>
                 <Counter counterNum={this.counterNum} onChange={(value) => this.hadnleCounterChange(value)}/>
                 <span>{this.counterNum}</span>
+                <div className={'count-loading'}><span>loading<i></i></span></div>
             </div>
         )
     }
