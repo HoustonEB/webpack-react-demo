@@ -1,13 +1,43 @@
 import React, {Component} from 'react';
-import {observable} from 'mobx';
+import {observable, computed, reaction} from 'mobx';
+import {observer} from 'mobx-react';
 
+@observer
 export default class View extends Component {
+
+@observable count = 0;
+@observable user;
+@observable name = 'jack';
 
     constructor(props) {
         super(props);
         // this.init();
         // this.foo();
         this.handleErrorPromise();
+        setTimeout(() => {
+            this.count++
+        }, 3000);
+        reaction(
+            () => this.count, // 数据函数
+            (count, reaction) => { // 效果函数,只对数据函数中访问的数据做出反应.
+                console.log('count=', count);
+                // reaction.dispose(); // 清理掉reaction,之后在进行count的修改,不进入这个reaction函数.
+            },
+            {
+                fireImmediately: true
+            }
+        );
+        console.log(this.name, 'con')
+    }
+
+    get upperCaseName () {
+        this.name = this.name.toUpperCase();
+        return this.name;
+    }
+
+    @computed
+    get actionName() {
+        return this.name + '计算属性'
     }
 
     init() {
@@ -73,7 +103,10 @@ export default class View extends Component {
     render() {
         return (
             <div className={'structure-tree-wrapper'}>
-              1
+                {this.count}
+                <button onClick={() => {this.name = 'super'}}>修改计算属性</button>
+                {this.actionName}
+                <button onClick={() => {console.log(this.upperCaseName, 'upperCaseName')}}>test</button>
             </div>
         )
     }
