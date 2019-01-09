@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {observable, extendObservable} from 'mobx';
+import {observable, extendObservable, action} from 'mobx';
 import {observer} from 'mobx-react';
 import './style.use.less';
 
@@ -7,6 +7,7 @@ import './style.use.less';
 export default class ExcelDemo extends Component {
     treeData = [];
     @observable treeData = [];
+    @observable offsetLeft = 0;
 
     constructor(props) {
         super(props)
@@ -81,7 +82,6 @@ export default class ExcelDemo extends Component {
             }
         });
         data1[data1.length - 1].finItem = true;
-        console.log(data1, 'data1');
         return data1;
     }
 
@@ -94,15 +94,15 @@ export default class ExcelDemo extends Component {
             switch (item.level) {
                 case 0:
                     level0.push(this.renderSquare(item, index));
-                    treeConstruceDom[0] = <div className={`level-0-wrapper`} key={'0'}>{level0}</div>;
+                    treeConstruceDom[0] = <table className={`level-0-wrapper`} key={'0'}><tbody><tr>{level0}</tr></tbody></table>;
                     break;
                 case 1:
                     level1.push(this.renderSquare(item, index));
-                    treeConstruceDom[1] = <div className={`level-1-wrapper`} key={'1'}>{level1}</div>;
+                    treeConstruceDom[1] = <table className={`level-1-wrapper`} key={'1'}><tbody><tr>{level1}</tr></tbody></table>;
                     break;
                 case 2:
                     level2.push(this.renderSquare(item, index));
-                    treeConstruceDom[2] = <div className={`level-2-wrapper`} key={'2'}>{level2}</div>;
+                    treeConstruceDom[2] = <table className={`level-2-wrapper`} key={'2'}><tbody><tr>{level2}</tr></tbody></table>;
                     break;
             }
         });
@@ -117,7 +117,13 @@ export default class ExcelDemo extends Component {
             case 0:
                 this.treeData.forEach(item => {
                     if (item.level !== 0) {
-                        item.show = !item.show;
+                        if (data.collapse) {
+                            item.show = false;
+                            item.collapse = true;
+                        } else if (item.level === 0 || item.level === 1) {
+                            item.show = true;
+                            item.collapse = true;
+                        }
                     }
                 });
                 break;
@@ -131,12 +137,25 @@ export default class ExcelDemo extends Component {
             case 2:
                 break;
         }
-        console.log('control', this.treeData);
 
     }
 
+    @action
+    handleOffsetWidth(e) {
+        e.stopPropagation();
+        let level1 = document.getElementsByClassName('level-1-wrapper')[0];
+        this.offsetLeft = Number(e.target.offsetParent.offsetParent.offsetLeft) + 50 - level1.offsetWidth / 2 - 1;
+    }
+
+    componentDidMount() {
+        let level0 = document.getElementsByClassName('level-0-wrapper')[0];
+        let level1 = document.getElementsByClassName('level-1-wrapper')[0];
+        let level2 = document.getElementsByClassName('level-2-wrapper')[0];
+        level1.style.left = this.offsetLeft + 'px';
+    }
+
     renderSquare(data, key) {
-        let dom = <div
+        let dom = <td
             className={`square`}
             style={{
                 display: `${data.show ? 'inline-block' : 'none'}`
@@ -146,8 +165,9 @@ export default class ExcelDemo extends Component {
             <i className={`${data.level !== 0 ? 'tree-top-line': ''}${data.finItem ? ' del-border-top' : ''}`}></i>
             <span
                 className={`${data.hasData ? 'open-icon' : 'none'}`}
-                onClick={() => this.handleControlLevel(data)}><i>{`${data.collapse ? '+' : '-'}`}</i></span>
-            <span className={'name'}>{data.name}</span></div>
+                onClick={() => this.handleControlLevel(data)}
+                onMouseDown={e => this.handleOffsetWidth(e)}>{`${data.collapse ? '+' : '-'}`}</span>
+            <span className={'name'}>{data.name}</span></td>
         return (
             dom
         )

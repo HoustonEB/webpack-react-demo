@@ -9,10 +9,10 @@
 
   .big-wrapper {
     width: 1500px;
+    position: relative;
     padding: 20px;
     height: 100%;
     cursor: pointer;
-    text-align: center;
   }
 
   .square {
@@ -29,6 +29,9 @@
     &:hover {
       box-shadow: 0 0 5px 1px #c54bd0;
     }
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
 
     .tree-top-line {
       width: 120px;
@@ -42,12 +45,12 @@
     }
 
     .tree-bottom-line {
-      width: 2px;
+      width: 1px;
       height: 20px;
       position: absolute;
       display: inline-block;
       bottom: -20px;
-      left: 49px;
+      left: 50%;
       background-color: #e8e8e8;
     }
 
@@ -63,7 +66,8 @@
       line-height: 13px;
       bottom: -7.5px;
       color: #ffffff;
-      left: 42.5px;
+      left: 50%;
+      transform: translateX(-50%);
       border-radius: 7.5px;
       background-color: #1BDAE9;
       i {
@@ -80,17 +84,22 @@
       font-size: 14px;
       color: #333333;
     }
+  }
 
-    &.level-0-wrapper {
-      margin-top: 20px;
-    }
+  .level-0-wrapper {
+    position: absolute;
+    left: 500px;
+  }
 
-    &.level-1-wrapper {
-      margin-top: 20px;
-    }
+  .level-1-wrapper {
+    position: absolute;
+    left: 500px;
+    top: 160px;
+  }
 
-    &.level-2-wrapper {
-      margin-top: 20px;
-    }
+  .level-2-wrapper {
+    position: absolute;
+    left: 500px;
+    top: 300px;
   }
 }
