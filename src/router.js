@@ -16,10 +16,10 @@ const SideRouter = withRouter(
                     <span>Css</span>
                     <Link to="/css-demo"></Link>
                 </Menu.Item>
-                <Menu.Item key="/excel-demo">
+                <Menu.Item key="/card-tree">
                     <Icon type="pie-chart" />
-                    <span>Excel</span>
-                    <Link to="/excel-demo"></Link>
+                    <span>CardTree</span>
+                    <Link to="/card-tree"></Link>
                 </Menu.Item>
                 <Menu.Item key="/tree">
                     <Icon type="pie-chart" />
