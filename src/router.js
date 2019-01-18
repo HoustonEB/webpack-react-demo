@@ -56,6 +56,11 @@ const SideRouter = withRouter(
                     <span>Canvas</span>
                     <Link to="/canvas"></Link>
                 </Menu.Item>
+                <Menu.Item key="/drag-sort">
+                    <Icon type="pie-chart" />
+                    <span>拖拽排序</span>
+                    <Link to="/drag-sort"></Link>
+                </Menu.Item>
             </Menu>
         )
     }
