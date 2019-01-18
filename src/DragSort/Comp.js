@@ -24,10 +24,12 @@ export default class View extends Component {
     enterDom;
     dragIndex;
     enterIndex;
+    isFF;
 
     constructor(props) {
         super(props);
         this.renderSortAbstract(this.data);
+        this.isFF = window.navigator.userAgent.indexOf("Firefox")
     }
 
     componentDidMount() {
@@ -35,8 +37,10 @@ export default class View extends Component {
         let lis = document.querySelectorAll('.data-display-content ul li');
 
         lis.forEach((item, index) => {
-            item.setAttribute('id', index)
+            item.setAttribute('id', index);
         })
+
+        
 
         liParentDom.addEventListener('drag', (e) => {
             e.preventDefault();
@@ -47,6 +51,11 @@ export default class View extends Component {
                     this.dragIndex = index;
                 }
             })
+        }, false);
+        liParentDom.addEventListener('dragstart', (e) => {
+            if(this.isFF !== -1){
+                e.dataTransfer.setData("imgInfo", 'ev.target.id'); // 火狐拖拽必须携带数据 IE偏偏不支持这个
+            }
         });
 
         liParentDom.addEventListener('dragenter', (e) => {
