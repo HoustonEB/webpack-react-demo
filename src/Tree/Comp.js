@@ -33,7 +33,7 @@ export default class Tree extends Component {
             {'parentId': 10007, 'dept': 'CC', 'organizationName': '搜索1-2', 'organizationId': 100016},
             {'parentId': 100011, 'dept': 'CC', 'organizationName': '渡鸦1-1', 'organizationId': 100017},
             {'parentId': 100011, 'dept': 'CC', 'organizationName': '渡鸦1-2', 'organizationId': 100018},
-            {'parentId': 99999, 'dept': 'CC', 'organizationName': '无父级', 'organizationId': 9000},
+            {'parentId': 99999, 'dept': 'CC', 'organizationName': '无父级', 'organizationId': 9000}
         ];
         let map = [];
         data.forEach((item, index) => {
@@ -146,19 +146,19 @@ export default class Tree extends Component {
         const columns = [{
             title: 'ParentId',
             key: '1',
-            dataIndex: 'parentId',
+            dataIndex: 'parentId'
         }, {
             title: 'Dept',
             key: '2',
-            dataIndex: 'dept',
+            dataIndex: 'dept'
         }, {
             title: 'OrganizationName',
             key: '3',
-            dataIndex: 'organizationName',
+            dataIndex: 'organizationName'
         }, {
             title: 'OrganizationId',
             key: '4',
-            dataIndex: 'organizationId',
+            dataIndex: 'organizationId'
         }];
 
         return (
