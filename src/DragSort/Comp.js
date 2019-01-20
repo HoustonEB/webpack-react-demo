@@ -15,7 +15,7 @@ export default class View extends Component {
         { id: 6, title: '6' },
         { id: 7, title: '7' },
         { id: 8, title: '8' },
-        { id: 9, title: '9' },
+        { id: 9, title: '9' }
     ];
     @observable sortData = [];
     @observable dom;
@@ -40,7 +40,7 @@ export default class View extends Component {
             item.setAttribute('id', index);
         })
 
-        
+
 
         liParentDom.addEventListener('drag', (e) => {
             e.preventDefault();
@@ -53,28 +53,31 @@ export default class View extends Component {
             })
         }, false);
         liParentDom.addEventListener('dragstart', (e) => {
-            if(this.isFF !== -1){
-                e.dataTransfer.setData("imgInfo", 'ev.target.id'); // 火狐拖拽必须携带数据 IE偏偏不支持这个
+            if (this.isFF !== -1) {
+                e.dataTransfer.setData("ffInfo", e.target.id); // 火狐拖拽必须携带数据 IE偏偏不支持这个
             }
         });
 
         liParentDom.addEventListener('dragenter', (e) => {
             e.preventDefault();
             this.enterDom = e.target;
+            let nodeName = this.enterDom.nodeName.toLowerCase();
             let lis = document.querySelectorAll('.data-display-content li');
             lis.forEach((item, index) => {
                 if (this.enterDom === item) {
                     this.enterIndex = index;
                 }
             })
-            this.enterDom.classList.add('hold');
+            // console.dir(nodeName, 'dom')
+            if (nodeName === 'li') {
+                // this.enterDom.classList.add('hold');
+            }
         });
 
         liParentDom.addEventListener('dragleave', (e) => {
             e.preventDefault();
-            // console.log(e.target.classList)
             if (/hold/.test(e.target.classList)) {
-                e.target.classList.remove('hold');
+                // e.target.classList.remove('hold');
             }
         });
 
@@ -84,14 +87,20 @@ export default class View extends Component {
 
         liParentDom.addEventListener('drop', e => {
             e.preventDefault();
-            this.enterDom.classList.remove('hold');
+            // this.enterDom.classList.remove('hold');
             console.log('drop', e.target);
-            if (this.dragIndex < this.enterIndex) {
-                this.dragDom.remove();
-                this.enterDom.after(this.dragDom);
-            } else if (this.dragIndex > this.enterIndex) {
-                this.dragDom.remove();
-                this.enterDom.before(this.dragDom);
+            if (e.target.nodeName.toLowerCase() === 'li') {
+                if (this.dragIndex < this.enterIndex) {
+                    // this.dragDom.remove();
+                    // this.enterDom.insertAfter(this.dragDom);
+                    liParentDom.removeChild(this.dragDom);
+                    liParentDom.insertBefore(this.dragDom, this.enterDom.nextSibling);
+                } else if (this.dragIndex > this.enterIndex) {
+                    // this.dragDom.remove();
+                    // this.enterDom.insertBefore(this.dragDom);
+                    liParentDom.removeChild(this.dragDom);
+                    liParentDom.insertBefore(this.dragDom, this.enterDom);
+                }
             }
             let lis = document.querySelectorAll('.data-display-content ul li');
             let indexArr = [];
@@ -104,13 +113,8 @@ export default class View extends Component {
                     return item === idx
                 }))
             })
-            this.sortData.forEach(item => {
-                console.log(item.id, 'dom12')
-            })
 
             this.renderSortAbstract(this.sortData);
-
-            console.log(this.dom, 'dom')
         })
     }
 

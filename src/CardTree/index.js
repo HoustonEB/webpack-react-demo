@@ -28,7 +28,7 @@ export default class ExcelDemo extends Component {
             {name: '商业c', id: 12, parentId: 3},
             {name: '商业d', id: 14, parentId: 3},
             {name: '商业e', id: 15, parentId: 3},
-            {name: '无parentId', id: 13, parentId: 898},
+            {name: '无parentId', id: 13, parentId: 898}
         ];
         this.treeData = this.processData(data);
     }
