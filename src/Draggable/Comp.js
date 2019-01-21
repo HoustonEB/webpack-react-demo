@@ -1,22 +1,15 @@
 import React, {Component} from 'react';
-import cat from './cat.jpg';
 import './style.use.less';
 
 export default class View extends Component {
 
     constructor(props) {
         super(props);
-        this.reader = new FileReader();
     }
 
     componentDidMount() {
-        let imgDom = document.getElementsByTagName('img')[0];
         let dropDom = document.getElementsByClassName('right-div')[0];
-        imgDom.addEventListener('dragstart', e => {
-            // e.preventDefault();
-            // e.dataTransfer.setData("Text", e.target.tagName);
-            console.log('drag-start')
-        });
+        
         dropDom.addEventListener('dragenter', e => {
             e.preventDefault();
             console.log('dragenter')
@@ -28,10 +21,15 @@ export default class View extends Component {
         dropDom.addEventListener('drop', e => {
             e.preventDefault(); // google拖放后默认开启预览图片模式
             // let data = e.dataTransfer.getData("Text");
+            /** 
+             * 从外部拖拽文件上传,浏览器内图片的不行
+            */
+            let reader = new FileReader();
             let file = e.dataTransfer.files[0];
-            this.reader.readAsDataURL(file);
-            this.reader.onload = function (e) {
-                dropDom.innerHTML = `<img src='${this.result}'/>`;
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                console.log(e.target, 'target')
+                dropDom.innerHTML = `<img src='${reader.result}'/>`;
             };
             console.log('drop')
         });
@@ -40,7 +38,6 @@ export default class View extends Component {
     render() {
         return (
             <div className={'draggable-wrapper'}>
-                <img draggable={true} src={cat}></img>
                 <div className={'right-div'}>拖拽文件上传</div>
             </div>
         )

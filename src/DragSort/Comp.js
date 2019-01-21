@@ -54,7 +54,8 @@ export default class View extends Component {
         }, false);
         liParentDom.addEventListener('dragstart', (e) => {
             if (this.isFF !== -1) {
-                e.dataTransfer.setData("ffInfo", e.target.id); // 火狐拖拽必须携带数据 IE偏偏不支持这个
+                e.dataTransfer.setData("ffInfo", e.target.id); 
+                // 火狐拖拽必须携带数据 IE偏偏不支持这个(dataTransfer兼容到ie10)
             }
         });
 
@@ -70,14 +71,15 @@ export default class View extends Component {
             })
             // console.dir(nodeName, 'dom')
             if (nodeName === 'li') {
-                // this.enterDom.classList.add('hold');
+                this.enterDom.className = 'hold';
             }
         });
 
         liParentDom.addEventListener('dragleave', (e) => {
             e.preventDefault();
+            console.log(e.target, '90')
             if (/hold/.test(e.target.classList)) {
-                // e.target.classList.remove('hold');
+                e.target.className = '';
             }
         });
 
@@ -87,17 +89,13 @@ export default class View extends Component {
 
         liParentDom.addEventListener('drop', e => {
             e.preventDefault();
-            // this.enterDom.classList.remove('hold');
+            this.enterDom.className = '';
             console.log('drop', e.target);
             if (e.target.nodeName.toLowerCase() === 'li') {
                 if (this.dragIndex < this.enterIndex) {
-                    // this.dragDom.remove();
-                    // this.enterDom.insertAfter(this.dragDom);
                     liParentDom.removeChild(this.dragDom);
                     liParentDom.insertBefore(this.dragDom, this.enterDom.nextSibling);
                 } else if (this.dragIndex > this.enterIndex) {
-                    // this.dragDom.remove();
-                    // this.enterDom.insertBefore(this.dragDom);
                     liParentDom.removeChild(this.dragDom);
                     liParentDom.insertBefore(this.dragDom, this.enterDom);
                 }
@@ -140,7 +138,7 @@ export default class View extends Component {
     renderSortAbstract(data) {
         this.dom = data.map((item, index) => {
             return (
-                <li draggable='true' key={item.id}>{item.title}</li>
+                <li draggable='true' key={index}>{item.title}</li>
             )
         });
     }
