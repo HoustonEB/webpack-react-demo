@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {observable, computed, reaction} from 'mobx';
+import {observable, computed, reaction, action} from 'mobx';
 import {observer} from 'mobx-react';
+import Sort from '../DragSort/Comp.js';
 
 @observer
 export default class View extends Component {
@@ -8,6 +9,18 @@ export default class View extends Component {
 @observable count = 0;
 @observable user;
 @observable name = 'jack';
+@observable sortData = [
+    { id: 0, title: '0', name: 'a'},
+    { id: 1, title: '1', name: 'b' },
+    { id: 2, title: '2', name: 'c' },
+    { id: 3, title: '3', name: 'd' },
+    { id: 4, title: '4', name: 'e' },
+    { id: 5, title: '5', name: 'f' },
+    { id: 6, title: '6', name: 'g' },
+    { id: 7, title: '7', name: 'h' },
+    { id: 8, title: '8', name: 'i' },
+    { id: 9, title: '9', name: 'j' }
+];
 
     constructor(props) {
         super(props);
@@ -100,12 +113,32 @@ export default class View extends Component {
         })
     }
 
+    @action
+    handleUpdateData(data) {
+        this.sortData = data;;
+    }
+
+    renderSortContent() {
+        let dom = this.sortData.map((item, index) => {
+            return (
+                <li key={item.id}>{item.name}</li>
+            )
+        });
+        return (
+            <ul>
+                {dom}
+            </ul>
+        )
+    }
+
     render() {
         return (
-            <div className={'structure-tree-wrapper'}>
+            <div>
                 {this.count}
                 <button onClick={() => {this.name = 'super'}}>修改计算属性</button>
                 {this.actionName}
+                <Sort sortData={this.sortData} displayTitle={'name'} onChange={(data) => this.handleUpdateData(data)}/>
+                {this.renderSortContent()}
                 <button onClick={() => {console.log(this.upperCaseName, 'upperCaseName')}}>test</button>
             </div>
         )
