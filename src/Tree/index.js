@@ -3,7 +3,6 @@ import {observer} from 'mobx-react'; // mobx-react提供将react组件转换为�
 import Comp from './Comp';
 
 export default class IndexPage {
-    @observable yu = 1
     constructor() {
          // console.log(this, 12)
     }

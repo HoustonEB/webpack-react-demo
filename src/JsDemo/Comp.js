@@ -115,7 +115,7 @@ export default class View extends Component {
 
     @action
     handleUpdateData(data) {
-        this.sortData = data;;
+        this.sortData = data;
     }
 
     renderSortContent() {
