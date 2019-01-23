@@ -34,7 +34,7 @@ module.exports = {
                             // Stage 3
                             // "@babel/plugin-syntax-dynamic-import",
                             // "@babel/plugin-syntax-import-meta",
-                            ["@babel/plugin-proposal-class-properties", { "loose": true }],// ES7中类属性的定义=>支持类中定义属性
+                            ["@babel/plugin-proposal-class-properties", { "loose": true }]// ES7中类属性的定义=>支持类中定义属性
                             // "@babel/plugin-proposal-json-strings"
                         ]
                     }

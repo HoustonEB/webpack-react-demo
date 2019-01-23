@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = merge(common, {
     entry: {
-        app: "./src/index.js",
+        app: "./src/index.js"
         // vendor: ["react", "react-dom", "react-router-dom", "antd", "mobx", "mobx-react"]
     },
     output: {
@@ -24,7 +24,7 @@ module.exports = merge(common, {
         })
     ],
     mode: "production",
-    devtool: undefined,
+    devtool: undefined
     // optimization: {
     //     splitChunks: {
     //         chunks: "initial",
