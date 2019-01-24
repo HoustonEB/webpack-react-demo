@@ -51,8 +51,9 @@ export default class View extends Component {
         })
 
         liParentDom.addEventListener('drag', (e) => {
-            e.preventDefault();
-            this.dragDom = e.target;
+            let _e = e || window.event;
+            _e.preventDefault();
+            this.dragDom = _e.target;
             let lis = document.querySelectorAll('.data-sort-abstract li');
             lis.forEach((item, index) => {
                 if (this.dragDom === item) {
@@ -61,16 +62,18 @@ export default class View extends Component {
             })
         }, false);
         liParentDom.addEventListener('dragstart', (e) => {
-            e.dataTransfer.effectAllowed = "move";
+            let _e = e || window.event;
+            _e.dataTransfer.effectAllowed = "move";
             if (this.isFF !== -1) {
-                e.dataTransfer.setData("info", e.target.id);
+                _e.dataTransfer.setData("info", _e.target.id);
                 // 火狐拖拽必须携带数据 IE不支持这个(dataTransfer兼容到ie10)
             }
         });
 
         liParentDom.addEventListener('dragenter', (e) => {
-            e.preventDefault();
-            this.enterDom = e.target;
+            let _e = e || window.event;
+            _e.preventDefault();
+            this.enterDom = _e.target;
             let enterDomName = this.enterDom.nodeName.toLowerCase();
             let lis = document.querySelectorAll('.data-sort-abstract li');
             lis.forEach((item, index) => {
@@ -81,7 +84,7 @@ export default class View extends Component {
             if (enterDomName === 'li') {
                 this.enterDom.className = 'hold';
             }
-            if (e.target.nodeName.toLowerCase() === 'li') {
+            if (_e.target.nodeName.toLowerCase() === 'li') {
                 if (this.dragIndex < this.enterIndex) {
                     liParentDom.removeChild(this.dragDom);
                     liParentDom.insertBefore(this.dragDom, this.enterDom.nextSibling);
@@ -94,19 +97,22 @@ export default class View extends Component {
         });
 
         liParentDom.addEventListener('dragleave', (e) => {
-            e.preventDefault();
-            if (/hold/.test(e.target.classList)) {
-                e.target.className = '';
+            let _e = e || window.event;
+            _e.preventDefault();
+            if (/hold/.test(_e.target.classList)) {
+                _e.target.className = '';
             }
         });
 
         liParentDom.addEventListener("dragover", e => {
-            e.preventDefault();
+            let _e = e || window.event;
+            _e.preventDefault();
         }, false);
 
         liParentDom.addEventListener('drop', e => {
-            e.preventDefault();
-            e.stopPropagation();
+            let _e = e || window.event;
+            _e.preventDefault();
+            _e.stopPropagation();
             this.enterDom.className = '';
         })
     }

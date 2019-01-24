@@ -14,7 +14,9 @@ import RegExr from './RegExr';
 import Canvas from './Canvas';
 import DragSort from './DragSort';
 
-const {Header, Content, Sider} = Layout;
+const Header = Layout.Header;
+const Content = Layout.Content;
+const Sider = Layout.Sider;
 
 export default class App extends Component {
 
