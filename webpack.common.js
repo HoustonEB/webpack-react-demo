@@ -10,7 +10,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-react', '@babel/preset-env'],
+                        presets: ['@babel/preset-react', '@babel/preset-env'], // '@babel/polyfill'
                         plugins: [
                             ['import', { libraryName: 'antd', style: 'css' }],
                             // Stage 0
