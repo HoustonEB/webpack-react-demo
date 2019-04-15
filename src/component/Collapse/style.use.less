@@ -1,0 +1,41 @@
+.collapse-wrapper {
+  width: 50%;
+  height: 250px;
+  overflow-y: scroll;
+  //border: 1px solid #e8e8e8;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    border-bottom: none;
+    &:hover {
+      cursor: pointer;
+    }
+    .title {
+      padding-left: 24px;
+      height: 37px;
+      line-height: 37px;
+    }
+    .content {
+      border-top: 1px solid #e8e8e8;
+      transition: height .3s;
+      line-height: 24px;
+      height: 0;
+      visibility: hidden;
+
+      &.open {
+        height: 45px;
+        padding: 10px 24px 10px;
+        visibility: visible;
+      }
+      //&.close {
+      //
+      //}
+    }
+  }
+}
