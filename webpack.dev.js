@@ -4,9 +4,11 @@ const common = require('./webpack.common');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
+/*
+ * @babel/polyfill 支持promise object.assign等. 老版本是在index.js中require('@babel/polyfill')引入
+ * */
 module.exports = merge(common, {
-    entry: './src/index.js',
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, 'dist/dev/'),
         filename: 'dist/main[hash].js'
