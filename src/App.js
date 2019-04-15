@@ -13,6 +13,7 @@ import Draggable from './Draggable';
 import RegExr from './RegExr';
 import Canvas from './Canvas';
 import DragSort from './DragSort';
+import Collapse from './Collapse';
 
 const Header = Layout.Header;
 const Content = Layout.Content;
@@ -61,6 +62,7 @@ export default class App extends Component {
                     <Route exact path="/reg-exr" component={new RegExr().defaultComp}/>
                     <Route exact path="/canvas" component={new Canvas().defaultComp}/>
                     <Route exact path="/drag-sort" component={new DragSort().defaultComp}/>
+                    <Route exact path="/collapse" component={Collapse}/>
                 </Content>
             </Layout>
         )

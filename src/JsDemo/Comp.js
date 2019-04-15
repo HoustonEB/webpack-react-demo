@@ -26,7 +26,8 @@ export default class View extends Component {
         super(props);
         // this.init();
         // this.foo();
-        this.handleErrorPromise();
+
+        // this.handleErrorPromise();
         setTimeout(() => {
             this.count++
         }, 3000);
