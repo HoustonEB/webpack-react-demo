@@ -17,7 +17,6 @@ export default class View extends Component {
     }
 
     handleClickItem(e, index) {
-        console.log(e, this.content, '23')
         if (this.props.collapseMode) {
             e.target.nextSibling ? e.target.nextSibling.classList.toggle('open') : null;
         } else{
@@ -53,10 +52,10 @@ export default class View extends Component {
                 return (
                     <li
                         key={index}
-                        onClick={this.handleClickItem.bind(this, index)}
+                        onClick={(e) => this.handleClickItem(e, index)}
                     >
                         <div className={'title'}>{item.title}</div>
-                        <div className={`content ${this.state.openIndex === index ? 'open' : 'close'}`}>{Math.random(0, 100)}</div>
+                        <div className={`content ${this.state.openIndex === index ? 'open' : ''}`}>{Math.random(0, 100)}</div>
                     </li>
                 )
             })
