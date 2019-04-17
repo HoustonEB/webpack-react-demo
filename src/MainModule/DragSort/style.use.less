@@ -1,0 +1,37 @@
+.drag-sort-wrapper {
+  ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    cursor: move;
+  }
+  
+  .data-sort-abstract {
+    ul {
+      width: 50px;
+      height: 150px;
+      margin-bottom: 10px;
+      -webkit-overflow-scrolling: touch; 
+      overflow-y: scroll;
+      position: relative;
+      li {
+        border: 1px solid #e8e8e8;
+        position: relative;
+      }
+    }
+  }
+
+  .data-display-content {
+    ul {
+      width: 50px;
+    }
+    li {
+      border: 1px solid #df3b3b;
+    }
+  }
+
+  .hold {
+    border: 1px dashed orange !important;
+    box-sizing: border-box;
+  }
+}
