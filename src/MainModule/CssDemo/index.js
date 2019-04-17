@@ -10,22 +10,12 @@ import CircleProgressBar from '../component/CircleProgressBar';
 import Counter from '../component/Counter';
 import TextDisposeMd from './文本处理.md';
 import Gradient from './渐变.md';
-
+import {getRole} from '../../service/main-api/common.js';
 const md = require('markdown-it')({
     html: false
 });
 const result1 = md.render(TextDisposeMd);
 const result2 = md.render(Gradient);
-const axios = require('axios');
-const Mock = require('mockjs');
-
-Mock.mock('/test', {
-    data: {
-        ui: 1
-    },
-    status: 'ok',
-    message: 'ui'
-});
 /**
  * 1.传递事件函数时可以通过箭头函数,不用再在constructor中通过bind再绑定this
  *
@@ -42,11 +32,7 @@ export default class CssDemo extends Component {
         this.state = {
             showModal: false
         };
-        axios.get('/test')
-            .then(function (response) {
-                // handle success
-                console.log(response);
-            })
+        getRole();
     }
 
     componentDidMount() {}
