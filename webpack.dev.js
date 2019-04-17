@@ -19,9 +19,9 @@ module.exports = merge(common, {
         filename: 'dist/[name][hash].js'
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
-        }),
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': JSON.stringify('development')
+        // }),
         new CleanWebpackPlugin(['dist/dev/']),
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代

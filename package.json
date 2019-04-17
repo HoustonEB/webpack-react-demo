@@ -40,6 +40,7 @@
     "less-loader": "^4.1.0",
     "markdown-it": "^8.4.2",
     "mini-css-extract-plugin": "^0.6.0",
+    "mockjs": "^1.0.1-beta3",
     "prop-types": "^15.7.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
@@ -53,6 +54,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
     "antd": "^3.9.3",
+    "axios": "^0.18.0",
     "mobx": "^5.5.2",
     "mobx-react": "^5.3.6",
     "react-hot-loader": "^4.8.4",
