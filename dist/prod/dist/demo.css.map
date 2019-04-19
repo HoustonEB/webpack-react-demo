@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/DemoModule/style.demo.less"],"names":[],"mappings":"AAAA;AACA;AACA","file":"dist/demo.css","sourcesContent":["* {\n  box-sizing: border-box;\n}\n"],"sourceRoot":""}

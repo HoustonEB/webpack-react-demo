@@ -1,11 +1,12 @@
 const merge = require("webpack-merge");
+const webpack = require('webpack');
 const path = require("path");
 const common = require("./webpack.common");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
-console.log(devMode, '===================================================', process.env.NODE_ENV)
+// console.log(devMode, '===================================================', process.env.NODE_ENV);
 
 module.exports = merge(common, {
     entry: {
@@ -26,20 +27,20 @@ module.exports = merge(common, {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringfy('production')
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new CleanWebpackPlugin(["dist/prod/"]),
         new HtmlWebpackPlugin({
             title: "Prod ko", // 模板中有title就会替代
             template: "template/prod-template.html", // html模板
-            filename: "pages/Main.html",
+            filename: "pages/main.html",
             hash: true,
             chunks: ['main']
         }),
         new HtmlWebpackPlugin({
             title: "Prod ko", // 模板中有title就会替代
             template: "template/prod-template.html", // html模板
-            filename: "pages/Demo.html",
+            filename: "pages/demo.html",
             hash: true,
             chunks: ['demo']
         }),
@@ -50,10 +51,10 @@ module.exports = merge(common, {
     ],
     mode: "production",
     devtool: 'source-map',
-    optimization: {
-        splitChunks: {
-            chunks: "all",
-            name: "vendor"
-        }
-    }
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: "all",
+    //         name: "vendor"
+    //     }
+    // }
 });
