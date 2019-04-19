@@ -26,13 +26,13 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代
             template: 'template/dev-template.html', // html模板
-            filename: 'pages/Main.html',
+            filename: 'pages/main.html',
             chunks: ['main']
         }),
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代
             template: 'template/dev-template.html', // html模板
-            filename: 'pages/Demo.html',
+            filename: 'pages/demo.html',
             chunks: ['demo'] // 引入entry对应的js文件
         }),
         new webpack.HotModuleReplacementPlugin()
@@ -52,4 +52,4 @@ module.exports = merge(common, {
         hot: true
     }
 });
-console.log(process.env.NODE_ENV, '===================================================', webpack.DefinePlugin)
+console.log(process.env.NODE_ENV, '===================================================', webpack.DefinePlugin);
