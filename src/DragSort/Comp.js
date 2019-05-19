@@ -19,6 +19,9 @@ export default class View extends Component {
         displayTitle: PropTypes.string,
         onChange: PropTypes.func
     }
+    static defaultProps = {
+        sortData : []
+    }
 
     constructor(props) {
         super(props);

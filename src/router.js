@@ -4,6 +4,63 @@ import {Menu, Icon} from 'antd';
 
 const SideRouter = withRouter(
     (history) => {
+        const router = [
+            {
+                key: '/css-demo',
+                sideBarName: 'Css',
+                url: '/css-demo'
+            },
+            {
+                key: '/card-tree',
+                sideBarName: 'CardTree',
+                url: '/card-tree'
+            },
+            {
+                key: '/tree',
+                sideBarName: 'Tree',
+                url: '/tree'
+            },
+            {
+                key: '/transfer',
+                sideBarName: '穿梭框',
+                url: '/transfer'
+            },
+            {
+                key: '/structure-tree-contrast',
+                sideBarName: '结构树对比',
+                url: '/structure-tree-contrast'
+            },
+            {
+                key: '/js-demo',
+                sideBarName: 'JsDemo',
+                url: '/js-demo'
+            },
+            {
+                key: '/draggable',
+                sideBarName: 'draggable',
+                url: '/draggable'
+            },
+            {
+                key: '/reg-exr',
+                sideBarName: 'RegExr',
+                url: '/reg-exr'
+            },
+            {
+                key: '/canvas',
+                sideBarName: 'Canvas',
+                url: '/canvas'
+            },
+            {
+                key: '/drag-sort',
+                sideBarName: '拖拽排序',
+                url: '/drag-sort'
+            },
+            {
+                key: '/carousel',
+                sideBarName: '轮播图',
+                url: '/carousel'
+            },
+        ]
         return (
             <Menu
                 mode="inline"
@@ -11,56 +68,15 @@ const SideRouter = withRouter(
                 // defaultSelectedKeys={['/css-demo']}
                 selectedKeys={[history.location.pathname]}
             >
-                <Menu.Item key="/css-demo">
-                    <Icon type="pie-chart" />
-                    <span>Css</span>
-                    <Link to="/css-demo"></Link>
-                </Menu.Item>
-                <Menu.Item key="/card-tree">
-                    <Icon type="pie-chart" />
-                    <span>CardTree</span>
-                    <Link to="/card-tree"></Link>
-                </Menu.Item>
-                <Menu.Item key="/tree">
-                    <Icon type="pie-chart" />
-                    <span>Tree</span>
-                    <Link to="/tree"></Link>
-                </Menu.Item>
-                <Menu.Item key="/transfer">
-                    <Icon type="pie-chart" />
-                    <span>穿梭框</span>
-                    <Link to="/transfer"></Link>
-                </Menu.Item>
-                <Menu.Item key="/structure-tree-contrast">
-                    <Icon type="pie-chart" />
-                    <span>结构树对比</span>
-                    <Link to="/structure-tree-contrast"></Link>
-                </Menu.Item>
-                <Menu.Item key="/js-demo">
-                    <Icon type="pie-chart" />
-                    <span>JsDemo</span>
-                    <Link to="/js-demo"></Link>
-                </Menu.Item>
-                <Menu.Item key="/draggable">
-                    <Icon type="pie-chart" />
-                    <span>draggable</span>
-                    <Link to="/draggable"></Link>
-                </Menu.Item>
-                <Menu.Item key="/reg-exr">
-                    <Icon type="pie-chart" />
-                    <span>RegExr</span>
-                    <Link to="/reg-exr"></Link>
-                </Menu.Item>
-                <Menu.Item key="/canvas">
-                    <Icon type="pie-chart" />
-                    <span>Canvas</span>
-                    <Link to="/canvas"></Link>
-                </Menu.Item>
-                <Menu.Item key="/drag-sort">
-                    <Icon type="pie-chart" />
-                    <span>拖拽排序</span>
-                    <Link to="/drag-sort"></Link>
-                </Menu.Item>
+                {router.map(item => {
+                    const {key, sideBarName, url} = item;
+                    return (
+                        <Menu.Item key={key}>
+                            <span>{sideBarName}</span>
+                            <Link to={url}></Link>
+                        </Menu.Item>
+                    )
+                })}
             </Menu>
         )
     }

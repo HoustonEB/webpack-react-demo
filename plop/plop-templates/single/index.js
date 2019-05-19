@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './style.use.less';
 import {obserable} from 'mobx';
 import {observer} from 'mobx-react';
 
