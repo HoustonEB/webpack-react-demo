@@ -1,17 +1,21 @@
 const path = require('path');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
+console.log(devMode, '===============423243====================================', process.env.NODE_ENV)
 module.exports = {
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
+                include: path.resolve(__dirname, 'src'),
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-react'],
+                        presets: ['@babel/preset-react', '@babel/preset-env'],
                         plugins: [
-                            ['import', { libraryName: 'antd', style: 'css' }],
+                            ['import', {libraryName: 'antd', style: 'css'}],
+                            // ['react-hot-loader/babel'], // 功能待定
                             // Stage 0
                             // "@babel/plugin-proposal-function-bind",
 
@@ -24,7 +28,7 @@ module.exports = {
                             // "@babel/plugin-proposal-do-expressions",
 
                             // Stage 2
-                            ["@babel/plugin-proposal-decorators", { "legacy": true }], //支持修饰符
+                            ["@babel/plugin-proposal-decorators", {"legacy": true}], //支持修饰符
                             // "@babel/plugin-proposal-function-sent",
                             // "@babel/plugin-proposal-export-namespace-from",
                             // "@babel/plugin-proposal-numeric-separator",
@@ -33,12 +37,14 @@ module.exports = {
                             // Stage 3
                             // "@babel/plugin-syntax-dynamic-import",
                             // "@babel/plugin-syntax-import-meta",
-                            ["@babel/plugin-proposal-class-properties", { "loose": true }]// ES7中类属性的定义=>支持类中定义属性
+                            ["@babel/plugin-proposal-class-properties", {"loose": true}]// ES7中类属性的定义=>支持类中定义属性
                             // "@babel/plugin-proposal-json-strings"
                         ]
                     }
                 }
             },
+            // css-loader 将css属性url('./img.jpg')中的路径处理成打包后的路径.
+            // html-loader 以相同的方式处理标签中的<img src="./my-image.png" />路径
             {
                 test: /\.css$/,
                 use: [
@@ -46,6 +52,7 @@ module.exports = {
                     'css-loader'
                 ]
             },
+            // 修改图片的路径
             {
                 test: /\.(png|jpg|gif|svg)$/,
                 use: {
@@ -64,9 +71,23 @@ module.exports = {
                     }
                 }
             },
+            // {
+            //     test: /\.html$/,
+            //     use: {
+            //         loader: 'html-loader',
+            //         options: {
+            //             outputPath: 'images/'
+            //         }
+            //     }
+            // },
+            /**
+             * MiniCssExtractPlugin从编译后的js文件中提取css,与style-loader冲突一起使用报错
+             * style-loader会创建标签嵌入到html中, css-loader允许js通过import导入css,将css嵌入到对应的js中
+             */
             {
                 test: /\.less$/,
                 use: [
+                    // MiniCssExtractPlugin.loader, // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'style-loader', // creates style nodes from JS strings
                     'css-loader', // translates CSS into CommonJS
                     'less-loader' // compiles Less to CSS
