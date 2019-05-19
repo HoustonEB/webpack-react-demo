@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
+import {observable} from 'mobx';
+import {observer} from 'mobx-react';
 import './style.use.less';
 import Modal from '../component/ModalPopup';
 import Button from '../component/Button';
 import CircleLoading from '../component/circleLoading';
 import Accordion from './Accordion';
+import CircleProgressBar from '../component/CircleProgressBar';
+import Counter from '../component/Counter';
 import TextDisposeMd from './文本处理.md';
 import Gradient from './渐变.md';
 
@@ -19,8 +23,10 @@ const result2 = md.render(Gradient);
  *
  *
  * **/
-
+@observer
 export default class CssDemo extends Component {
+@observable progressNum = 0;
+@observable counterNum = 2;
 
     constructor(props) {
         super(props);
@@ -49,6 +55,21 @@ export default class CssDemo extends Component {
         // alert('yu')
     }
 
+    handleChangeNum() {
+        let percent = document.getElementsByClassName('percent-num')[0];
+        this.progressNum = percent.value;
+        console.log(this.progressNum, 'v')
+    }
+
+    // componentDidMount() {
+    //     let percent = document.getElementsByClassName('percent-num')[0];
+    //     this.progressNum = percent.value;
+    // }
+
+    hadnleCounterChange(value) {
+        this.counterNum = value;
+    }
+
     render() {
         return (
             <div>
@@ -66,6 +87,18 @@ export default class CssDemo extends Component {
                 </Modal>
                 {/*<Accordion/>*/}
                 <CircleLoading/>
+                <input 
+                className={'percent-num'} 
+                type='range' 
+                value={this.progressNum} 
+                min='0' 
+                max='100' 
+                step='1' 
+                onChange={() => this.handleChangeNum()}></input>
+                <CircleProgressBar progressNum={this.progressNum}/>
+                <Counter counterNum={this.counterNum} onChange={(value) => this.hadnleCounterChange(value)}/>
+                <span>{this.counterNum}</span>
+                <div className={'count-loading'}><span>loading<i></i></span></div>
             </div>
         )
     }

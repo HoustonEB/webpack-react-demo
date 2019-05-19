@@ -4,7 +4,7 @@ import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import SideRouter from './router';
 import './style.main.less';
 import CssDemo from "./CssDemo";
-import ExcelDemo from "./ExcelDemo";
+import CardTree from "./CardTree";
 import Tree from "./Tree";
 import Transfer from "./Transfer";
 import StructureTreeContrast from "./StructureTreeContrast";
@@ -12,8 +12,12 @@ import JsDemo from "./JsDemo";
 import Draggable from './Draggable';
 import RegExr from './RegExr';
 import Canvas from './Canvas';
+import DragSort from './DragSort';
+import CAROUSEL from './CAROUSEL';
 
-const {Header, Content, Sider} = Layout;
+const Header = Layout.Header;
+const Content = Layout.Content;
+const Sider = Layout.Sider;
 
 export default class App extends Component {
 
@@ -47,9 +51,9 @@ export default class App extends Component {
         return (
             <Layout style={{padding: '24px', height: '90vh'}}>
                 <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 350}}>
-                    <Route exact path="/" render={() => (<Redirect to="/css-demo"/>)}/> {/*首次进入跳转到指定路由*/}
+                    <Route exact path="/" render={() => (<Redirect to="/css-demo"/>)}/> {/*首次进入跳转到指定由*/}
                     <Route exact path="/css-demo" component={CssDemo}/>
-                    <Route exact path="/excel-demo" component={ExcelDemo}/>
+                    <Route exact path="/card-tree" component={CardTree}/>
                     <Route exact path="/tree" component={new Tree().defaultComp}/>
                     <Route exact path="/transfer" component={new Transfer().defaultComp}/>
                     <Route exact path="/structure-tree-contrast" component={new StructureTreeContrast().defaultComp}/>
@@ -57,6 +61,8 @@ export default class App extends Component {
                     <Route exact path="/draggable" component={new Draggable().defaultComp}/>
                     <Route exact path="/reg-exr" component={new RegExr().defaultComp}/>
                     <Route exact path="/canvas" component={new Canvas().defaultComp}/>
+                    <Route exact path="/drag-sort" component={new DragSort().defaultComp}/>
+                    <Route exact path="/carousel" component={CAROUSEL}/>
                 </Content>
             </Layout>
         )

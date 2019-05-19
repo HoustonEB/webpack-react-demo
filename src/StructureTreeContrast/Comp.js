@@ -10,10 +10,10 @@ export default class View extends Component {
         this.rightArr = [];
         for(let i = 0; i<100; i++) {
             this.leftArr.push(
-                {deptType: "BG", organizationId: i, organizationName: `智能驾驶${i}`, parentId: -1},
+                {deptType: "BG", organizationId: i, organizationName: `智能驾驶${i}`, parentId: -1}
             );
             this.rightArr.push(
-                {deptType: "BG", organizationId: i, organizationName: `智能驾驶${i}`, parentId: -1},
+                {deptType: "BG", organizationId: i, organizationName: `智能驾驶${i}`, parentId: -1}
             )
         }
     }
