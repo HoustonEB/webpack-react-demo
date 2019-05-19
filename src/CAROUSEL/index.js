@@ -5,7 +5,7 @@ import {observer} from 'mobx-react';
 export default class Page extends Component {
     render() {
         return (
-            <div className={'{{compName}}-wrapper'}></div>
+            <div className={'carousel-wrapper'}></div>
         )
     }
 }
