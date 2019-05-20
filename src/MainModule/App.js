@@ -13,11 +13,8 @@ import Draggable from './Draggable';
 import RegExr from './RegExr';
 import Canvas from './Canvas';
 import DragSort from './DragSort';
-<<<<<<< HEAD:src/App.js
 import CAROUSEL from './CAROUSEL';
-=======
 import Collapse from './Collapse';
->>>>>>> 3011488065e250c855b38b47ec7661003540b9b8:src/MainModule/App.js
 
 const Header = Layout.Header;
 const Content = Layout.Content;
@@ -106,11 +103,8 @@ export default class App extends Component {
                     <Route exact path="/reg-exr" component={new RegExr().defaultComp}/>
                     <Route exact path="/canvas" component={new Canvas().defaultComp}/>
                     <Route exact path="/drag-sort" component={new DragSort().defaultComp}/>
-<<<<<<< HEAD:src/App.js
                     <Route exact path="/carousel" component={CAROUSEL}/>
-=======
                     <Route exact path="/collapse" component={Collapse}/>
->>>>>>> 3011488065e250c855b38b47ec7661003540b9b8:src/MainModule/App.js
                 </Content>
             </Layout>
         )
