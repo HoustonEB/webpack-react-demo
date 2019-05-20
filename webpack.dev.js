@@ -46,7 +46,7 @@ module.exports = merge(common, {
     //   poll: 1000 // 每一秒检查文件是否change, true=>rebuild
     // },
     devServer: {
-        contentBase: path.join(__dirname, '/dist/dev/'),// 对哪个目录下的文件进行热加载
+        contentBase: path.join(__dirname, '/dist/dev/pages/'),// 对哪个目录下的文件进行热加载
         compress: true, // 是否压缩
         port: 9000,
         hot: true

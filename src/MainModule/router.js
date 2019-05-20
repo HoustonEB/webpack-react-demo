@@ -4,69 +4,73 @@ import {Menu, Icon} from 'antd';
 
 const MenuLink = [
     {
+        key: '/css-demo',
         url: '/css-demo',
-        icon: 'pie-chart',
-        title: 'Css'
+        sideBarName: 'Css'
     },
     {
+        key: '/card-tree',
         url: '/card-tree',
-        icon: 'pie-chart',
-        title: 'CardTree'
+        sideBarName: 'CardTree'
     },
     {
+        key: '/tree',
         url: '/tree',
-        icon: 'pie-chart',
-        title: 'Tree'
+        sideBarName: 'Tree'
     },
     {
+        key: '/transfer',
         url: '/transfer',
-        icon: 'pie-chart',
-        title: '穿梭框'
+        sideBarName: '穿梭框'
     },
     {
+        key: '/structure-tree-contrast',
         url: '/structure-tree-contrast',
-        icon: 'pie-chart',
-        title: '结构树对比'
+        sideBarName: '结构树对比'
     },
     {
+        key: '/js-demo',
         url: '/js-demo',
-        icon: 'pie-chart',
-        title: 'JsDemo'
+        sideBarName: 'JsDemo'
     },
     {
+        key: '/draggable',
         url: '/draggable',
-        icon: 'pie-chart',
-        title: 'draggable'
+        sideBarName: 'draggable'
     },
     {
+        key: '/reg-exr',
         url: '/reg-exr',
-        icon: 'pie-chart',
-        title: 'RegExr'
+        sideBarName: 'RegExr'
     },
     {
+        key: '/canvas',
         url: '/canvas',
-        icon: 'pie-chart',
-        title: 'Canvas'
+        sideBarName: 'Canvas'
     },
     {
+        key: '/drag-sort',
         url: '/drag-sort',
-        icon: 'pie-chart',
-        title: '拖拽排序'
+        sideBarName: '拖拽排序'
     },
     {
+        key: '/collapse',
         url: '/collapse',
-        icon: 'pie-chart',
-        title: '折叠面板'
-    }
+        sideBarName: '折叠面板'
+    },
+    {
+        key: '/carousel',
+        url: '/carousel',
+        sideBarName: '轮播图'
+    },
 ];
 const SideRouter = withRouter(
     (history) => {
         let link = MenuLink.map(item => {
-            const {url, icon, title} = item;
+            const {url, key, sideBarName} = item;
             return (
-                <Menu.Item key={url}>
-                    <Icon type={icon}/>
-                    <span>{title}</span>
+                <Menu.Item key={key}>
+                    <span>{sideBarName}</span>
                     <Link to={url}></Link>
                 </Menu.Item>
         )
