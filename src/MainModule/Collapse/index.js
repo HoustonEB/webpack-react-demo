@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Collapse from '../component/Collapse';
+import Collapse from '../../components/Collapse';
 
 export default class View extends Component {
     collapseData = Array(10000).fill({title: 'test', key: 'null'});

@@ -13,8 +13,9 @@ import Draggable from './Draggable';
 import RegExr from './RegExr';
 import Canvas from './Canvas';
 import DragSort from './DragSort';
-import CAROUSEL from './CAROUSEL';
+import Carousel from './Carousel';
 import Collapse from './Collapse';
+import VirtualList from './VirtualList';
 
 const Header = Layout.Header;
 const Content = Layout.Content;
@@ -103,8 +104,9 @@ export default class App extends Component {
                     <Route exact path="/reg-exr" component={new RegExr().defaultComp}/>
                     <Route exact path="/canvas" component={new Canvas().defaultComp}/>
                     <Route exact path="/drag-sort" component={new DragSort().defaultComp}/>
-                    <Route exact path="/carousel" component={CAROUSEL}/>
+                    <Route exact path="/carousel" component={Carousel}/>
                     <Route exact path="/collapse" component={Collapse}/>
+                    <Route exact path="/virtual-list" component={VirtualList}/>
                 </Content>
             </Layout>
         )

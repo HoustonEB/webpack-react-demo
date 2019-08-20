@@ -31,7 +31,7 @@ module.exports = function (plop) {
                     actions.push(
                         {
                             type: "addMany",
-                            destination: "src/{{upperCase compName}}",
+                            destination: "src/components/{{compName}}",
                             base: 'plop/plop-templates/single/', // base 解决生成模板时带入模板路径的问题.
                             templateFiles: 'plop/plop-templates/single/'
                         }
@@ -41,7 +41,7 @@ module.exports = function (plop) {
                     actions.push(
                         {
                             type: "addMany",
-                            destination: "src/{{lowerCase compName}}",
+                            destination: "src/{{compName}}",
                             base: 'plop/plop-templates/VM/',
                             templateFiles: 'plop/plop-templates/VM/'
                         }

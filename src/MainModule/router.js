@@ -63,6 +63,11 @@ const MenuLink = [
         url: '/carousel',
         sideBarName: '轮播图'
     },
+    {
+        key: '/virtual-list',
+        url: '/virtual-list',
+        sideBarName: '虚拟列表'
+    },
 ];
 const SideRouter = withRouter(
     (history) => {

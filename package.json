@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --host 127.0.0.1 --open --config webpack.dev.js",
+    "start": "webpack-dev-server --host 127.0.0.1 --config webpack.dev.js",
     "prod": "webpack --mode production --config webpack.prod.js",
     "dev": "webpack --mode development --config webpack.dev.js"
   },
@@ -30,6 +30,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-import": "^1.9.1",
+    "classnames": "^2.2.6",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.0",
     "exceljs": "^1.6.2",

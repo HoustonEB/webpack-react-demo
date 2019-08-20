@@ -49,7 +49,9 @@ module.exports = merge(common, {
         contentBase: path.join(__dirname, '/dist/dev/pages/'),// 对哪个目录下的文件进行热加载
         compress: true, // 是否压缩
         port: 9000,
-        hot: true
+        hot: true,
+        open: true,
+        openPage: 'pages/main.html',
     }
 });
 console.log(process.env.NODE_ENV, '===================================================', webpack.DefinePlugin);
