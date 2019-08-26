@@ -153,20 +153,20 @@ export default class App extends Component {
             <Layout style={{height: '100vh'}}>
                 <Content style={{background: '#fff', padding: 24, marginLeft: 200, minHeight: 350}}>
                     {/*{routeConfig.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}*/}
-                    {/*<Route exact path="/" render={() => (<Redirect to="/css-demo"/>)}/> /!*首次进入跳转到指定由*!/*/}
-                    {/*<Route exact path="/css-demo" component={CssDemo}/>*/}
-                    {/*<Route exact path="/card-tree" component={CardTree}/>*/}
-                    {/*<Route exact path="/tree" component={new Tree().defaultComp}/>*/}
-                    {/*<Route exact path="/transfer" component={new Transfer().defaultComp}/>*/}
-                    {/*<Route exact path="/structure-tree-contrast" component={new StructureTreeContrast().defaultComp}/>*/}
-                    {/*<Route exact path="/js-demo" component={new JsDemo().defaultComp}/>*/}
-                    {/*<Route exact path="/draggable" component={new Draggable().defaultComp}/>*/}
-                    {/*<Route exact path="/reg-exr" component={new RegExr().defaultComp}/>*/}
-                    {/*<Route exact path="/canvas" component={new Canvas().defaultComp}/>*/}
-                    {/*<Route exact path="/drag-sort" component={new DragSort().defaultComp}/>*/}
-                    {/*<Route exact path="/carousel" component={Carousel}/>*/}
-                    {/*<Route exact path="/collapse" component={Collapse}/>*/}
-                    {/*<Route exact path="/virtual-list" component={VirtualList}/>*/}
+                    <Route exact path="/" render={() => (<Redirect to="/css-demo"/>)}/> {/*首次进入跳转到指定由*/}
+                    <Route exact path="/css-demo" component={CssDemo}/>
+                    <Route exact path="/card-tree" component={CardTree}/>
+                    <Route exact path="/tree" component={new Tree().defaultComp}/>
+                    <Route exact path="/transfer" component={new Transfer().defaultComp}/>
+                    <Route exact path="/structure-tree-contrast" component={new StructureTreeContrast().defaultComp}/>
+                    <Route exact path="/js-demo" component={new JsDemo().defaultComp}/>
+                    <Route exact path="/draggable" component={new Draggable().defaultComp}/>
+                    <Route exact path="/reg-exr" component={new RegExr().defaultComp}/>
+                    <Route exact path="/canvas" component={new Canvas().defaultComp}/>
+                    <Route exact path="/drag-sort" component={new DragSort().defaultComp}/>
+                    <Route exact path="/carousel" component={Carousel}/>
+                    <Route exact path="/collapse" component={Collapse}/>
+                    <Route exact path="/virtual-list" component={VirtualList}/>
                 </Content>
             </Layout>
         )
