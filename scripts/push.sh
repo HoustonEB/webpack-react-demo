@@ -1,6 +1,6 @@
 set -e
 echo ------------push gh-pages start----------------------
-cd ../dist/prod/
+cd ./dist/prod/
 git init
 git config user.name HoustonEB
 git config user.email 860852345@qq.com
