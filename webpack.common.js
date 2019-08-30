@@ -49,7 +49,8 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     'style-loader',
-                    'css-loader'
+                    'css-loader',
+                    'postcss-loader',
                 ]
             },
             // 修改图片的路径
@@ -89,9 +90,10 @@ module.exports = {
                 test: /\.less$/,
                 use: [
                     // MiniCssExtractPlugin.loader, // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'style-loader', // creates style nodes from JS strings
+                    'style-loader', // creates style nodes from JS strings 主要 将css 插入到head 的style 标签中内联
                     'css-loader', // translates CSS into CommonJS
-                    'less-loader' // compiles Less to CSS
+                    'postcss-loader',
+                    'less-loader', // compiles Less to CSS
                 ]
             },
             {

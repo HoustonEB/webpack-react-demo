@@ -23,7 +23,9 @@ export default class carousel extends Component {
             <Carousel
                 data={data}
                 sliderPosition={'bottom'}
-                className={'home'}>
+                className={'home'}
+                effect={'scrollx'}
+                autoPlay={true}>
             </Carousel>
         )
     }
