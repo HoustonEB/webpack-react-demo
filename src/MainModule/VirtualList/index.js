@@ -36,7 +36,7 @@ export class Item extends Component {
 export default class VirtualizedList extends Component {
     constructor (props) {
         super(props);
-        this.data = new Array(1000).fill('io');
+        this.data = new Array(1001).fill('io');
     }
 
     renderItem(cachePosition, index) {
