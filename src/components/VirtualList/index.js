@@ -38,7 +38,6 @@ export default class VirtualList extends Component {
     cachePosition (node, index) {
         const rect = node.getBoundingClientRect();
         const top = rect.top + window.pageYOffset;
-        console.log(index)
         this.cache.push({
             index,
             top,
