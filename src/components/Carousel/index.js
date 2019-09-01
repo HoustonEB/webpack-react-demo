@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {throttle} from 'lodash';
 import PropTypes from 'prop-types';
 import './style.use.less';
 
@@ -8,13 +7,16 @@ export default class Carousel extends Component {
         data: PropTypes.array.isRequired,
         autoPlay: PropTypes.bool,
         effect: PropTypes.oneOf(['fade', 'scrollx']),
-        sliderPosition: PropTypes.oneOf(['top', 'left', 'bottom', 'right'])
+        sliderPosition: PropTypes.oneOf(['top', 'left', 'bottom', 'right']),
+        autoInterval: PropTypes.number
     };
 
     static defaultProps = {
-        autoPlay: true
+        autoPlay: true,
+        autoInterval: 5000
     };
 
+    _lock = false;
     _startAutoPlay = true;
     _data = this.addOccupyEle(this.props);
 
@@ -28,6 +30,7 @@ export default class Carousel extends Component {
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.prev = this.prev.bind(this);
         this.next = this.next.bind(this);
+        this.transitionEnd = this.transitionEnd.bind(this);
     }
 
     componentDidMount() {
@@ -39,10 +42,28 @@ export default class Carousel extends Component {
                 carouselWidth: this.getStyle(this.carouselDom, 'height')
             }
         });
+        this.slickTrack.addEventListener('transitionend', this.transitionEnd);
     }
 
     componentWillUnmount() {
         clearInterval(this.autoInterval);
+        this.slickTrack.removeEventListener('transitionend', this.transitionEnd);
+    }
+
+    transitionEnd() {
+        const {props, state} = this;
+        this._lock = false;
+        switch (props.effect) {
+            case 'scrollx': {
+                if (state.activeIndex >= this._data.length - 1) {
+                    this.setState({activeIndex: 1});
+                    this.slickTrack.style.transition = 'unset';
+                } else if (state.activeIndex <= 0) {
+                    this.setState({activeIndex: this._data.length - 2});
+                    this.slickTrack.style.transition = 'unset';
+                }
+            }
+        }
     }
 
     addOccupyEle(props) {
@@ -66,12 +87,6 @@ export default class Carousel extends Component {
         props.switchFunc && props.switchFunc[index]();
     }
 
-    prev = throttle(() => {
-        const {state} = this;
-        this.setState({activeIndex: --state.activeIndex});
-        this.updateFadeIndex('prev')
-    }, 500);
-
     componentDidUpdate() {
         this.updateIndex();
     }
@@ -93,32 +108,7 @@ export default class Carousel extends Component {
         const {props, state} = this;
         switch (props.effect) {
             case 'scrollx': {
-                if (state.activeIndex >= this._data.length - 1) {
-                    // this.setState(() => {
-                    //     this.slickTrack.style.transition = 'unset';
-                    //     return {activeIndex: 1}
-                    // });
-                    // this.setState({activeIndex: 1});
-                    let resetTimer = null;
-                    if (resetTimer) {
-                        clearTimeout(resetTimer);
-                    } else {
-                        resetTimer = setTimeout(() => {
-                            this.setState({activeIndex: 1});
-                            this.slickTrack.style.transition = 'unset';
-                        }, 400);
-                    }
-                } else if (state.activeIndex <= 0) {
-                    let resetTimer = null;
-                    if (resetTimer) {
-                        clearTimeout(resetTimer);
-                    } else {
-                        resetTimer = setTimeout(() => {
-                            this.setState({activeIndex: this._data.length - 2});
-                            this.slickTrack.style.transition = 'unset';
-                        }, 400);
-                    }
-                } else if (state.activeIndex === 1 && this._startAutoPlay) {
+                if (state.activeIndex === 1 && this._startAutoPlay) { // fix初始化从最后一张轮播到第一张的动画
                     this.slickTrack.style.transition = 'unset';
                 } else {
                     this.slickTrack.style.transition = 'transform ease-in .5s';
@@ -132,13 +122,26 @@ export default class Carousel extends Component {
         }
     }
 
-    next = throttle(() => {
+    prev() {
         const {state} = this;
-        this.setState({activeIndex: ++state.activeIndex});
-        this.updateFadeIndex('next')
-    }, 500);
+        if(!this._lock) {
+            this._lock = true;
+            this.setState({activeIndex: --state.activeIndex});
+            this.updateFadeIndex('prev');
+        }
+    }
+
+    next() {
+        const {state} = this;
+        if (!this._lock) {
+            this._lock = true;
+            this.setState({activeIndex: ++state.activeIndex});
+            this.updateFadeIndex('next');
+        }
+    }
 
     startAutoPlay() {
+        const {props} = this;
         this.autoInterval = setInterval(() => {
             this._startAutoPlay = true;
             this.setState((prevState, nexProps) => {
@@ -147,7 +150,7 @@ export default class Carousel extends Component {
                     activeIndex: ++prevState.activeIndex
                 }
             });
-        }, 2000);
+        }, props.autoInterval);
     }
 
     closeAutoPlay() {
@@ -171,16 +174,21 @@ export default class Carousel extends Component {
         let sliderArr = [];
         this._data.forEach((item, index) => {
             let className = '';
-            console.log(state.activeIndex, 'op');
-            if (state.activeIndex === this._data.length - 2 && index === 1) {
-                className = 'active';
-            } if (state.activeIndex === 1 && index === this._data.length - 1) {
-                className = 'active';
-            }
-            else if (state.activeIndex === index) {
-                className = 'active';
-            } else {
-                className = '';
+            switch (props.effect) {
+                case 'scrollx':
+                    if (state.activeIndex === this._data.length - 1 && index === 1) {
+                        className = 'active';
+                    } else if (state.activeIndex === 0 && index === this._data.length - 2) {
+                        className = 'active';
+                    } else if (state.activeIndex === index) {
+                        className = 'active';
+                    }
+                    break;
+                case 'fade':
+                   if (state.activeIndex === index) {
+                        className = 'active';
+                    }
+                    break;
             }
             sliderArr.push(
                 <li
