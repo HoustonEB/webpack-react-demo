@@ -24,7 +24,7 @@ export default class carousel extends Component {
                 data={data}
                 sliderPosition={'bottom'}
                 className={'home'}
-                effect={'fade'}
+                effect={'scrollx'}
                 autoPlay={true}
                 autoInterval={2000}>
             </Carousel>
