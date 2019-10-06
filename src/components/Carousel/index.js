@@ -13,7 +13,8 @@ export default class Carousel extends Component {
 
     static defaultProps = {
         autoPlay: true,
-        autoInterval: 5000
+        autoInterval: 5000,
+        sliderPosition: 'bottom'
     };
 
     _lock = false;
@@ -31,6 +32,7 @@ export default class Carousel extends Component {
         this.prev = this.prev.bind(this);
         this.next = this.next.bind(this);
         this.transitionEnd = this.transitionEnd.bind(this);
+        this.visibilityChange = this.visibilityChange.bind(this);
     }
 
     componentDidMount() {
@@ -43,11 +45,15 @@ export default class Carousel extends Component {
             }
         });
         this.slickTrack.addEventListener('transitionend', this.transitionEnd);
+        this.slickTrack.addEventListener('webkitTransitionEnd', this.transitionEnd);
+        document.addEventListener('visibilitychange', this.visibilityChange);
     }
 
     componentWillUnmount() {
         clearInterval(this.autoInterval);
         this.slickTrack.removeEventListener('transitionend', this.transitionEnd);
+        this.slickTrack.removeEventListener('webkitTransitionEnd', this.transitionEnd);
+        document.removeEventListener('visibilitychange', this.visibilityChange);
     }
 
     transitionEnd() {
@@ -57,13 +63,30 @@ export default class Carousel extends Component {
             case 'scrollx': {
                 if (state.activeIndex >= this._data.length - 1) {
                     this.setState({activeIndex: 1});
-                    this.slickTrack.style.transition = 'unset';
+                    this.clearTransition();
                 } else if (state.activeIndex <= 0) {
                     this.setState({activeIndex: this._data.length - 2});
-                    this.slickTrack.style.transition = 'unset';
+                    this.clearTransition();
                 }
             }
         }
+    }
+
+    visibilityChange() {
+        console.log(document.visibilityState, 'state');
+        if (document.visibilityState === 'hidden') {
+            this.closeAutoPlay();
+        } else if (document.visibilityState === 'visible') {
+            this.startAutoPlay();
+        }
+    }
+
+    beginTransition() {
+        this.slickTrack.style.transition = 'transform ease-out .7s';
+    }
+
+    clearTransition() {
+        this.slickTrack.style.transition = 'unset';
     }
 
     addOccupyEle(props) {
@@ -109,9 +132,9 @@ export default class Carousel extends Component {
         switch (props.effect) {
             case 'scrollx': {
                 if (state.activeIndex === 1 && this._startAutoPlay) { // fix初始化从最后一张轮播到第一张的动画
-                    this.slickTrack.style.transition = 'unset';
+                    this.clearTransition();
                 } else {
-                    this.slickTrack.style.transition = 'transform ease-in .5s';
+                    this.beginTransition();
                 }
                 break;
             }
@@ -154,8 +177,10 @@ export default class Carousel extends Component {
     }
 
     closeAutoPlay() {
-        clearInterval(this.autoInterval);
-        this._startAutoPlay = false;
+        if (this.autoInterval) {
+            clearInterval(this.autoInterval);
+            this._startAutoPlay = false;
+        }
     }
 
     handleMouseEnter() {
