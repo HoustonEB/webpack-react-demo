@@ -6,10 +6,6 @@ export default class Button extends Component {
         super(props);
     }
 
-    componentDidUpdate() {
-        let $button = document.querySelector('.jelly-btn');
-    }
-
     render() {
         return (
             <button className={'boxshadow-btn'} onClick={this.props.handleClick} style={this.props.style}>

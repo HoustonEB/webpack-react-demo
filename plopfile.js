@@ -1,11 +1,8 @@
-// actions.push([
-//     {
-//         type: 'add',
-//         path: 'src/{{name}}/',
-//         templateFile: 'plop/plop-templates/single/'
-//     }
-// ])
+const path = require('path');
+
 module.exports = function (plop) {
+    const currentPath = path.resolve('.');
+    const plopPath = path.resolve(__dirname);
     // create your generators here
     plop.setGenerator('basics', {
         description: 'this is a skeleton plopfile',
@@ -25,31 +22,32 @@ module.exports = function (plop) {
                 message: '请输入组件名'
             }],
         actions: function (data) {
-            var actions = [];
-            switch (data.compType) {
+            let actions = [];
+            const {compType, compName} = data;
+            const templatePath = plopPath + '/plop/plop-templates/';
+            switch (compType) {
                 case 'single':
                     actions.push(
                         {
                             type: "addMany",
-                            destination: "src/components/{{compName}}",
-                            base: 'plop/plop-templates/single/', // base 解决生成模板时带入模板路径的问题.
-                            templateFiles: 'plop/plop-templates/single/'
+                            destination: `${currentPath}/{{compName}}`,
+                            base: templatePath + 'single/', // base 解决生成模板时带入模板路径的问题.
+                            templateFiles: templatePath + 'single/'
                         }
-                    )
+                    );
                     break;
                 case 'multiple':
                     actions.push(
                         {
                             type: "addMany",
-                            destination: "src/{{compName}}",
-                            base: 'plop/plop-templates/VM/',
-                            templateFiles: 'plop/plop-templates/VM/'
+                            destination: `${currentPath}/{{compName}}`,
+                            base: templatePath + 'VM/',
+                            templateFiles: templatePath + 'VM/'
                         }
-                    )
+                    );
                     break;
             }
-            console.log(data.compType, 'data', data, actions);
-            // console.log("src/{{compName}}", '======')
+            console.log(actions);
             return actions;
         }
     });

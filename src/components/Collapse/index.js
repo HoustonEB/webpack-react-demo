@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './style.use.less';
 
-export default class View extends Component {
+export default class Collapse extends Component {
     static propTypes = {
         collapseData: PropTypes.array
     };

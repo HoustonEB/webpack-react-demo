@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-import Draw from '../';
-import {observable} from 'mobx';
-import {observer} from 'mobx-react';
+import Modal from '../';
 import './style.use.less';
 
-@observer
 export default class Demo extends Component {
-    static demoKey = 'DrawNormal';
-    static demoName = 'Draw-Normal';
+    static demoKey = 'ModalNormal';
+    static demoName = 'Modal-Normal';
 
     constructor(props) {
         super(props);
@@ -16,7 +13,7 @@ export default class Demo extends Component {
     render() {
         return (
             <div>
-                <Draw enable={true}/>
+                <Modal/>
             </div>
         )
     }

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './style.use.less';
 
 export default class ModalPopup extends Component {
-
     constructor(props) {
         super(props);
         //点击黑色区域关闭弹窗
@@ -13,14 +12,6 @@ export default class ModalPopup extends Component {
         //     }
         // })
     }
-
-    componentWillUnmount() {}
-
-    // shouldComponentUpdate(nextProps, nextState) {}
-
-    componentWillUpdate() {}
-
-    componentDidUpdate() {}
 
     render() {
         return (

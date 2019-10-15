@@ -1,7 +1,10 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
+const HappyPack = require('happypack');
+
 console.log(devMode, '===============423243====================================', process.env.NODE_ENV)
+
 module.exports = {
     module: {
         rules: [
@@ -9,39 +12,40 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src'),
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-react', '@babel/preset-env'],
-                        plugins: [
-                            ['import', {libraryName: 'antd', style: 'css'}],
-                            // ['react-hot-loader/babel'], // 功能待定
-                            // Stage 0
-                            // "@babel/plugin-proposal-function-bind",
-
-                            // Stage 1
-                            // "@babel/plugin-proposal-export-default-from",
-                            // "@babel/plugin-proposal-logical-assignment-operators",
-                            // ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
-                            // ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
-                            // ["@babel/plugin-proposal-nullish-coalescing-operator", { "loose": false }],
-                            // "@babel/plugin-proposal-do-expressions",
-
-                            // Stage 2
-                            ["@babel/plugin-proposal-decorators", {"legacy": true}], //支持修饰符
-                            // "@babel/plugin-proposal-function-sent",
-                            // "@babel/plugin-proposal-export-namespace-from",
-                            // "@babel/plugin-proposal-numeric-separator",
-                            // "@babel/plugin-proposal-throw-expressions",
-
-                            // Stage 3
-                            // "@babel/plugin-syntax-dynamic-import",
-                            // "@babel/plugin-syntax-import-meta",
-                            ["@babel/plugin-proposal-class-properties", {"loose": true}]// ES7中类属性的定义=>支持类中定义属性
-                            // "@babel/plugin-proposal-json-strings"
-                        ]
-                    }
-                }
+                use: 'happypack/loader',
+                // use: {
+                //     loader: 'babel-loader',
+                //     options: {
+                //         presets: ['@babel/preset-react', '@babel/preset-env'],
+                //         plugins: [
+                //             ['import', {libraryName: 'antd', style: 'css'}],
+                //             // ['react-hot-loader/babel'], // 功能待定
+                //             // Stage 0
+                //             // "@babel/plugin-proposal-function-bind",
+                //
+                //             // Stage 1
+                //             // "@babel/plugin-proposal-export-default-from",
+                //             // "@babel/plugin-proposal-logical-assignment-operators",
+                //             // ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
+                //             // ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
+                //             // ["@babel/plugin-proposal-nullish-coalescing-operator", { "loose": false }],
+                //             // "@babel/plugin-proposal-do-expressions",
+                //
+                //             // Stage 2
+                //             ["@babel/plugin-proposal-decorators", {"legacy": true}], //支持修饰符
+                //             // "@babel/plugin-proposal-function-sent",
+                //             // "@babel/plugin-proposal-export-namespace-from",
+                //             // "@babel/plugin-proposal-numeric-separator",
+                //             // "@babel/plugin-proposal-throw-expressions",
+                //
+                //             // Stage 3
+                //             // "@babel/plugin-syntax-dynamic-import",
+                //             // "@babel/plugin-syntax-import-meta",
+                //             ["@babel/plugin-proposal-class-properties", {"loose": true}]// ES7中类属性的定义=>支持类中定义属性
+                //             // "@babel/plugin-proposal-json-strings"
+                //         ]
+                //     }
+                // }
             },
             // css-loader 将css属性url('./img.jpg')中的路径处理成打包后的路径.
             // html-loader 以相同的方式处理标签中的<img src="./my-image.png" />路径
@@ -109,4 +113,45 @@ module.exports = {
             '/src': path.resolve(__dirname, './src')
         }
     },
+    plugins: [
+        // 2) create the plugin:
+        new HappyPack({
+            // 3) re-add the loaders you replaced above in #1:
+            loaders: [
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-react', '@babel/preset-env'],
+                        plugins: [
+                            ['import', {libraryName: 'antd', style: 'css'}],
+                            // ['react-hot-loader/babel'], // 功能待定
+                            // Stage 0
+                            // "@babel/plugin-proposal-function-bind",
+
+                            // Stage 1
+                            // "@babel/plugin-proposal-export-default-from",
+                            // "@babel/plugin-proposal-logical-assignment-operators",
+                            // ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
+                            // ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
+                            // ["@babel/plugin-proposal-nullish-coalescing-operator", { "loose": false }],
+                            // "@babel/plugin-proposal-do-expressions",
+
+                            // Stage 2
+                            ["@babel/plugin-proposal-decorators", {"legacy": true}], //支持修饰符
+                            // "@babel/plugin-proposal-function-sent",
+                            // "@babel/plugin-proposal-export-namespace-from",
+                            // "@babel/plugin-proposal-numeric-separator",
+                            // "@babel/plugin-proposal-throw-expressions",
+
+                            // Stage 3
+                            // "@babel/plugin-syntax-dynamic-import",
+                            // "@babel/plugin-syntax-import-meta",
+                            ["@babel/plugin-proposal-class-properties", {"loose": true}]// ES7中类属性的定义=>支持类中定义属性
+                            // "@babel/plugin-proposal-json-strings"
+                        ]
+                    }
+                }
+            ]
+        })
+    ]
 };

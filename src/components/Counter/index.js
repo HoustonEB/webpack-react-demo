@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './style.use.less';
 
 export default class Counter extends Component {
+    static compsKey = 'Counter';
     eventFn;
     counterNum;
 

@@ -19,9 +19,9 @@ module.exports = merge(common, {
         filename: 'dist/[name][hash].js'
     },
     plugins: [
-        // new webpack.DefinePlugin({
-        //     'process.env.NODE_ENV': JSON.stringify('development')
-        // }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development')
+        }),
         new CleanWebpackPlugin(['dist/dev/']),
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代
@@ -47,7 +47,7 @@ module.exports = merge(common, {
     // },
     devServer: {
         contentBase: path.join(__dirname, '/dist/dev/pages/'),// 对哪个目录下的文件进行热加载
-        compress: true, // 是否压缩
+        compress: false, // 是否压缩
         port: 9000,
         hot: true,
         open: true,
