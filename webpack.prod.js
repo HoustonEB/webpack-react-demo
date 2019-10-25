@@ -30,14 +30,14 @@ module.exports = merge(common, {
             template: "template/prod-template.html", // html模板
             filename: "pages/main.html",
             hash: true,
-            chunks: ['main']
+            chunks: ['main', 'vendor']
         }),
         new HtmlWebpackPlugin({
             title: "Prod ko", // 模板中有title就会替代
             template: "template/prod-template.html", // html模板
             filename: "pages/demo.html",
             hash: true,
-            chunks: ['demo']
+            chunks: ['demo', 'vendor']
         }),
         new MiniCssExtractPlugin({
             filename: 'dist/[name].css',
@@ -45,11 +45,5 @@ module.exports = merge(common, {
         })
     ],
     mode: "production",
-    devtool: 'source-map',
-    // optimization: {
-    //     splitChunks: {
-    //         chunks: "all",
-    //         name: "vendor"
-    //     }
-    // }
+    devtool: 'source-map'
 });

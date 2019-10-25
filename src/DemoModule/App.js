@@ -29,7 +29,7 @@ export default class App extends Component {
                     <Menu
                         onClick={this.handleClick}
                         style={{width: 256}}
-                        defaultSelectedKeys={['1']}
+                        defaultSelectedKeys={[0]}
                         mode="inline"
                     >
                         {

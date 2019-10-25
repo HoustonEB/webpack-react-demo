@@ -4,7 +4,7 @@ import {observer} from 'mobx-react';
 import './style.use.less';
 import Modal from '../../components/ModalPopup';
 import Button from '../../components/Button';
-import CircleLoading from '../../components/circleLoading';
+import CircleLoading from '../../components/CircleLoading';
 import Accordion from './Accordion';
 import CircleProgressBar from '../../components/CircleProgressBar';
 import Counter from '../../components/Counter';

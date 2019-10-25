@@ -153,5 +153,19 @@ module.exports = {
                 }
             ]
         })
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/](react|react-dom|mobx|lodash|axios|mobx-react|antd|react-router-dom)[\\/]/,
+                    name: 'vendor',
+                    chunks: 'all',
+                    maxAsyncRequests: 5, // 最大异步请求数， 默认1
+                    maxInitialRequests : 3, // 最大初始化请求书，默认1
+                    enforce: true,
+                }
+            }
+        }
+    }
 };

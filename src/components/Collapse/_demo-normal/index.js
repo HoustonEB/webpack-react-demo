@@ -9,7 +9,7 @@ export default class Demo extends Component {
     static demoKey = 'CollapseNormal';
     static demoName = 'Collapse-Normal';
 
-    collapseData = Array(10000).fill({title: 'test', key: 'null'});
+    collapseData = Array(100).fill({title: 'test', key: 'null'});
 
     constructor(props) {
         super(props);

@@ -16,6 +16,7 @@ import RegExr from "./RegExr";
 import Transfer from "./Transfer";
 import Carousel from "./Carousel";
 import VirtualList from "./VirtualList";
+import mobx from "./mobxExample";
 
 const Header = Layout.Header;
 const Content = Layout.Content;
@@ -86,6 +87,11 @@ const MenuLink = [
         key: '/virtual-list',
         url: '/virtual-list',
         sideBarName: '虚拟列表'
+    },
+    {
+        key: '/mobx',
+        url: '/mobx',
+        sideBarName: 'mobx'
     },
 ];
 
@@ -167,6 +173,7 @@ export default class App extends Component {
                     <Route exact path="/carousel" component={Carousel}/>
                     <Route exact path="/collapse" component={Collapse}/>
                     <Route exact path="/virtual-list" component={VirtualList}/>
+                    <Route exact path="/mobx" component={mobx}/>
                 </Content>
             </Layout>
         )
