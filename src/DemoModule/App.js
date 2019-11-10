@@ -14,10 +14,33 @@ function renderRouter() {
 }
 
 export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentPath: ['0']
+        }
+    }
 
     routes = renderRouter();
 
+    getRouterPath() {
+        let path = window.location.hash;
+        if (path.indexOf('?') >=0) {
+            path = path.split('?')[0];
+        }
+
+        return path.slice(2)
+    }
+
+    componentWillMount() {
+        this.setState({currentPath: this.getRouterPath()})
+    }
+
     renderLink() {
+        const {
+            currentPath
+        } = this.state;
+
             return (
                 <Sider style={{
                     overflow: 'auto',
@@ -27,15 +50,15 @@ export default class App extends Component {
                     backgroundColor: '#fff',
                     borderRight: '1px solid #eee'}}>
                     <Menu
-                        onClick={this.handleClick}
+                        onClick={(e) => this.handleClick(e)}
                         style={{width: 256}}
-                        defaultSelectedKeys={[0]}
+                        defaultSelectedKeys={currentPath}
                         mode="inline"
                     >
                         {
                             this.routes.components.map((item, index) => {
                                 return (
-                                    <Menu.Item key={index}>
+                                    <Menu.Item key={item.default.demoKey}>
                                         <Link to={`/${item.default.demoKey}`}>{item.default.demoName}</Link>
                                     </Menu.Item>
                                 )
@@ -61,6 +84,12 @@ export default class App extends Component {
                 </Content>
             </Layout>
         )
+    }
+
+    handleClick(e) {
+        this.setState({
+            currentPath: e.key
+        });
     }
 
     render() {
