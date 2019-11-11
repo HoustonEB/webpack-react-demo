@@ -19,21 +19,21 @@ module.exports = merge(common, {
         filename: 'dist/[name][hash].js'
     },
     plugins: [
-        // new webpack.DefinePlugin({
-        //     'process.env.NODE_ENV': JSON.stringify('development')
-        // }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development')
+        }),
         new CleanWebpackPlugin(['dist/dev/']),
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代
             template: 'template/dev-template.html', // html模板
             filename: 'pages/main.html',
-            chunks: ['main']
+            chunks: ['main', 'vendor'] // 使用splitChunks拆成多个文件需要引入
         }),
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代
             template: 'template/dev-template.html', // html模板
             filename: 'pages/demo.html',
-            chunks: ['demo'] // 引入entry对应的js文件
+            chunks: ['demo', 'vendor'] // 引入entry对应的js文件
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
@@ -46,8 +46,8 @@ module.exports = merge(common, {
     //   poll: 1000 // 每一秒检查文件是否change, true=>rebuild
     // },
     devServer: {
-        contentBase: path.join(__dirname, '/dist/dev/pages/'),// 对哪个目录下的文件进行热加载
-        compress: true, // 是否压缩
+        contentBase: path.join(__dirname, '/src/'),// 对哪个目录下的文件进行热加载
+        compress: false, // 是否压缩
         port: 9000,
         hot: true,
         open: true,

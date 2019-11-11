@@ -1,35 +1,33 @@
 import React, {Component} from 'react';
-import CircleProgressBar from '../';
+import Collapse from '../';
 import {observable} from 'mobx';
 import {observer} from 'mobx-react';
 import './style.use.less';
 
 @observer
 export default class Demo extends Component {
-    static demoKey = 'CircleProgressBarNormal';
-    static demoName = 'CircleProgressBar-Normal';
-    @observable progressNum = 0;
+    static demoKey = 'CollapseNormal';
+    static demoName = 'Collapse-Normal';
+
+    collapseData = Array(100).fill({title: 'test', key: 'null'});
+
     constructor(props) {
         super(props);
+        this.state = {
+            collapseMode: true
+        }
+    }
+    handleSwitchMode() {
+        this.setState({
+            collapseMode: !this.state.collapseMode
+        })
     }
 
-    handleChangeNum() {
-        let percent = document.getElementsByClassName('percent-num')[0];
-        this.progressNum = percent.value;
-    }
-
-    render() {
+    render () {
         return (
             <div>
-                <input
-                    className={'percent-num'}
-                    type='range'
-                    value={this.progressNum}
-                    min='0'
-                    max='100'
-                    step='1'
-                    onChange={() => this.handleChangeNum()}></input>
-                <CircleProgressBar progressNum={this.progressNum}/>
+                <button onClick={this.handleSwitchMode.bind(this)}>{this.state.collapseMode ? '折叠面板' : '手风琴'}</button>
+                <Collapse collapseData={this.collapseData} collapseMode={this.state.collapseMode} />
             </div>
         )
     }

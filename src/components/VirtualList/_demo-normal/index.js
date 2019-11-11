@@ -1,41 +1,65 @@
 import React, {Component} from 'react';
-import ModalPopup from '../';
+import VirtualList from '../';
 import './style.use.less';
 
-export default class Demo extends Component {
-    static demoKey = 'ModalPopupNormal';
-    static demoName = 'ModalPopup-Normal';
+export class Item extends Component {
+    static demoKey = 'VirtualListNormal';
+    static demoName = 'VirtualList-Normal';
 
     constructor(props) {
         super(props);
-        this.state = {
-            showModal: false
-        }
     }
 
-    showModal() {
-        this.setState({
-            showModal: true
-        });
+    componentDidMount () {
+        this.props.cachePosition(this.node, this.props.index);
     }
 
-    handleCloseModal() {
-        this.setState({
-            showModal: false
-        })
+    componentWillReceiveProps(nextProps) {
+        // console.log(nextProps.index, 'renderItem')
+        // nextProps.cachePosition(this.node, nextProps.index);
     }
 
-    render() {
+    render () {
+        const {index, item} = this.props;
+
         return (
-            <div>
-                <button
-                    onClick={() => this.showModal()}
-                    style={{verticalAlign: 'top'}}>trigger modal</button>
-                <ModalPopup
-                    show={this.state.showModal}
-                    onClose={() => this.handleCloseModal()}>
-                    <h3 style={{textAlign: 'center'}}>Modal</h3>
-                </ModalPopup>
+            <div className='list-item'
+                 style={{ height: '60px' }}
+                 ref={node => {this.node = node}}
+                 key={index}>
+                <p>#${index} eligendi voluptatem quisquam</p>
+                <p>Modi autem fugiat maiores. Doloremque est sed quis qui nobis. Accusamus dolorem aspernatur sed rem.</p>
+            </div>
+        )
+    }
+}
+
+export default class Demo extends Component {
+    static demoKey = 'VirtualListNormal';
+    static demoName = 'VirtualList-Normal';
+
+    constructor (props) {
+        super(props);
+        this.data = new Array(1001).fill('io');
+    }
+
+    renderItem(cachePosition, index) {
+        return (
+            <Item
+                key={index}
+                cachePosition={cachePosition}
+                index={index}
+            />
+        )
+    }
+
+    render () {
+        return (
+            <div className='wrapper' ref={node => { this.wrapper = node }}>
+                <VirtualList
+                    data={this.data}
+                    rowCount={10}
+                    renderItem={this.renderItem}/>
             </div>
         )
     }

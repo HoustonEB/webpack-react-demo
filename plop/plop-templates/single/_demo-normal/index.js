@@ -1,10 +1,17 @@
+/**
+ * @file: {{compName}} View 组件
+ * @author: {{userName}}
+ * @date: {{today}}
+ * @description: {{compName}} 的 React UI 组件
+ */
+
 import React, {Component} from 'react';
-import Button from '../';
+import {{compName}} from '../';
 import './style.use.less';
 
 export default class Demo extends Component {
-    static demoKey = 'ButtonNormal';
-    static demoName = 'Button-Normal';
+    static demoKey = '{{compName}}Normal';
+    static demoName = '{{compName}}-Normal';
 
     constructor(props) {
         super(props);
@@ -12,7 +19,7 @@ export default class Demo extends Component {
 
     render() {
         return (
-            <Button content={'test'}/>
+            <{{compName}}/>
         )
     }
 }

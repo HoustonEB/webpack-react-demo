@@ -5,7 +5,7 @@ import './style.use.less';
 
 @observer
 export default class CircleProgressBar extends Component {
-@observable progressNum = 0;
+    @observable progressNum = 0;
 
   constructor(props) {
     super(props);

@@ -16,6 +16,8 @@ import RegExr from "./RegExr";
 import Transfer from "./Transfer";
 import Carousel from "./Carousel";
 import VirtualList from "./VirtualList";
+import mobx from "./mobxExample";
+import d3 from './d3-bar';
 
 const Header = Layout.Header;
 const Content = Layout.Content;
@@ -86,6 +88,16 @@ const MenuLink = [
         key: '/virtual-list',
         url: '/virtual-list',
         sideBarName: '虚拟列表'
+    },
+    {
+        key: '/mobx',
+        url: '/mobx',
+        sideBarName: 'mobx'
+    },
+    {
+        key: '/d3',
+        url: '/d3',
+        sideBarName: 'D3'
     },
 ];
 
@@ -167,6 +179,8 @@ export default class App extends Component {
                     <Route exact path="/carousel" component={Carousel}/>
                     <Route exact path="/collapse" component={Collapse}/>
                     <Route exact path="/virtual-list" component={VirtualList}/>
+                    <Route exact path="/mobx" component={mobx}/>
+                    <Route exact path="/d3" component={d3}/>
                 </Content>
             </Layout>
         )

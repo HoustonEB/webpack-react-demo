@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Drawer} from 'antd';
 
-export default class draw extends Component {
-
+export default class Draw extends Component {
     constructor(props) {
         super(props);
         this.state = {
