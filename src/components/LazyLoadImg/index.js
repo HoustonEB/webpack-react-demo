@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {throttle} from '/src/global/utils'
+import {throttle, myCall, myApply} from '/src/global/utils'
 import './style.use.less';
 
 export default class LazyLoadImg extends Component {
@@ -7,9 +7,25 @@ export default class LazyLoadImg extends Component {
     state = {
         imageData: new Array(300).fill({imgUrl: 'https://bpic.588ku.com/element_list_pic/19/09/17/6c2c834c5d49be8ee036137651f79dc2.jpg!/fw/250/quality/99/unsharp/true/compress/true'})
     };
+    test(a, b) {
+        console.log(a,b, this.x, 'x')
+    }
 
     constructor(props) {
         super(props);
+        let obj = {
+            x: 'obj'
+        };
+        let obj1 = {
+            x: 'obj1'
+        };
+        let obj2 = {
+            x: 'obj2'
+        };
+        myCall();
+        myApply();
+        this.test.myCall(obj, [1,2], {b:2});
+        this.test.myApply(obj1, 3,5,6);
     }
 
     componentDidMount() {
