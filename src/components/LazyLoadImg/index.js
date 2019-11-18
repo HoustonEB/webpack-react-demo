@@ -25,7 +25,7 @@ export default class LazyLoadImg extends Component {
         myCall();
         myApply();
         this.test.myCall(obj, [1,2], {b:2});
-        this.test.myApply(obj1, 3,5,6);
+        this.test.myApply(obj1, [3,5,6]);
     }
 
     componentDidMount() {
