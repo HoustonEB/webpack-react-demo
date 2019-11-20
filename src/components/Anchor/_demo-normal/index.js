@@ -8,6 +8,7 @@
 import React, {Component} from 'react';
 import Anchor from '../';
 import './style.use.less';
+import {promise, loadPromise} from '/src/lessons/promise';
 
 export default class Demo extends Component {
     static demoKey = 'AnchorNormal';
@@ -25,6 +26,8 @@ export default class Demo extends Component {
 
     constructor(props) {
         super(props);
+        // promise();
+        loadPromise();
     }
 
     renderAnchor() {
