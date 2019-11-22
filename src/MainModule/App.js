@@ -19,6 +19,7 @@ import VirtualList from "./VirtualList";
 import mobx from "./mobxExample";
 import d3 from './d3-bar';
 import BreadcrumbDemo from './Breadcrumb';
+import AutoSave from './AutoSave';
 
 const Header = Layout.Header;
 const Content = Layout.Content;
@@ -105,6 +106,11 @@ const MenuLink = [
         url: '/Breadcrumb',
         sideBarName: 'Breadcrumb'
     },
+    {
+        key: '/AutoSave',
+        url: '/AutoSave',
+        sideBarName: 'AutoSave'
+    }
 ];
 
 const SideRouter = withRouter(
@@ -188,6 +194,7 @@ export default class App extends Component {
                     <Route exact path="/mobx" component={mobx}/>
                     <Route exact path="/d3" component={d3}/>
                     <Route path="/Breadcrumb" component={BreadcrumbDemo}/>
+                    <Route path="/AutoSave" component={AutoSave}/>
                 </Content>
             </Layout>
         )

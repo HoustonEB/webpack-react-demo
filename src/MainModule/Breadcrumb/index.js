@@ -13,16 +13,11 @@ import './style.use.less';
 
 export default class BreadcrumbDemo extends Component {
 
-    state = {
-        route: []
-    };
-
     constructor(props) {
         super(props);
     }
 
     componentDidUpdate() {
-        console.log(this.props, 'props')
     }
 
     // Switch补充匹配路由
