@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {autoSave, listenChange} from '/src/global/utils/autoSave';
+import {testClass} from '/src/global/utils/testClass';
 import './style.use.less';
 
 @autoSave
@@ -14,6 +15,7 @@ class AutoSave extends Component {
 
     constructor(props) {
         super(props);
+        console.log(new testClass(), 'testClass');
     }
 
     componentDidMount() {
