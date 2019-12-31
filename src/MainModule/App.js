@@ -20,6 +20,7 @@ import mobx from "./mobxExample";
 import d3 from './d3-bar';
 import BreadcrumbDemo from './Breadcrumb';
 import AutoSave from './AutoSave';
+import Select from './Select';
 
 const Header = Layout.Header;
 const Content = Layout.Content;
@@ -110,6 +111,11 @@ const MenuLink = [
         key: '/AutoSave',
         url: '/AutoSave',
         sideBarName: 'AutoSave'
+    },
+    {
+        key: '/Select',
+        url: '/Select',
+        sideBarName: 'Select'
     }
 ];
 
@@ -195,6 +201,7 @@ export default class App extends Component {
                     <Route exact path="/d3" component={d3}/>
                     <Route path="/Breadcrumb" component={BreadcrumbDemo}/>
                     <Route path="/AutoSave" component={AutoSave}/>
+                    <Route path="/Select" component={Select}/>
                 </Content>
             </Layout>
         )

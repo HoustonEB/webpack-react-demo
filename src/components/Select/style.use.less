@@ -1,0 +1,84 @@
+@import "../style/reset.less";
+@import (reference) "../style/variables.less";
+@import (reference) "../style/mixins.less";
+
+.@{prefixClass}-select-wrapper {
+  position: relative;
+  .@{prefixClass}-select-input-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid @themeBorderColor;
+    transition: all 0.3s;
+    border-radius: @themeInputBorderRadius;
+    font-size: 14px;
+    min-width: 80px;
+    padding: 3px 5px;
+    .search-filed-wrapper {
+      display: inline-block;
+      position: relative;
+      input {
+        width: 10px;
+        height: 100%;
+      }
+      .search-filed-mirror {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        height: 100%;
+      }
+    }
+    .multiple-label-wrapper {
+      display: inline-block;
+      .label-box {
+        display: inline-block;
+        background-color: @themeBgcColor;
+        padding: 0 3px;
+        height: 100%;
+        line-height: 20px;
+        margin-right: 5px;
+        border-radius: @themeInputBorderRadius;
+      }
+      .label-name {
+        display: inline-block;
+        margin-right: 3px;
+      }
+      .label-close {
+        color: @themeBorderColor;
+        cursor: pointer;
+      }
+    }
+    &:hover {
+      border-color: @themeFontColor;
+    }
+    &.focused {
+      .inputShadow();
+      border-color: @themeFontColor;
+    }
+  }
+  .@{prefixClass}-select-content-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: @themeInputBorderRadius;
+    .boxShadow();
+    ul {
+      padding: 5px 0;
+      li {
+        transition: all 0.5s;
+        font-size: 12px;
+        color: @themeFontColor;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 5px;
+        cursor: pointer;
+        &:hover {
+          background-color: @themeBgcColor;
+        }
+        &.selected {
+          background-color: @themeBgcColor;
+        }
+      }
+    }
+  }
+}
