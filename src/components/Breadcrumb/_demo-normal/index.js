@@ -26,7 +26,7 @@ export default class Demo extends Component {
     render() {
         return (
             <div>
-                <Breadcrumb/>
+                <Breadcrumb route={this.props.location}/>
                 <HashRouter>
                     <Link to={`/comp1`}>comp1</Link>
                     <Route exact path={`/comp1`} component={Button}/>
