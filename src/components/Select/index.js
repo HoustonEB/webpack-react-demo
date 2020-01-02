@@ -15,8 +15,8 @@ export default class Select extends Component {
         disabled: PropTypes.bool,
         valueKey: PropTypes.string,
         labelKey: PropTypes.string,
-        defaultValue: PropTypes.oneOf([PropTypes.string, PropTypes.number, PropTypes.object]),
-        value: PropTypes.oneOf([PropTypes.string, PropTypes.number, PropTypes.object]),
+        defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object, PropTypes.array]),
         // 展开下拉菜单的回调
         onDropdownVisibleChange: PropTypes.func,
         // dropdown是否与selectd对齐
@@ -33,6 +33,7 @@ export default class Select extends Component {
     dropdownDom = '';
     inputDom = '';
     searchMirrorDom = '';
+    operateType = '';
     state = {
         isFocused: false,
         value: this.props.value,
@@ -46,48 +47,56 @@ export default class Select extends Component {
     }
 
     componentDidMount() {
-        // this.setInputValue();
-        // const {
-        //     shouldMatchWidth
-        // } = this.props;
-        // let widthProp = this.shouldMatchWidth ? 'width' : 'minWidth';
-        // this.dropdownDom && (this.dropdownDom.style[widthProp] = this.selectionDom.offsetWidth);
         this.syncSearchInputDomStyle();
     }
 
     componentDidUpdate() {
         this.syncSearchInputDomStyle();
-        let node = document.querySelectorAll('.label-box')[0];
-        setTimeout(() => {
-            this.animateCSS(node, 'bounce');
-        }, 1000);
+        if (this.operateType === 'add') {
+            this.addLabelAnimate();
+        }
+        this.operateType = '';
+    }
+
+    addLabelAnimate(callback) {
+        let labelBoxDoms = document.querySelectorAll('.label-box');
+        let addLabelDom = labelBoxDoms[labelBoxDoms.length - 1];
+        addLabelDom && this.animateCSS(addLabelDom, 'zoomIn', callback);
+    }
+
+    delLabelAnimate(index, callback) {
+        let labelBoxDoms = document.querySelectorAll('.label-box');
+        let delLabelDom = labelBoxDoms[index];
+        delLabelDom && this.animateCSS(delLabelDom, 'zoomOut', callback);
     }
 
     animateCSS(element, animationName, callback) {
         // const node = document.querySelector(element)
+        console.log('animated')
         const node = element;
-        node.classList.add('animated', animationName)
-    
+        node.classList.add('animated', 'faster', animationName)
+
         function handleAnimationEnd() {
-            node.classList.remove('animated', animationName)
+            node.classList.remove('animated', 'faster', animationName)
             node.removeEventListener('animationend', handleAnimationEnd)
-    
+
             if (typeof callback === 'function') callback()
         }
-    
+
         node.addEventListener('animationend', handleAnimationEnd)
     }
 
     syncSearchInputDomStyle() {
         const {
-            shouldMatchWidth
+            shouldMatchWidth,
+            prefixClass
         } = this.props;
+        this.inputDom.style.width = this.searchMirrorDom.offsetWidth + 'px';
         let widthProp = shouldMatchWidth ? 'width' : 'minWidth';
         if (this.dropdownDom) {
             this.dropdownDom.style[widthProp] = this.selectionDom.offsetWidth + 'px';
             this.dropdownDom.style.top = this.selectionDom.offsetHeight + 'px';
         }
-        this.inputDom.style.width = this.searchMirrorDom.offsetWidth + 'px';
     }
 
     setInputValue() {
@@ -130,7 +139,7 @@ export default class Select extends Component {
                                 'selected': this.state.value.includes(item.value)
                             })}
                             key={index}
-                            onClick={this.handleSelectedOptions.bind(this, item)}>
+                            onClick={this.handleSelectedOptions.bind(this, item, index)}>
                             {item[labelKey]}
                         </li>)
                     }
@@ -140,21 +149,17 @@ export default class Select extends Component {
     }
 
     renderLabel() {
+        const { labelKey } = this.props;
         return this.renderLabelValue.map((item, index) => <span
             className={'label-box'}
             key={index}>
-            <span className={'label-name'}>{item.label}</span>
+            <span className={'label-name'}>{item[labelKey]}</span>
             <span
                 className={'label-close'}
-                onClick={this.handleLabelDelSelected.bind(this, item)}>x</span>
+                onClick={this.handleLabelDelSelected.bind(this, item, index)}>x</span>
         </span>);
     }
 
-    addClassName() {
-        setTimeout(() => {
-            return true;
-        }, 20)
-    }
     /*render end*/
 
     /*get start*/
@@ -164,7 +169,11 @@ export default class Select extends Component {
     }
 
     get renderLabelValue() {
-        return this.props.options.filter((item, index) => this.state.value.includes(item.value))
+        const {
+            valueKey,
+            options
+        } = this.props;
+        return this.state.value.map(item => options.find(itm => itm[valueKey] === item));
     }
     /*get end*/
 
@@ -173,20 +182,27 @@ export default class Select extends Component {
         const {
             onDropdownVisibleChange
         } = this.props;
+        if (this.state.isFocused) {
+            return false;
+        }
+        this.handleSearch('');
         onDropdownVisibleChange && onDropdownVisibleChange();
         this.inputDom.focus();
         this.setState({ isFocused: true });
     }
 
     handleBlur() {
+        if (!this.state.isFocused) {
+            return false;
+        }
         this.inputDom.blur();
         setTimeout(() => {
             this.setState({ isFocused: false, inputValue: '' });
         }, 10)
     }
 
-    handleSearch(e) {
-        let inputValue = e.target.value;
+    handleSearch(value) {
+        let inputValue = value;
         let searchOptions = [];
         if (inputValue) {
             searchOptions = this.props.options.filter(item => item.value === inputValue);
@@ -199,19 +215,27 @@ export default class Select extends Component {
         });
     }
 
-    handleSelectedOptions(item) {
-        let { value } = this.state;
-        let selectedItem = [];
+    handleSelectedOptions(item, index) {
+        const {value} = this.state;
         if (value.includes(item.value)) {
-            selectedItem = value.filter(itm => itm !== item.value);
+            this.delLabelAnimate(index, this.delValue.bind(this, item));
         } else {
-            selectedItem = value.concat([item.value]);
+            this.addValue(item);
         }
-        this.setState({ value: selectedItem });
     }
 
-    handleLabelDelSelected(item) {
+    handleLabelDelSelected(item, index) {
+        this.delLabelAnimate(index, this.delValue.bind(this, item));
+    }
+
+    addValue(item) {
+        this.setState({value: this.state.value.concat([item.value])});
+        this.operateType = 'add';
+    }
+
+    delValue(item) {
         this.setState({ value: this.state.value.filter(itm => itm !== item.value) });
+        this.operateType = 'del';
     }
     /*handle end*/
 
@@ -243,7 +267,7 @@ export default class Select extends Component {
                             autoComplete={'off'}
                             value={inputValue}
                             onBlur={this.handleBlur.bind(this)}
-                            onChange={this.handleSearch.bind(this)}>
+                            onChange={e => this.handleSearch(e.target.value)}>
                         </input>
                         <div
                             ref={node => this.searchMirrorDom = node}

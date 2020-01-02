@@ -4,6 +4,9 @@
 
 .@{prefixClass}-select-wrapper {
   position: relative;
+  .faster {
+      animation-duration: 300ms;
+  }
   .@{prefixClass}-select-input-wrapper {
     display: inline-block;
     overflow: hidden;
@@ -13,19 +16,22 @@
     font-size: 14px;
     min-width: 80px;
     padding: 3px 5px;
+    max-width: 800px;
     .search-filed-wrapper {
       display: inline-block;
       position: relative;
+      max-width: 100%;
       input {
-        width: 10px;
         height: 100%;
       }
       .search-filed-mirror {
+        min-width: 10px;
         position: absolute;
         top: 0;
         left: 0;
         opacity: 0;
         height: 100%;
+        white-space: pre;
       }
     }
     .multiple-label-wrapper {
