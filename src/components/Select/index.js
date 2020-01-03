@@ -217,15 +217,26 @@ export default class Select extends Component {
 
     handleSelectedOptions(item, index) {
         const {value} = this.state;
+        const {
+            mode
+        } = this.props;
         if (value.includes(item.value)) {
-            this.delLabelAnimate(index, this.delValue.bind(this, item));
+            this.delLabelAnimate(this.findLabelIndex(item), this.delValue.bind(this, item));
         } else {
             this.addValue(item);
+        }
+        if (mode === 'multiple') {
+            console.log(mode, '---')
+            this.inputDom.focus();
         }
     }
 
     handleLabelDelSelected(item, index) {
         this.delLabelAnimate(index, this.delValue.bind(this, item));
+    }
+
+    findLabelIndex(item) {
+        return this.renderLabelValue.findIndex(itm => itm.value === item.value);
     }
 
     addValue(item) {

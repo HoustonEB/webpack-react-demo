@@ -5,7 +5,7 @@ import c from 'classnames';
 import './style.use.less';
 
 const DATE_COL = 7;
-export default class ModalPopup extends Component {
+export default class Calendar extends Component {
     static propTypes = {
         date: PropTypes.string,
         classPrefix: PropTypes.string,
