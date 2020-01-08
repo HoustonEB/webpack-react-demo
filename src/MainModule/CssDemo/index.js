@@ -10,7 +10,6 @@ import CircleProgressBar from '../../components/CircleProgressBar';
 import Counter from '../../components/Counter';
 import TextDisposeMd from './文本处理.md';
 import Gradient from './渐变.md';
-import {getRole} from '../../service/main-api/common.js';
 const md = require('markdown-it')({
     html: false
 });
@@ -32,7 +31,6 @@ export default class CssDemo extends Component {
         this.state = {
             showModal: false
         };
-        getRole();
     }
 
     componentDidMount() {}

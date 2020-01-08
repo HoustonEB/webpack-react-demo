@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
+    "animate.css": "^3.7.2",
     "antd": "^3.23.6",
     "axios": "^0.18.1",
     "d3": "^5.12.0",

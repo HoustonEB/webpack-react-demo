@@ -1,23 +1,8 @@
 import React, {Component} from 'react';
-import {HashRouter, BrowserRouter, Route, Redirect, Link, withRouter, Router} from "react-router-dom";
+import {HashRouter, Switch, BrowserRouter, Route, Redirect, Link, withRouter, Router} from "react-router-dom";
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import routeConfig from './router';
 import './style.main.less';
-import CssDemo from "./CssDemo";
-import StructureTreeContrast from "./StructureTreeContrast";
-import CardTree from "./CardTree";
-import Tree from "./Tree";
-import DragSort from "./DragSort";
-import Canvas from "./Canvas";
-import Draggable from "./Draggable";
-import Collapse from "./Collapse";
-import JsDemo from "./JsDemo";
-import RegExr from "./RegExr";
-import Transfer from "./Transfer";
-import Carousel from "./Carousel";
-import VirtualList from "./VirtualList";
-import mobx from "./mobxExample";
-import d3 from './d3-bar';
 
 const Header = Layout.Header;
 const Content = Layout.Content;
@@ -99,6 +84,26 @@ const MenuLink = [
         url: '/d3',
         sideBarName: 'D3'
     },
+    {
+        key: '/breadcrumb',
+        url: '/breadcrumb',
+        sideBarName: 'Breadcrumb'
+    },
+    {
+        key: '/auto-save',
+        url: '/auto-save',
+        sideBarName: 'AutoSave'
+    },
+    {
+        key: '/select',
+        url: '/select',
+        sideBarName: 'Select'
+    },
+    {
+        key: '/calendar',
+        url: '/calendar',
+        sideBarName: 'Calendar'
+    }
 ];
 
 const SideRouter = withRouter(
@@ -124,24 +129,20 @@ const SideRouter = withRouter(
 );
 
 const RouteWithSubRoutes = (route) => {
+    console.log(route, 'route');
+    // 父路由加exact=true,不能匹配子路由.
     return (
         <Route
             path={route.path}
-            render={props => (
+            // exact={route.exact || true}
+            render={props => {
+                console.log(props, 'props')
                 // pass the sub-routes down to keep nesting
-                <route.component {...props} routes={route.routes} />
-            )}
+                return <route.component {...props} routes={route.routes} />
+            }}
+            // component={route.component}
         />
     );
-    // return (
-    //     <Route
-    //         path={route.path}
-    //         render={props => (
-    //             // pass the sub-routes down to keep nesting
-    //             <route.component {...props} routes={route.routes} />
-    //         )}
-    //     />
-    // );
 };
 
 export default class App extends Component {
@@ -164,23 +165,9 @@ export default class App extends Component {
         return (
             <Layout style={{height: '100vh'}}>
                 <Content style={{background: '#fff', padding: 24, marginLeft: 200, minHeight: 350}}>
-                    {/*{routeConfig.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}*/}
-                    <Route exact path="/" render={() => (<Redirect to="/css-demo"/>)}/> {/*首次进入跳转到指定由*/}
-                    <Route exact path="/css-demo" component={CssDemo}/>
-                    <Route exact path="/card-tree" component={CardTree}/>
-                    <Route exact path="/tree" component={new Tree().defaultComp}/>
-                    <Route exact path="/transfer" component={new Transfer().defaultComp}/>
-                    <Route exact path="/structure-tree-contrast" component={new StructureTreeContrast().defaultComp}/>
-                    <Route exact path="/js-demo" component={new JsDemo().defaultComp}/>
-                    <Route exact path="/draggable" component={new Draggable().defaultComp}/>
-                    <Route exact path="/reg-exr" component={new RegExr().defaultComp}/>
-                    <Route exact path="/canvas" component={new Canvas().defaultComp}/>
-                    <Route exact path="/drag-sort" component={new DragSort().defaultComp}/>
-                    <Route exact path="/carousel" component={Carousel}/>
-                    <Route exact path="/collapse" component={Collapse}/>
-                    <Route exact path="/virtual-list" component={VirtualList}/>
-                    <Route exact path="/mobx" component={mobx}/>
-                    <Route exact path="/d3" component={d3}/>
+                    <Switch>
+                    {routeConfig.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+                    </Switch>
                 </Content>
             </Layout>
         )
