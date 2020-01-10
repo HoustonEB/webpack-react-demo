@@ -48,7 +48,9 @@ class Information extends Component {
 
         return (
             <div className={className}>
-                <QueueAnim delay={100} animConfig={[
+                <QueueAnim 
+                delay={100}
+                animConfig={[
                     { opacity: [1, 0], translateY: [0, -50] },
                     { opacity: [1, 0], translateY: [0, -50] }
                 ]}>

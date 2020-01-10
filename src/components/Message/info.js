@@ -1,31 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {callIfCallable} from '/src/global/utils';
 import './style.use.less';
 
-export function buffer(fn, ms) {
-    let timer
-
-    function clear() {
-        if (timer) {
-            clearTimeout(timer)
-            timer = null
-        }
-    }
-
-    function bufferFn() {
-        clear()
-        timer = setTimeout(fn, ms)
-    }
-
-    function getId() {
-        return timer
-    }
-
-    bufferFn.clear = clear
-    bufferFn.getId = getId
-
-    return bufferFn
-}
 export default class Message extends Component {
 
     static propTypes = {
@@ -62,7 +39,7 @@ export default class Message extends Component {
     }
 
     close = () => {
-        this.props.onClose();
+        callIfCallable(this.props.onClose);
     }
 
     componentDidMount() {

@@ -1,3 +1,6 @@
+import React from 'react';
+import h from './h';
+
 function throttle(fn, duration, delay) {
     let timer = null;
     let begin = new Date();
@@ -62,9 +65,48 @@ function myBind() {
     };
 }
 
+function buffer(fn, ms) {
+    let timer
+
+    function clear() {
+        if (timer) {
+            clearTimeout(timer)
+            timer = null
+        }
+    }
+
+    function bufferFn() {
+        clear()
+        timer = setTimeout(fn, ms)
+    }
+
+    function getId() {
+        return timer
+    }
+
+    bufferFn.clear = clear
+    bufferFn.getId = getId
+
+    return bufferFn
+}
+
+function isCallable(fn) {
+    return typeof fn === 'function';
+}
+
+function callIfCallable(fn, ...params) {
+    if (isCallable) {
+        return fn(...params)
+    }
+}
+
 export {
+    h,
     throttle,
     myCall,
     myApply,
-    // myBind
+    // myBind,
+    buffer,
+    isCallable,
+    callIfCallable
 };

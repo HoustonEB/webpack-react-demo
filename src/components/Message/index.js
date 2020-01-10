@@ -9,7 +9,7 @@ function getInformationInstance(props) {
 }
 
 export function msg(content, option = {}) {
-    const { type, duration, onClose } = option;
+    const { type, duration = 3000, onClose } = option;
     const instance = getInformationInstance({ className: 'once-message-wrapper' });
     let iconType;
     switch (type) {
