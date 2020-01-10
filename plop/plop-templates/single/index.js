@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {h} from '/src/global/utils';
 import PropTypes from 'prop-types';
 import './style.use.less';
 

@@ -18,6 +18,7 @@ import AutoSave from './AutoSave';
 import Select from './Select';
 import Calendar from './Calendar';
 import Message from './Message';
+import Button from './Button';
 
 const routeConfig = [
     {
@@ -109,6 +110,10 @@ const routeConfig = [
     {
         path: '/message',
         component: Message
+    },
+    {
+        path: '/button',
+        component: Button
     }
 ];
 

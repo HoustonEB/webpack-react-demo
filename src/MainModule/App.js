@@ -108,6 +108,11 @@ const MenuLink = [
         key: '/message',
         url: '/message',
         sideBarName: 'Message'
+    },
+    {
+        key: '/button',
+        url: '/button',
+        sideBarName: 'Button'
     }
 ];
 
