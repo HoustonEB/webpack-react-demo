@@ -17,6 +17,7 @@ import BreadcrumbDemo from './Breadcrumb';
 import AutoSave from './AutoSave';
 import Select from './Select';
 import Calendar from './Calendar';
+import Message from './Message';
 
 const routeConfig = [
     {
@@ -105,6 +106,10 @@ const routeConfig = [
         path: '/calendar',
         component: Calendar
     },
+    {
+        path: '/message',
+        component: Message
+    }
 ];
 
 export default routeConfig;

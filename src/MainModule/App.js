@@ -103,6 +103,11 @@ const MenuLink = [
         key: '/calendar',
         url: '/calendar',
         sideBarName: 'Calendar'
+    },
+    {
+        key: '/message',
+        url: '/message',
+        sideBarName: 'Message'
     }
 ];
 

@@ -1,0 +1,48 @@
+@import (reference) '../style/variables.less';
+@import (reference) '../style/mixins.less';
+
+.once-message-wrapper {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    .@{prefixClass}-message-content-wrapper {
+        text-align: center;
+        padding: 10px 0;
+        .once-message-item {
+            display: inline-block;
+            padding: 10px 16px;
+            background-color: #fff;
+            border-radius: @themeBoxBorderRadius;
+            .boxShadow();
+            i {
+                margin-right: 10px;
+            }
+            &.once-message-type- {
+                &normal {
+                    i {
+                        color: @normalColor;
+                    }
+                }
+                &success {
+                    i {
+                        color: @successColor;
+                    }
+                }
+                &warning {
+                    i {
+                        color: @warningColor;
+                    }
+                }
+                &error {
+                    i {
+                        color: @errorColor;
+                    }
+                }
+            }
+            .content {
+                display: inline-block;
+            }
+        }
+    }
+}
