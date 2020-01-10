@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {callIfCallable} from '/src/global/utils';
+import {callIfCallable} from '../utils';
 import './style.use.less';
 
 export default class Message extends Component {
