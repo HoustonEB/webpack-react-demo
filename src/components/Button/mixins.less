@@ -1,0 +1,31 @@
+@import (reference) '../style/variables.less';
+
+.btn-common-style(@bgc, @fontColor, @borderColor: transparent) {
+  background-color: @bgc;
+  color: @fontColor;
+  border-color: @borderColor;
+  &:hover,
+  &:focus {
+    &[disabled] {
+        background-color: @bgc;
+        border-color: @borderColor;
+    }
+  }
+  &:active {
+    &[disabled] {
+        background-color: @bgc;
+        border-color: @borderColor;
+    }
+  }
+}
+
+.btn-pseudo(@hoverBgc, @activeBgc, @borderColor: transparent) {
+  &:hover,
+  &:focus {
+    background-color: @hoverBgc;
+  }
+  &:active {
+    background-color: @activeBgc;
+    border-color: @borderColor;
+  }
+}

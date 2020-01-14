@@ -1,5 +1,6 @@
 import React from 'react';
 import h from './h';
+import c from 'classnames';
 
 function throttle(fn, duration, delay) {
     let timer = null;
@@ -100,13 +101,17 @@ function callIfCallable(fn, ...params) {
     }
 }
 
+const noop = () => {};
+
 export {
     h,
+    c,
     throttle,
     myCall,
     myApply,
     // myBind,
     buffer,
     isCallable,
-    callIfCallable
+    callIfCallable,
+    noop
 };

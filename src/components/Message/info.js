@@ -6,13 +6,13 @@ import './style.use.less';
 export default class Message extends Component {
 
     static propTypes = {
-        prefixClass: PropTypes.string,
+        classPrefix: PropTypes.string,
         className: PropTypes.string,
         
     };
 
     static defaultProps = {
-        prefixClass: 'once',
+        classPrefix: 'once',
         className: ''
     };
     timer
@@ -54,13 +54,13 @@ export default class Message extends Component {
 
     render() {
         const {
-            prefixClass,
+            classPrefix,
             className,
             content,
             children
         } = this.props;
         return (
-            <div className={`${prefixClass}-message-content-wrapper ${className}`}>
+            <div className={`${classPrefix}-message-content-wrapper ${className}`}>
                 {children}
             </div>
         )

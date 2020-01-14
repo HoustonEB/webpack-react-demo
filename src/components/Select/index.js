@@ -7,7 +7,7 @@ import './style.use.less';
 export default class Select extends Component {
 
     static propTypes = {
-        prefixClass: PropTypes.string,
+        classPrefix: PropTypes.string,
         className: PropTypes.string,
         mode: PropTypes.oneOf(['single', 'multiple']),
         allowClear: PropTypes.bool,
@@ -24,7 +24,7 @@ export default class Select extends Component {
     }
 
     static defaultProps = {
-        prefixClass: 'once',
+        classPrefix: 'once',
         labelKey: 'label',
         valueKey: 'value',
     };
@@ -89,7 +89,7 @@ export default class Select extends Component {
     syncSearchInputDomStyle() {
         const {
             shouldMatchWidth,
-            prefixClass
+            classPrefix
         } = this.props;
         this.inputDom.style.width = this.searchMirrorDom.offsetWidth + 'px';
         let widthProp = shouldMatchWidth ? 'width' : 'minWidth';
@@ -122,7 +122,7 @@ export default class Select extends Component {
     /*render start*/
     renderDropDown() {
         const {
-            prefixClass,
+            classPrefix,
             labelKey
         } = this.props;
         const {
@@ -130,7 +130,7 @@ export default class Select extends Component {
         } = this.state;
         return (
             <div
-                className={c(prefixClass + '-select-content-wrapper')}
+                className={c(classPrefix + '-select-content-wrapper')}
                 ref={node => this.dropdownDom = node}>
                 <ul>
                     {
@@ -252,18 +252,18 @@ export default class Select extends Component {
 
     render() {
         const {
-            prefixClass,
+            classPrefix,
         } = this.props;
         const {
             isFocused,
             inputValue
         } = this.state;
         return (
-            <div className={c(prefixClass + '-select-wrapper')}>
+            <div className={c(classPrefix + '-select-wrapper')}>
                 <div
                     ref={(node) => this.selectionDom = node}
                     className={c(
-                        prefixClass + '-select-input-wrapper',
+                        classPrefix + '-select-input-wrapper',
                         {
                             'focused': isFocused
                         }

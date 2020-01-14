@@ -1,39 +1,133 @@
-//.jelly-btn {
-//    background: #3498db;
-//    width: 180px;
-//    padding: 4px 0;
-//
-//    position: absolute;
-//    left: 50%;
-//    top: 50%;
-//    transform: translateX(-50%) translateY(-50%);
-//    border-radius: 3px;
-//
-//    p {
-//      font-family: 'Roboto';
-//      text-align: center;
-//      text-transform: uppercase;
-//      color: #FFF;
-//      user-select: none;
-//    }
-//
-//    &:hover {
-//      cursor: pointer;
-//    }
-//
-//    &:after {
-//      content: "";
-//      display: block;
-//      position: absolute;
-//      width: 100%;
-//      height: 10%;
-//      border-radius: 50%;
-//      background-color: darken(#f1c40f, 20%);
-//      opacity: 0.4;
-//      bottom: -30px;
-//    }
-//}
+@import (reference) "../style/variables.less";
+@import (reference) "./mixins.less";
 
+input[type="reset"]::-moz-focus-inner,
+  input[type="button"]::-moz-focus-inner,
+  input[type="submit"]::-moz-focus-inner,
+  input[type="file"] > input[type="button"]::-moz-focus-inner {
+    border: none;
+    padding: 0;
+  }
+  button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+.@{classPrefix}-btn-wrapper {
+  &.@{classPrefix}-btn-type-default,
+  &.@{classPrefix}-btn-type-normal,
+  &.@{classPrefix}-btn-type-primary,
+  &.@{classPrefix}-btn-type-success,
+  &.@{classPrefix}-btn-type-danger,
+  &.@{classPrefix}-btn-type-pale,
+  &.@{classPrefix}-btn-type-link {
+    display: inline-block;
+    background: none;
+    outline: 0;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: @btn-border-radius;
+    padding: 0 7px;
+    line-height: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    user-select: none;
+    text-transform: none;
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    & .@{classPrefix}-btn-text-wrapper {
+      & .@{classPrefix}-btn-icon-font-prefix {
+        margin-right: 8px;
+      }
+    }
+  }
+  &.@{classPrefix}-btn-size-small {
+    font-size: 14px;
+    height: 24px;
+    line-height: 22px;
+  }
+
+  &.@{classPrefix}-btn-size-default {
+    font-size: 14px;
+    height: 32px;
+    line-height: 30px;
+    padding: 0 15px;
+  }
+
+  &.@{classPrefix}-btn-size-large {
+    font-size: 16px;
+    height: 40px;
+    line-height: 38px;
+    padding: 0 15px;
+  }
+
+  &.@{classPrefix}-btn-type-default,
+  &.@{classPrefix}-btn-type-normal {
+    .btn-common-style(
+      @btn-normal-bgc,
+      @btn-normal-font-color,
+      @btn-border-color
+    );
+    &:hover,
+    &:focus {
+      border-color: @btn-primary-hover-border-color;
+      color: @btn-primary-hover-font-color;
+      &[disabled] {
+        border-color: @btn-border-color;
+        color: @btn-normal-font-color;
+      }
+    }
+    &:active {
+      border-color: @btn-primary-active-border-color;
+      color: @btn-primary-active-font-color;
+      &[disabled] {
+        border-color: @btn-border-color;
+        color: @btn-normal-font-color;
+      }
+      // box-shadow: 0 0 0 5px lighten(@btn-primary-hover-border-color, 10%);
+      // animation: pulse 2s ease-out 100ms ;
+    }
+  }
+  &.@{classPrefix}-btn-type-primary {
+    .btn-common-style(@btn-primary-bgc, @btn-primary-font-color);
+    .btn-pseudo(lighten(@btn-primary-bgc, 10%), @btn-primary-active-bgc);
+  }
+  &.@{classPrefix}-btn-type-success {
+    .btn-common-style(@btn-success-bgc, @btn-primary-font-color);
+    .btn-pseudo(lighten(@btn-success-bgc, 10%), @btn-success-active-bgc);
+  }
+  &.@{classPrefix}-btn-type-danger {
+    .btn-common-style(@btn-danger-bgc, @btn-primary-font-color);
+    .btn-pseudo(lighten(@btn-danger-bgc, 10%), @btn-danger-active-bgc);
+  }
+  &.@{classPrefix}-btn-type-pale {
+    .btn-common-style(@btn-pale-bgc, @btn-normal-font-color, @btn-border-color);
+    .btn-pseudo(
+      @btn-pale-hover-bgc,
+      @btn-pale-active-bgc,
+      darken(@btn-border-color, 20%)
+    );
+  }
+  &.@{classPrefix}-btn-type-link {
+    .btn-common-style("transparent", @btn-link-font-color);
+    &:hover,
+    &:focus {
+      color: @btn-link-hover-font-color;
+      &[disabled] {
+        color: @btn-link-font-color;
+      }
+    }
+    &:active {
+      color: @btn-link-active-font-color;
+      &[disabled] {
+        color: @btn-link-font-color;
+      }
+    }
+  }
+}
 .boxshadow-btn {
   width: 70px;
   height: 30px;
@@ -53,6 +147,8 @@
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(245, 189, 71, 1); }
+  0% {
+    box-shadow: 0 0 0 5px lighten(@btn-primary-hover-border-color, 70%);
+  }
   //100% { box-shadow: 0 0 0 0 rgba(245, 189, 71, 1); }
 }
