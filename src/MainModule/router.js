@@ -19,6 +19,7 @@ import Select from './Select';
 import Calendar from './Calendar';
 import Message from './Message';
 import Button from './Button';
+import Popover from './Popover';
 
 const routeConfig = [
     {
@@ -114,6 +115,10 @@ const routeConfig = [
     {
         path: '/button',
         component: Button
+    },
+    {
+        path: '/popover',
+        component: Popover
     }
 ];
 

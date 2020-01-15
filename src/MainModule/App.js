@@ -113,6 +113,11 @@ const MenuLink = [
         key: '/button',
         url: '/button',
         sideBarName: 'Button'
+    },
+    {
+        key: '/popover',
+        url: '/popover',
+        sideBarName: 'Popover'
     }
 ];
 
