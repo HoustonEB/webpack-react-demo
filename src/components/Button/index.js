@@ -158,7 +158,6 @@ export default class Button extends Component {
                     style,
                     disabled,
                     onClick: this.handleClick,
-                    onClickDone,
                     title
                 },
                 children ? h.span(`${compClass}-text-wrapper`, {} ,

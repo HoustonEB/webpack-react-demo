@@ -1,5 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Carousel from '../../components/Carousel';
+import Button from '/src/components/Button';
+import { h } from '/src/global/utils';
 import './style.use.less';
 
 export default class carousel extends Component {
@@ -28,40 +30,43 @@ export default class carousel extends Component {
     changeSliderDire(dire) {
         switch (dire) {
             case 'top':
-                this.setState({dire: 'top'});
+                this.setState({ dire: 'top' });
                 break;
             case 'right':
-                this.setState({dire: 'right'});
+                this.setState({ dire: 'right' });
                 break;
             case 'bottom':
-                this.setState({dire: 'bottom'});
+                this.setState({ dire: 'bottom' });
                 break;
             case 'left':
-                this.setState({dire: 'left'});
+                this.setState({ dire: 'left' });
                 break;
             default:
-                this.setState({dire: 'bottom'});
+                this.setState({ dire: 'bottom' });
                 break;
         }
     }
 
-    render () {
-        const {data, dire, data1} = this.state;
+    render() {
+        const { data, dire, data1 } = this.state;
         return (
             <div>
                 <div className={'first-item'}>
-                    <button onClick={() => {this.changeSliderDire('top')}}>top</button>
-                    <button onClick={() => {this.changeSliderDire('right')}}>right</button>
-                    <button onClick={() => {this.changeSliderDire('bottom')}}>bottom</button>
-                    <button onClick={() => {this.changeSliderDire('left')}}>left</button>
-                    <Carousel
-                        data={data}
-                        sliderPosition={dire}
-                        className={'home'}
-                        effect={'scrollx'}
-                        autoPlay={true}
-                        autoInterval={2000}>
-                    </Carousel>
+                    {h.div('', {},
+                        h(Button, { onClick: () => { this.changeSliderDire('top') } }, 'top'),
+                        h(Button, { onClick: () => { this.changeSliderDire('right') } }, 'right'),
+                        h(Button, { onClick: () => { this.changeSliderDire('bottom') } }, 'bottom'),
+                        h(Button, { onClick: () => { this.changeSliderDire('left') } }, 'left'),
+                        h(Carousel, {
+                            data,
+                            sliderPosition: dire,
+                            className: 'home',
+                            effect: 'scrollx',
+                            autoPlay: true,
+                            autoInterval: 2000
+                        })
+                    )
+                    }
                 </div>
                 <div className={'second-item'}>
                     <Carousel

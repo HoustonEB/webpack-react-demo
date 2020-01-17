@@ -118,6 +118,11 @@ const MenuLink = [
         key: '/popover',
         url: '/popover',
         sideBarName: 'Popover'
+    },
+    {
+        key: '/progress',
+        url: '/progress',
+        sideBarName: 'Progress'
     }
 ];
 

@@ -2,17 +2,17 @@
 @import (reference) "../style/variables.less";
 @import (reference) "../style/mixins.less";
 
-.@{classPrefix}-select-wrapper {
+.@{class-prefix}-select-wrapper {
   position: relative;
   .faster {
       animation-duration: 300ms;
   }
-  .@{classPrefix}-select-input-wrapper {
+  .@{class-prefix}-select-input-wrapper {
     display: inline-block;
     overflow: hidden;
-    border: 1px solid @themeBorderColor;
+    border: 1px solid @theme-border-color;
     transition: all 0.3s;
-    border-radius: @themeInputBorderRadius;
+    border-radius: @theme-input-border-radius;
     font-size: 14px;
     min-width: 80px;
     padding: 3px 5px;
@@ -38,35 +38,35 @@
       display: inline-block;
       .label-box {
         display: inline-block;
-        background-color: @themeBgcColor;
+        background-color: @theme-bgc-color;
         padding: 0 3px;
         height: 100%;
         line-height: 20px;
         margin-right: 5px;
-        border-radius: @themeInputBorderRadius;
+        border-radius: @theme-input-border-radius;
       }
       .label-name {
         display: inline-block;
         margin-right: 3px;
       }
       .label-close {
-        color: @themeBorderColor;
+        color: @theme-border-color;
         cursor: pointer;
       }
     }
     &:hover {
-      border-color: @themeFontColor;
+      border-color: @theme-font-color;
     }
     &.focused {
       .inputShadow();
-      border-color: @themeFontColor;
+      border-color: @theme-font-color;
     }
   }
-  .@{classPrefix}-select-content-wrapper {
+  .@{class-prefix}-select-content-wrapper {
     position: absolute;
     left: 0;
     top: 0;
-    border-radius: @themeInputBorderRadius;
+    border-radius: @theme-input-border-radius;
     max-height: 150px;
     overflow-y: auto;
     .boxShadow();
@@ -75,16 +75,16 @@
       li {
         transition: all 0.5s;
         font-size: 12px;
-        color: @themeFontColor;
+        color: @theme-font-color;
         height: 32px;
         line-height: 32px;
         padding: 0 5px;
         cursor: pointer;
         &:hover {
-          background-color: @themeBgcColor;
+          background-color: @theme-bgc-color;
         }
         &.selected {
-          background-color: @themeBgcColor;
+          background-color: @theme-bgc-color;
         }
       }
     }

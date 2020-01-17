@@ -13,14 +13,14 @@ input[type="reset"]::-moz-focus-inner,
     padding: 0;
     margin: 0;
   }
-.@{classPrefix}-btn-wrapper {
-  &.@{classPrefix}-btn-type-default,
-  &.@{classPrefix}-btn-type-normal,
-  &.@{classPrefix}-btn-type-primary,
-  &.@{classPrefix}-btn-type-success,
-  &.@{classPrefix}-btn-type-danger,
-  &.@{classPrefix}-btn-type-pale,
-  &.@{classPrefix}-btn-type-link {
+.@{class-prefix}-btn-wrapper {
+  &.@{class-prefix}-btn-type-default,
+  &.@{class-prefix}-btn-type-normal,
+  &.@{class-prefix}-btn-type-primary,
+  &.@{class-prefix}-btn-type-success,
+  &.@{class-prefix}-btn-type-danger,
+  &.@{class-prefix}-btn-type-pale,
+  &.@{class-prefix}-btn-type-link {
     display: inline-block;
     background: none;
     outline: 0;
@@ -38,34 +38,34 @@ input[type="reset"]::-moz-focus-inner,
       opacity: 0.5;
       cursor: not-allowed;
     }
-    & .@{classPrefix}-btn-text-wrapper {
-      & .@{classPrefix}-btn-icon-font-prefix {
+    & .@{class-prefix}-btn-text-wrapper {
+      & .@{class-prefix}-btn-icon-font-prefix {
         margin-right: 8px;
       }
     }
   }
-  &.@{classPrefix}-btn-size-small {
+  &.@{class-prefix}-btn-size-small {
     font-size: 14px;
     height: 24px;
     line-height: 22px;
   }
 
-  &.@{classPrefix}-btn-size-default {
+  &.@{class-prefix}-btn-size-default {
     font-size: 14px;
     height: 32px;
     line-height: 30px;
     padding: 0 15px;
   }
 
-  &.@{classPrefix}-btn-size-large {
+  &.@{class-prefix}-btn-size-large {
     font-size: 16px;
     height: 40px;
     line-height: 38px;
     padding: 0 15px;
   }
 
-  &.@{classPrefix}-btn-type-default,
-  &.@{classPrefix}-btn-type-normal {
+  &.@{class-prefix}-btn-type-default,
+  &.@{class-prefix}-btn-type-normal {
     .btn-common-style(
       @btn-normal-bgc,
       @btn-normal-font-color,
@@ -91,19 +91,19 @@ input[type="reset"]::-moz-focus-inner,
       // animation: pulse 2s ease-out 100ms ;
     }
   }
-  &.@{classPrefix}-btn-type-primary {
+  &.@{class-prefix}-btn-type-primary {
     .btn-common-style(@btn-primary-bgc, @btn-primary-font-color);
     .btn-pseudo(lighten(@btn-primary-bgc, 10%), @btn-primary-active-bgc);
   }
-  &.@{classPrefix}-btn-type-success {
+  &.@{class-prefix}-btn-type-success {
     .btn-common-style(@btn-success-bgc, @btn-primary-font-color);
     .btn-pseudo(lighten(@btn-success-bgc, 10%), @btn-success-active-bgc);
   }
-  &.@{classPrefix}-btn-type-danger {
+  &.@{class-prefix}-btn-type-danger {
     .btn-common-style(@btn-danger-bgc, @btn-primary-font-color);
     .btn-pseudo(lighten(@btn-danger-bgc, 10%), @btn-danger-active-bgc);
   }
-  &.@{classPrefix}-btn-type-pale {
+  &.@{class-prefix}-btn-type-pale {
     .btn-common-style(@btn-pale-bgc, @btn-normal-font-color, @btn-border-color);
     .btn-pseudo(
       @btn-pale-hover-bgc,
@@ -111,7 +111,7 @@ input[type="reset"]::-moz-focus-inner,
       darken(@btn-border-color, 20%)
     );
   }
-  &.@{classPrefix}-btn-type-link {
+  &.@{class-prefix}-btn-type-link {
     .btn-common-style("transparent", @btn-link-font-color);
     &:hover,
     &:focus {

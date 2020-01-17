@@ -20,6 +20,7 @@ import Calendar from './Calendar';
 import Message from './Message';
 import Button from './Button';
 import Popover from './Popover';
+import Progress from './Progress';
 
 const routeConfig = [
     {
@@ -119,6 +120,10 @@ const routeConfig = [
     {
         path: '/popover',
         component: Popover
+    },
+    {
+        path: '/progress',
+        component: Progress
     }
 ];
 
