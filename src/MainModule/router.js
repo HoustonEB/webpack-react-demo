@@ -58,7 +58,7 @@ const routeConfig = [
     },
     {
         path: '/draggable',
-        component: new Draggable().defaultComp
+        component: Draggable
     },
     {
         path: '/reg-exr',
