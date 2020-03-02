@@ -40,9 +40,9 @@ const MenuLink = [
         sideBarName: 'JsDemo'
     },
     {
-        key: '/draggable',
-        url: '/draggable',
-        sideBarName: 'draggable'
+        key: '/upload',
+        url: '/upload',
+        sideBarName: 'Upload'
     },
     {
         key: '/reg-exr',

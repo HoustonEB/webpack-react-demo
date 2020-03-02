@@ -24,7 +24,7 @@ export default class View extends Component {
             value: '4'
         },
         {
-            label: 'name4',
+            label: 'name5',
             value: '5'
         }
     ];
@@ -36,7 +36,7 @@ export default class View extends Component {
         return (
             <Select 
             value={['1']}
-            mode={'multiple'}
+            mode={'single'}
             options={this.data}
             onDropdownVisibleChange={this.onDropdownVisibleChange.bind(this)}
             ></Select>  

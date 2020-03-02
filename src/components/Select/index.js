@@ -191,14 +191,14 @@ export default class Select extends Component {
         this.setState({ isFocused: true });
     }
 
-    handleBlur() {
+    handleBlur(e) {
         if (!this.state.isFocused) {
             return false;
         }
-        this.inputDom.blur();
-        setTimeout(() => {
-            this.setState({ isFocused: false, inputValue: '' });
-        }, 10)
+        
+        // setTimeout(() => {
+        //     this.setState({ isFocused: false, inputValue: '' });
+        // }, 500)
     }
 
     handleSearch(value) {
@@ -227,7 +227,10 @@ export default class Select extends Component {
         }
         if (mode === 'multiple') {
             console.log(mode, '---')
-            this.inputDom.focus();
+            // this.inputDom.focus();
+        } else {
+            this.setState({ isFocused: false, inputValue: '' });
+            // this.inputDom.blur();
         }
     }
 

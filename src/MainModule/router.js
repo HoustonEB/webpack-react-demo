@@ -57,7 +57,7 @@ const routeConfig = [
         component: new JsDemo().defaultComp
     },
     {
-        path: '/draggable',
+        path: '/upload',
         component: Draggable
     },
     {
