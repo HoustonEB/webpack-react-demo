@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import {h} from '@src/frontend/global/utils';
 import PropTypes from 'prop-types';
 import './style.use.less';
 
-export default class {{compName}} extends Component {
+export default class Popover extends Component {
 
     static propTypes = {};
 
@@ -14,7 +15,7 @@ export default class {{compName}} extends Component {
 
     render() {
         return (
-            <div className={'{{compName}}-wrapper'}>{{compName}}</div>
+            <div className={'Popover-wrapper'}>Popover</div>
         )
     }
 }

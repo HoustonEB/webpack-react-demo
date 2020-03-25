@@ -1,0 +1,126 @@
+@import (reference) '../../../../src/frontend/global/style/global.less';
+
+
+.first-item, .second-item {
+  display: inline-block;
+  margin-right: 50px;
+}
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    .left-arrow-btn, .right-arrow-btn {
+      display: block;
+    }
+  }
+  .arrow-left {
+    .arrow-left();
+  }
+  .arrow-right {
+    .arrow-right();
+  }
+  .slider-wrapper {
+    position: absolute;
+    z-index: 20;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 0;
+    .slider {
+      background-color: #fff;
+      transition: all ease .5s;
+      cursor: pointer;
+      border-radius: 4px;
+      &.active {
+        background-color: #298ef2;
+      }
+    }
+    .slider-top-bottom {
+      &.slider-wrapper {
+        width: 100%;
+      }
+      .slider {
+        width: 16px;
+        height: 4px;
+        margin: 0 5px;
+        display: inline-block;
+        &.active {
+          width: 25px;
+        }
+      }
+    }
+    .slider-left-right {
+      &.slider-wrapper {
+        height: auto;
+      }
+      .slider {
+        width: 4px;
+        height: 16px;
+        margin: 5px 0;
+        display: block;
+        &.active {
+          height: 25px;
+        }
+      }
+    }
+    &.top {
+      top: 12px;
+      .slider-top-bottom;
+    }
+    &.right {
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      .slider-left-right;
+    }
+    &.bottom {
+      bottom: 12px;
+      .slider-top-bottom;
+    }
+    &.left {
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      .slider-left-right
+    }
+  }
+
+  .arrow-common-style {
+    width: 40px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+    display: none;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 1s;
+  }
+  .left-arrow-btn {
+    left: 0;
+    .arrow-common-style;
+  }
+  .right-arrow-btn {
+    right: 0;
+    .arrow-common-style;
+  }
+  .slick-track {
+    height: 100%;
+    transition: transform ease .7s;
+    .slick-common {
+      position: relative;
+      float: left;
+      transition: opacity ease .7s;
+      &.active {
+        opacity: 1;
+      }
+      &.inactive {
+        opacity: 0;
+      }
+    }
+  }
+}
