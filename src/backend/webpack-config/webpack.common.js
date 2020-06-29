@@ -62,7 +62,7 @@ module.exports = {
             },
             // 修改图片的路径
             {
-                test: /\.(png|jpg|gif|svg)$/,
+                test: /\.(png|jpg|gif|svg|pdf)$/,
                 use: {
                     loader: 'file-loader',
                     options: {

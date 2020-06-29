@@ -34,7 +34,7 @@ module.exports = merge(common, {
             verbose: true,
             // Use boolean "true" to test/emulate delete. (will not remove files).
             // Default: false - remove files
-            dry: false 
+            dry: false
         }),
         new HtmlWebpackPlugin({
             title: 'Dev', // 模板中有title就会替代
@@ -57,12 +57,21 @@ module.exports = merge(common, {
     //   poll: 1000 // 每一秒检查文件是否change, true=>rebuild
     // },
     devServer: {
-        host:'localhost',
+        host: 'localhost',
         // contentBase: [config.path.src],// 对哪个目录下的文件进行热加载
         compress: false, // 是否压缩
         port: 9000,
         inline: true,
         hot: true,
+        proxy: [
+            {
+                context: ['/getRole', '/getList', '/getTable'],
+                target: 'https://example.com',
+                changeOrigin: true,
+                secure: false,
+                logLevel: 'debug'
+            },
+        ]
         // open: true,
         // openPage: 'pages/main.html',
     }

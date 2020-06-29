@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --config ./src/backend/webpack-config/webpack.dev.js",
+    "start": "webpack-dev-server --color --config ./src/backend/webpack-config/webpack.dev.js",
     "prod": "webpack --config ./src/backend/webpack-config/webpack.prod.js",
     "dev": "webpack --config ./src/backend/webpack-config/webpack.dev.js"
   },
@@ -52,7 +52,7 @@
     "mockjs": "^1.0.1-beta3",
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.7.2",
-    "react": "^16.4.1",
+    "react": "^16.13.1",
     "react-dom": "^16.10.2",
     "style-loader": "^0.23.1",
     "text-loader": "0.0.1",
@@ -73,6 +73,7 @@
     "package-demo-yu": "^1.0.5",
     "rc-queue-anim": "^1.8.3",
     "react-hot-loader": "^4.12.15",
+    "react-pdf": "^4.1.0",
     "react-router-dom": "^5.1.2"
   }
 }

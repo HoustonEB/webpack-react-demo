@@ -3,24 +3,19 @@
  * @description 文件上传组件
  * @author CaiYu
  */
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { Component, observer, h, c } from '@befe/utils/wrapper/erp';
+import {h, c} from '@src/frontend/components/utils';
 import { action, observable } from 'mobx';
 import style from './style.use.less';
-import Message from '@befe/erp-comps/v2/components/Message';
+import Message from '@src/frontend/components/Message';
 import PropTypes from 'prop-types';
-import urlUtils from '@befe/utils/lib/url-utils';
-import { noop, noopPromise, isIeBelow10 as isIEBelow10, getFileExtension, isCallable } from '@befe/erp-comps/v2/common/utils'
-import { format, parse } from 'url';
 import { Line } from 'rc-progress';
 import 'rc-progress/assets/index.css';
-import Icon from '@befe/erp-comps/v2/components/Icon';
+// import Icon from '@befe/erp-comps/v2/components/Icon';
 import upload from './upload';
-import PreviewModal from 'common/components/PreviewModal';
+import PreviewModal from '@src/frontend/components/PreviewModal';
 
-const resourceCodeKey = 'resource-codes'
-const isIeBelow10 = isIEBelow10();
 const UNIT = 1024 * 1024;
 const FILE_STATUS = {
     DONE: 'done',
@@ -101,7 +96,7 @@ export default class Upload2 extends Component {
     }
 
     componentWillMount() {
-        style.use();
+        // style.use();
         this.setState({ fileList: this.addFileListStatus(this.props.fileList) });
     }
 
@@ -114,7 +109,7 @@ export default class Upload2 extends Component {
     }
 
     componentWillUnmount() {
-        style.unuse();
+        // style.unuse();
     }
 
     addFileListStatus(fileList = []) {
@@ -281,16 +276,18 @@ export default class Upload2 extends Component {
                                 ) : null,
                                 showDownloadIcon ? h.a('offer-upload-file-list-actions-common offer-upload-file-list-actions-download',
                                     { href: item.url },
-                                    h(Icon, { name: 'transmit-download', size: 'small' })
+                                    // h(Icon, { name: 'transmit-download', size: 'small' })
+                                    h.span('', {}, '下载')
                                 ) : null,
                                 showDelIcon ? (typeof item.canDel === 'undefined' ? true : item.canDel) && h.span(c('offer-upload-file-list-actions-common offer-upload-file-list-actions-delete'),
                                     {
                                         onClick: e => { this.handleRemoveItem(e, item) }
                                     },
-                                    h(Icon, {
-                                        name: 'op-common-delete',
-                                        size: 'small'
-                                    })
+                                    // h(Icon, {
+                                    //     name: 'op-common-delete',
+                                    //     size: 'small'
+                                    // })
+                                    h.span('', {}, '删除')
                                 ) : null
                             ),
                         ),

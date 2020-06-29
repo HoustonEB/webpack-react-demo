@@ -4,7 +4,7 @@ import CardTree from "./CardTree";
 import Tree from "./Tree";
 import DragSort from "./DragSort";
 import Canvas from "./Canvas";
-import Draggable from "./Draggable";
+import Upload from "./Upload";
 import Collapse from "./Collapse";
 import JsDemo from "./JsDemo";
 import RegExr from "./RegExr";
@@ -58,7 +58,7 @@ const routeConfig = [
     },
     {
         path: '/upload',
-        component: Draggable
+        component: Upload
     },
     {
         path: '/reg-exr',

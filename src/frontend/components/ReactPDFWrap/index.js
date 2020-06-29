@@ -7,14 +7,14 @@
  * pdf预览
  *
  */
-import {h, c, Component} from '@befe/utils/wrapper/erp';
+import {h, isCallable, c} from '@src/frontend/components/utils';
 import PropTypes from 'prop-types';
-import React from 'react';
-// import {Document, Page} from 'react-pdf/dist/entry.webpack';
-import {Document, Page} from 'react-pdf';
+import React, {Component} from 'react';
+import {Document, Page} from 'react-pdf/dist/entry.webpack';
+// import { Document, Page } from 'react-pdf/dist/entry.noworker';
+// import {Document, Page} from 'react-pdf';
 import compStyle from './style.use.less';
-import Icon from '@befe/erp-comps/v2/components/Icon/index';
-import {isCallable} from '@befe/erp-comps/v2/common/utils/help';
+// import Icon from '@befe/erp-comps/v2/components/Icon/index';
 // import { pdfjs } from 'react-pdf';
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `https://hcm-bucket.cdn.bcebos.com/candidate/candidate20206121623/dist/76f264452281d51dc821.worker.js`;
@@ -47,11 +47,11 @@ export default class ReactPDFWrapState extends Component {
     }
 
     componentWillMount() {
-        compStyle.use();
+        // compStyle.use();
     }
 
     componentWillUnmount() {
-        compStyle.unuse();
+        // compStyle.unuse();
     }
 
     testIsMacFirefox() {
@@ -62,6 +62,15 @@ export default class ReactPDFWrapState extends Component {
         return testUa(/macintosh|macintel/g) && testUa(/firefox/g);
     }
 
+    state = {
+        numPages: null,
+        pageNumber: 1,
+      }
+    
+      onDocumentLoad = ({ numPages }) => {
+        this.setState({ numPages });
+      }
+
 
     render() {
         const {
@@ -70,17 +79,19 @@ export default class ReactPDFWrapState extends Component {
             rotate
         } = this.props;
         const {pageNumList} = this.state;
+        console.log(path, 'pdf---path')
         return h(Document, {
                 className: `pdf-document-wrap ${className} ${this.isFireFox && 'firefox-wrapper'}`,
                 file: path, // 文档地址
                 renderMode: 'svg',
                 loading: h.div('loading-content-wrapper', {},
-                    h(Icon,
-                        {
-                            type: 'img',
-                            name: 'pln-loading'
-                        }
-                    )
+                    // h(Icon,
+                    //     {
+                    //         type: 'img',
+                    //         name: 'pln-loading'
+                    //     }
+                    // )
+                    h.span('', {}, 'd')
                 ),
                 rotate,
                 error: '',
@@ -92,12 +103,13 @@ export default class ReactPDFWrapState extends Component {
                     pageNumber: pagenum + 1,
                     renderMode: 'svg',
                     loading: h.div('loading-content-wrapper', {},
-                        h(Icon,
-                            {
-                                type: 'img',
-                                name: 'pln-loading'
-                            }
-                        )
+                        // h(Icon,
+                        //     {
+                        //         type: 'img',
+                        //         name: 'pln-loading'
+                        //     }
+                        // ),
+                        h.span('', {}, 'd')
                     ),
                     width: 588,
                     scale: 2, // pdf 模糊

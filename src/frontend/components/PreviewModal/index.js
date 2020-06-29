@@ -3,17 +3,17 @@
  * @description 文件上传组件
  * @author CaiYu
  */
-import React from 'react'
+import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import { Component, observer, h, c } from '@befe/utils/wrapper/erp';
+import {h, c} from '@src/frontend/components/utils';
 import { action, observable } from 'mobx';
 import style from './style.use.less';
-import Message from '@befe/erp-comps/v2/components/Message';
+import Message from '@src/frontend/components/Message';
 import PropTypes from 'prop-types';
 import 'rc-progress/assets/index.css';
 import throttle from 'lodash/throttle';
-import Icon from '@befe/erp-comps/v2/components/Icon';
-import ReactPDFWrap from 'common/components/ReactPDFWrap';
+// import Icon from '@befe/erp-comps/v2/components/Icon';
+import ReactPDFWrap from '@src/frontend/components/ReactPDFWrap';
 // import agent from 'utils/ajax-agent';
 
 const prefixClass = 'preview-modal';
@@ -67,7 +67,7 @@ export default class PreviewModal extends Component {
     oClientY = 0;
 
     componentWillMount() {
-        style.use();
+        // style.use();
         this.setState({ currentIndex: this.props.currentIndex });
     }
 
@@ -103,7 +103,7 @@ export default class PreviewModal extends Component {
     }
 
     componentWillUnmount() {
-        style.unuse();
+        // style.unuse();
         window.removeEventListener('mousedown', this.onMouseDown);
         window.removeEventListener('mouseup', this.onMouseUp);
         window.removeEventListener('mousemove', this.onMouseMove);
@@ -135,11 +135,12 @@ export default class PreviewModal extends Component {
                     fileList[currentIndex].name || '--'
                 ),
                 h.span('close-wrapper',
-                    {},
-                    h(Icon, {
-                        name: 'op-common-close',
-                        onClick: this.handleOnClose
-                    })
+                    {onClick: this.handleOnClose},
+                    // h(Icon, {
+                    //     name: 'op-common-close',
+                    //     onClick: this.handleOnClose
+                    // })
+                    'X'
                 )
             )
         )
@@ -275,13 +276,15 @@ export default class PreviewModal extends Component {
                     {
                         onClick: this.handlePrev
                     },
-                    h(Icon, { name: 'to-left' })
+                    // h(Icon, { name: 'to-left' })
+                    h.span('', { name: 'to-left' }, '-')
                 ),
                 currentIndex >= (this.props.fileList.length - 1) ? null : h.div('next-btns',
                     {
                         onClick: this.handleNext
                     },
-                    h(Icon, { name: 'to-right' })
+                    // h(Icon, { name: 'to-right' })
+                    h.span('', { name: 'to-left' }, '+')
                 ),
                 this.isShowPdf(currentIndex) && visible ? this.renderPdf(fileList[currentIndex]) : null,
                 this.renderOperateBtns(),

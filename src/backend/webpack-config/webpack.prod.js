@@ -45,7 +45,7 @@ module.exports = merge(common, {
         }),
         new HtmlWebpackPlugin({
             title: "Prod ko", // 模板中有title就会替代
-            template: config.path.webpackTemplates + '/prod-template.html', // html模板
+            template: config.path.webpackTemplates + '/prod-page.html', // html模板
             filename: "pages/demo.html",
             hash: true,
             chunks: ['demo', 'vendor']
