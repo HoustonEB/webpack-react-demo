@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="16px" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>txt</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M1.72222222,0 C0.757858898,0 0,0.845545051 0,1.86363636 L0,14.1363636 C0,15.1544549 0.757858898,16 1.72222222,16 L10.2777778,16 C11.2421411,16 12,15.1544549 12,14.1363636 L12,5.10283753 L8.07972482,0 L1.72222222,0 L1.72222222,1 L1.72222222,0 Z" id="path-1"></path>
+        <path d="M7.58694185,1 L11,5.10283753 L11,14.1363636 C11,14.6250905 10.66397,15 10.2777778,15 L1.72222222,15 C1.33602999,15 1,14.6250905 1,14.1363636 L1,1.86363636 C1,1.37490949 1.33602999,1 1.72222222,1 L1.72222222,0 C0.757858898,0 0,0.845545051 0,1.86363636 L0,14.1363636 C0,15.1544549 0.757858898,16 1.72222222,16 L10.2777778,16 C11.2421411,16 12,15.1544549 12,14.1363636 L12,5.10283753 L8.07972482,0 L1.72222222,0 L1.72222222,1 L7.58694185,1 Z" id="path-3"></path>
+    </defs>
+    <g id="Data-Entry-数据输入--2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="upload-上传" transform="translate(-211.000000, -1672.000000)">
+            <g id="txt" transform="translate(210.000000, 1672.000000)">
+                <g transform="translate(1.000000, 0.000000)">
+                    <g id="Rectangle-5">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Mask-Copy" fill="#D7DBE2" fill-rule="nonzero" xlink:href="#path-3"></use>
+                        <rect fill="#FDD547" mask="url(#mask-4)" x="0" y="0" width="11" height="2.9375"></rect>
+                    </g>
+                    <path d="M1.9810422,0.800362761 L7.9810422,0.800362761 C8.53332695,0.800362761 8.9810422,1.24807801 8.9810422,1.80036276 L8.9810422,2.92536276 L0.9810422,2.92536276 L0.9810422,1.80036276 C0.9810422,1.24807801 1.42875745,0.800362761 1.9810422,0.800362761 Z" id="Rectangle-6" fill="#FDD547"></path>
+                    <path d="M11.9853004,5.42158483 L9.31863371,5.42158483 C8.58196705,5.42158483 7.98530038,4.72999392 7.98530038,3.87613028 L7.98530038,0.012493917 L8.65196705,0.012493917 L11.9853004,4.64885755 L11.9853004,5.42158483 Z" id="Fill-3" fill="#FEE9A7"></path>
+                    <rect id="Rectangle-61" fill="#999999" x="2.5" y="6.4375" width="6" height="1.0625"></rect>
+                    <rect id="Rectangle-61-Copy" fill="#999999" x="2.5" y="8.5625" width="6" height="1.0625"></rect>
+                    <rect id="Rectangle-61-Copy-2" fill="#999999" x="2.5" y="10.6875" width="6" height="1.0625"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="16px" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>img</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Data-Entry-数据输入--2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="upload-上传" transform="translate(-554.000000, -1673.000000)">
+            <g id="img" transform="translate(553.000000, 1673.000000)">
+                <g transform="translate(1.000000, 0.000000)">
+                    <polygon id="Triangle" fill="#FFFFFF" points="2 2 4 5 0 5"></polygon>
+                    <polygon id="Triangle-Copy" fill="#FFFFFF" points="6 1 9 5 3 5"></polygon>
+                    <path d="M1.33333333,0 L8,0 L12,5.09090909 L12,14.5454545 C12,15.3490909 11.4033333,16 10.6666667,16 L1.33333333,16 C0.596666667,16 0,15.3490909 0,14.5454545 L0,1.45454545 C0,0.650909091 0.596666667,0 1.33333333,0" id="Fill-1" fill="#37B3EB"></path>
+                    <path d="M12,5.09090909 L9.33333333,5.09090909 C8.59666667,5.09090909 8,4.44 8,3.63636364 L8,0 L8.66666667,0 L12,4.36363636 L12,5.09090909 Z" id="Fill-3" fill="#79CFF5"></path>
+                    <polygon id="Fill-1" fill="#FEFEFE" points="5.9996 11.2854 3.9996 9.1424 1.9996 11.2854 1.9996 12.0004 10.0006 12.0004 10.0006 11.2854 8.0006 6.9994"></polygon>
+                    <path d="M4,6 C4.552,6 5,6.448 5,7 C5,7.552 4.552,8 4,8 C3.448,8 3,7.552 3,7 C3,6.448 3.448,6 4,6" id="Fill-2" fill="#FEFEFE"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
