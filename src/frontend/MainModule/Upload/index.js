@@ -4,6 +4,7 @@ import Upload from '@src/frontend/components/Upload';
 import Upload2 from '@src/frontend/components/Upload2';
 import './style.use.less';
 import { h } from '@src/frontend/components/utils';
+import ReactPDFWrap from '@src/frontend/components/ReactPDFWrap';
 import erPdf from './2332.pdf';
 import quitPdf from './离职证明.pdf';
 
@@ -77,14 +78,14 @@ export default class View extends Component {
                         name: '2332.pdf', 
                         id: 2,
                         canDel: true, 
-                        url: '/fileHandle/downloadApplyFormFiles/1275677573535920128/candidate'
+                        url: require('./2332.pdf')
                     },
-                    // {
-                    //     name: '离职证明.pdf',
-                    //     id: 3,
-                    //     canDel: true,
-                    //     url: quitPdf
-                    // }
+                    {
+                        name: '离职证明.pdf',
+                        id: 3,
+                        canDel: true,
+                        url: quitPdf
+                    }
                 ]
                 }),
             )

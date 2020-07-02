@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HappyPack = require('happypack');
 const config = require('common/config');
 
@@ -25,7 +26,7 @@ module.exports = {
                 //             // ['react-hot-loader/babel'], // 功能待定
                 //             // Stage 0
                 //             // "@babel/plugin-proposal-function-bind",
-                
+
                 //             // Stage 1
                 //             // "@babel/plugin-proposal-export-default-from",
                 //             // "@babel/plugin-proposal-logical-assignment-operators",
@@ -33,14 +34,14 @@ module.exports = {
                 //             // ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
                 //             // ["@babel/plugin-proposal-nullish-coalescing-operator", { "loose": false }],
                 //             // "@babel/plugin-proposal-do-expressions",
-                
+
                 //             // Stage 2
                 //             ["@babel/plugin-proposal-decorators", {"legacy": true}], //支持修饰符
                 //             // "@babel/plugin-proposal-function-sent",
                 //             // "@babel/plugin-proposal-export-namespace-from",
                 //             // "@babel/plugin-proposal-numeric-separator",
                 //             // "@babel/plugin-proposal-throw-expressions",
-                
+
                 //             // Stage 3
                 //             // "@babel/plugin-syntax-dynamic-import",
                 //             // "@babel/plugin-syntax-import-meta",
@@ -126,7 +127,7 @@ module.exports = {
                     options: {
                         presets: ['@babel/preset-react', '@babel/preset-env'],
                         plugins: [
-                            ['import', {libraryName: 'antd', style: 'css'}],
+                            ['import', { libraryName: 'antd', style: 'css' }],
                             // ['react-hot-loader/babel'], // 功能待定
                             // Stage 0
                             // "@babel/plugin-proposal-function-bind",
@@ -140,7 +141,7 @@ module.exports = {
                             // "@babel/plugin-proposal-do-expressions",
 
                             // Stage 2
-                            ["@babel/plugin-proposal-decorators", {"legacy": true}], //支持修饰符
+                            ["@babel/plugin-proposal-decorators", { "legacy": true }], //支持修饰符
                             // "@babel/plugin-proposal-function-sent",
                             // "@babel/plugin-proposal-export-namespace-from",
                             // "@babel/plugin-proposal-numeric-separator",
@@ -149,23 +150,33 @@ module.exports = {
                             // Stage 3
                             // "@babel/plugin-syntax-dynamic-import",
                             // "@babel/plugin-syntax-import-meta",
-                            ["@babel/plugin-proposal-class-properties", {"loose": true}]// ES7中类属性的定义=>支持类中定义属性
+                            ["@babel/plugin-proposal-class-properties", { "loose": true }]// ES7中类属性的定义=>支持类中定义属性
                             // "@babel/plugin-proposal-json-strings"
                         ]
                     }
                 }
             ]
-        })
+        }),
+        new CopyWebpackPlugin(
+            {
+                patterns: [
+                    {
+                        from: 'node_modules/pdfjs-dist/cmaps/',
+                        to: 'cmaps/'
+                    }
+                ]
+            },
+        ),
     ],
     optimization: {
         splitChunks: {
             cacheGroups: {
                 vendor: {
-                    test: /[\\/]node_modules[\\/](react|react-dom|mobx|lodash|axios|mobx-react|antd|react-router-dom)[\\/]/,
+                    test: /[\\/]node_modules[\\/](react|react-dom|mobx|lodash|axios|mobx-react|antd|react-router-dom|react-pdf)[\\/]/,
                     name: 'vendor',
                     chunks: 'all',
                     maxAsyncRequests: 5, // 最大异步请求数， 默认1
-                    maxInitialRequests : 3, // 最大初始化请求书，默认1
+                    maxInitialRequests: 3, // 最大初始化请求书，默认1
                     enforce: true,
                 }
             }

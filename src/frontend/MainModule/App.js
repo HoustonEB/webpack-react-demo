@@ -123,6 +123,16 @@ const MenuLink = [
         key: '/progress',
         url: '/progress',
         sideBarName: 'Progress'
+    },
+    {
+        key: '/react',
+        url: '/react',
+        sideBarName: 'React'
+    },
+    {
+        key: '/croppie',
+        url: '/croppie',
+        sideBarName: '图片裁剪'
     }
 ];
 

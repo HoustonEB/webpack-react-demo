@@ -10,13 +10,13 @@
 import {h, isCallable, c} from '@src/frontend/components/utils';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {Document, Page} from 'react-pdf/dist/entry.webpack';
-// import { Document, Page } from 'react-pdf/dist/entry.noworker';
-// import {Document, Page} from 'react-pdf';
-import compStyle from './style.use.less';
-// import Icon from '@befe/erp-comps/v2/components/Icon/index';
-// import { pdfjs } from 'react-pdf';
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// import {Document, Page, pdfjs} from 'react-pdf/dist/entry.webpack';
+// import {Document, Page, pdfjs} from 'react-pdf/dist/esm/entry.webpack';
+import './style.use.less';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+// import { Document, Page, pdfjs } from 'react-pdf/dist/entry.noworker';
+import {Document, Page, pdfjs} from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `https://hcm-bucket.cdn.bcebos.com/candidate/candidate20206121623/dist/76f264452281d51dc821.worker.js`;
 
 export default class ReactPDFWrapState extends Component {
@@ -79,11 +79,15 @@ export default class ReactPDFWrapState extends Component {
             rotate
         } = this.props;
         const {pageNumList} = this.state;
-        console.log(path, 'pdf---path')
         return h(Document, {
                 className: `pdf-document-wrap ${className} ${this.isFireFox && 'firefox-wrapper'}`,
                 file: path, // 文档地址
                 renderMode: 'svg',
+                options: {
+                    cMapUrl: '../cmaps/',
+                    // cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+                    cMapPacked: true,
+                },
                 loading: h.div('loading-content-wrapper', {},
                     // h(Icon,
                     //     {
@@ -111,8 +115,8 @@ export default class ReactPDFWrapState extends Component {
                         // ),
                         h.span('', {}, 'd')
                     ),
-                    width: 588,
-                    scale: 2, // pdf 模糊
+                    width: 700,
+                    scale: 1, // pdf 模糊
                 })
             )
         );

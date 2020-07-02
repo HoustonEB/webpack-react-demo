@@ -21,6 +21,8 @@ import Message from './Message';
 import Button from './Button';
 import Popover from './Popover';
 import Progress from './Progress';
+import React from './React';
+import Croppie from './Croppie';
 
 const routeConfig = [
     {
@@ -124,6 +126,14 @@ const routeConfig = [
     {
         path: '/progress',
         component: Progress
+    },
+    {
+        path: '/react',
+        component: React
+    },
+    {
+        path: '/croppie',
+        component: Croppie
     }
 ];
 

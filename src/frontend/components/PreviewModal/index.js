@@ -7,7 +7,7 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {h, c} from '@src/frontend/components/utils';
 import { action, observable } from 'mobx';
-import style from './style.use.less';
+import './style.use.less';
 import Message from '@src/frontend/components/Message';
 import PropTypes from 'prop-types';
 import 'rc-progress/assets/index.css';
