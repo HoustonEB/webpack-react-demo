@@ -4,8 +4,6 @@ import Upload from '@src/frontend/components/Upload';
 import Upload2 from '@src/frontend/components/Upload2';
 import './style.use.less';
 import { h } from '@src/frontend/components/utils';
-import ReactPDFWrap from '@src/frontend/components/ReactPDFWrap';
-import erPdf from './2332.pdf';
 import quitPdf from './离职证明.pdf';
 
 export default class View extends Component {
