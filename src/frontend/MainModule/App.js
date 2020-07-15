@@ -133,6 +133,16 @@ const MenuLink = [
         key: '/croppie',
         url: '/croppie',
         sideBarName: '图片裁剪'
+    },
+    {
+        key: '/formik',
+        url: '/formik',
+        sideBarName: 'Formik'
+    },
+    {
+        key: '/count-down',
+        url: '/count-down',
+        sideBarName: 'CountDown'
     }
 ];
 

@@ -23,6 +23,8 @@ import Popover from './Popover';
 import Progress from './Progress';
 import React from './React';
 import Croppie from './Croppie';
+import Formik from './Formik';
+import CountDown from './CountDown';
 
 const routeConfig = [
     {
@@ -134,6 +136,14 @@ const routeConfig = [
     {
         path: '/croppie',
         component: Croppie
+    },
+    {
+        path: '/formik',
+        component: Formik
+    },
+    {
+        path: '/count-down',
+        component: CountDown
     }
 ];
 
