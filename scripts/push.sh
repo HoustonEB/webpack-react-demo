@@ -1,6 +1,6 @@
 set -e
 echo ------------push gh-pages start----------------------
-cd ./dist/prod/
+cd ./dest/prod/
 git init
 git config user.name "${U_NAME}"
 git config user.email "${U_EMAIL}"
