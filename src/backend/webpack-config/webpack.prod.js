@@ -17,7 +17,7 @@ module.exports = merge(common, {
         demo: ['@babel/polyfill', config.path.frontend + '/DemoModule/index.js']
     },
     output: {
-        path: config.path.prodDll,
+        path: config.path.prodDist,
         filename: "[name].bundle.[hash].js",
         chunkFilename: "[name].[chunkhash].js"
     },
@@ -29,7 +29,7 @@ module.exports = merge(common, {
         }),
         new CleanWebpackPlugin(['prod'], {
             root: config.path.dest, 
-            exclude: ['dist'],
+            // exclude: ['dist'],
             // Write logs to console.
             verbose: true,
             // Use boolean "true" to test/emulate delete. (will not remove files).
@@ -39,14 +39,14 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             title: "Prod ko", // 模板中有title就会替代
             template: config.path.webpackTemplates + '/prod-page.html', // html模板
-            filename: "pages/main.html",
+            filename: config.path.prod + "/pages/main.html",
             hash: true,
             chunks: ['main', 'vendor']
         }),
         new HtmlWebpackPlugin({
             title: "Prod ko", // 模板中有title就会替代
             template: config.path.webpackTemplates + '/prod-page.html', // html模板
-            filename: "pages/demo.html",
+            filename: config.path.prod + "/pages/demo.html",
             hash: true,
             chunks: ['demo', 'vendor']
         }),
