@@ -10,15 +10,9 @@
 import {h, isCallable, c} from '@src/frontend/components/utils';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-// import {Document, Page, pdfjs} from 'react-pdf/dist/entry.webpack';
-// import {Document, Page, pdfjs} from 'react-pdf/dist/esm/entry.webpack';
 import './style.use.less';
-// import 'react-pdf/dist/Page/AnnotationLayer.css';
-// import { Document, Page, pdfjs } from 'react-pdf/dist/entry.noworker';
 import {Document, Page, pdfjs} from 'react-pdf';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-// pdfjs.GlobalWorkerOptions.workerSrc = `https://hcm-bucket.cdn.bcebos.com/candidate/candidate20206121623/dist/76f264452281d51dc821.worker.js`;
-
+pdfjs.GlobalWorkerOptions.workerSrc = '../cmaps/pdf.worker.js';
 export default class ReactPDFWrapState extends Component {
 
     static propTypes = {
@@ -85,8 +79,8 @@ export default class ReactPDFWrapState extends Component {
                 renderMode: 'svg',
                 options: {
                     cMapUrl: '../cmaps/',
-                    // cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
                     cMapPacked: true,
+                    // worker: '../cmaps/pdf.worker.js'
                 },
                 loading: h.div('loading-content-wrapper', {},
                     // h(Icon,

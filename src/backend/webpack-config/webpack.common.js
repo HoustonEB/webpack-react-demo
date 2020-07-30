@@ -63,12 +63,22 @@ module.exports = {
             },
             // 修改图片的路径
             {
-                test: /\.(png|jpg|gif|svg|pdf)$/,
+                test: /\.(png|jpg|gif|svg|txt|pdf)$/,
                 use: {
                     loader: 'file-loader',
                     options: {
                         outputPath: 'images/',
                         publicPath: '../images/',
+                    }
+                }
+            },
+            {
+                test: /\.(worker.js)$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'cmaps/',
+                        name: '[name].[ext]'
                     }
                 }
             },
@@ -163,7 +173,11 @@ module.exports = {
                     {
                         from: 'node_modules/pdfjs-dist/cmaps/',
                         to: 'cmaps/'
-                    }
+                    },
+                    // {
+                    //     from: config.path.frontend + '/components/ReactPDFWrap/pdf.worker.js',
+                    //     to: 'cmaps/'
+                    // }
                 ]
             },
         ),

@@ -54,6 +54,7 @@ export default class CountDown extends Component {
 
     state = {
         day: 0,
+        hour: 0,
         min: 0,
         sec: 0,
         firstRender: true,

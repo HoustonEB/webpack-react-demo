@@ -1,7 +1,7 @@
 /**
  * @file Upload
  * @description 文件上传组件
- * @author CaiYu
+ * @author yuzhuang
  */
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
@@ -86,6 +86,7 @@ export default class PreviewModal extends Component {
             window.removeEventListener('mousemove', this.onMouseMove);
             this.previewContainer.removeEventListener('mouseleave', this.onMouseLeave);
         }
+        window.addEventListener('keydown', this.onKeyDown);
         if (prevState.currentIndex !== this.state.currentIndex) {
         }
     }
@@ -107,6 +108,7 @@ export default class PreviewModal extends Component {
         window.removeEventListener('mousedown', this.onMouseDown);
         window.removeEventListener('mouseup', this.onMouseUp);
         window.removeEventListener('mousemove', this.onMouseMove);
+        window.removeEventListener('keydown', this.onKeyDown);
         this.previewContainer.removeEventListener('mouseleave', this.onMouseLeave);
     }
 
@@ -144,6 +146,16 @@ export default class PreviewModal extends Component {
                 )
             )
         )
+    }
+
+    onKeyDown = e => {
+        if (this.state.isAllScreen) {
+            switch (e.keyCode) {
+                case 27: // ESC
+                    this.setState({ isAllScreen: false });
+                break;
+            }
+        }
     }
 
     handleOnClose = e => {
