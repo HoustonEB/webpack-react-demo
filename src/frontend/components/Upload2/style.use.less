@@ -1,0 +1,187 @@
+@borderColor: #e0e0e0;
+@borderRadius: 3px;
+@cardWidth: 120px;
+@cardHeight: 120px;
+@cardBgc: #fbfbfb;
+.offer-upload-wrapper {
+    .offer-upload-label-wrapper {
+        cursor: pointer;
+        width: @cardWidth;
+        height: @cardHeight;
+        line-height: @cardHeight;
+        border-radius: @borderRadius;
+        border: 1px dashed @borderColor;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        transition: border-color 500ms;
+        overflow: hidden;
+        background-color: @cardBgc;
+        &.disabled {
+            cursor: not-allowed;
+            &:hover {
+                border-color: @borderColor;
+            }
+        }
+        &:hover {
+            border-color: #1890ff;
+        }
+        .offer-upload-input-file {
+            display: none;
+        }
+        .offer-upload-icon {
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            position: relative;
+            img {
+                width: 39px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+    .offer-upload-file-list-wrapper {
+        display: inline-block;
+        position: relative;
+
+        .offer-upload-file-list-ul {
+            .offer-upload-file-list-item {
+                width: @cardWidth;
+                position: relative;
+                display: inline-block;
+                margin: 0 10px 5px 0;
+                vertical-align: top;
+                border-radius: 2px;
+                cursor: pointer;
+                &.done {
+                }
+                &.removed {
+
+                }
+                &.error {
+                    border: 1px solid #E64552;
+                    .offer-upload-file-list-preview {
+                        border: none;
+                    }
+                }
+                .offer-upload-file-list-preview {
+                    width: 100%;
+                    height: @cardHeight;
+                    border-radius: @borderRadius;
+                    border: 1px solid @borderColor;
+                    position: relative;
+                    overflow: hidden;
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: fill;
+                    }
+                    .file-type-img {
+                        width: 39px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                    &:hover {
+                        .offer-upload-file-list-actions {
+                            opacity: 1;
+                        }
+                    }
+                }
+                .offer-upload-file-list-actions {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 24px;
+                    line-height: 24px;
+                    background-color: rgba(0, 0, 0, .4);
+                    text-align: right;
+                    opacity: 0;
+                    transition: opacity .5s;
+                    .offer-upload-file-list-actions-common {
+                        width: 12px;
+                        height: 12px;
+                        display: inline-block;
+                        color: rgba(255,255,255,.85);
+                        margin-right: 12px;
+                    }
+                    .offer-upload-file-list-actions-preview {
+                        position: relative;
+                        top: 3px;
+                        cursor: pointer;
+                        &:hover {
+                            color: #fff;
+                        }
+                    }
+                    .offer-upload-file-list-actions-download {
+                        cursor: pointer;
+                        &:hover {
+                            color: #fff;
+                        }
+                    }
+                    .offer-upload-file-list-actions-delete {
+                        cursor: pointer;
+                        &:hover {
+                            color: #fff;
+                        }
+                        &.disabled {
+                            cursor: not-allowed;
+                            color: #e0e0e0;
+                        }
+                    }
+                }
+                .offer-file-name {
+                    width: 100%;
+                    color: #666;
+                    font-size: 12px;
+                    line-height: 18px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                &.upload-operate-icon {
+                    width: auto;
+                }
+            }
+        }
+    }
+    .offer-upload-file-loading {
+        width: @cardWidth;
+        height: @cardHeight;
+        border-radius: @borderRadius;
+        vertical-align: top;
+        border: 1px solid @borderColor;
+        position: relative;
+        display: inline-block;
+        margin-right: 10px;
+        text-align: center;
+        padding-top: 40px;
+        position: relative;
+        background-color: @cardBgc;
+        &.hover-file-upload-label {
+            position: absolute;
+            z-index: 2;
+        }
+        .progress-wrapper {
+            width: 80px;
+            display: inline-block;
+            .progress {
+            }
+        }
+        .uploading-content-box {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .uploading-note {
+            font-size: 12px;
+        }
+    }
+}

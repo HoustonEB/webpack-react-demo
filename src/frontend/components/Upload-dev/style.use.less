@@ -1,0 +1,99 @@
+
+.offer-upload-wrapper {
+    .offer-upload-label-wrapper {
+        cursor: pointer;
+        width: 104px;
+        height: 104px;
+        border-radius: 2px;
+        border: 1px solid #d9d9d9;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        line-height: 104px;
+        text-align: center;
+        .offer-upload-input-file {
+            display: none;
+        }
+        .offer-upload-icon {
+            font-size: 14px;
+        }
+    }
+    .offer-upload-file-list-wrapper {
+        display: inline-block;
+        .offer-upload-file-list-ul {
+            .offer-upload-file-list-item {
+                width: 104px;
+                height: 104px;
+                border-radius: 2px;
+                border: 1px solid #d9d9d9;
+                position: relative;
+                display: inline-block;
+                margin-right: 10px;
+                .offer-upload-file-list-preview {
+                    width: 100%;
+                    height: 100%;
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: fill;
+                    }
+                }
+                .offer-upload-file-list-actions {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 22px;
+                    line-height: 22px;
+                    background-color: rgba(0, 0, 0, .5);
+                    text-align: right;
+                    opacity: 0;
+                    transition: opacity .5s;
+                    .offer-upload-file-list-actions-common {
+                        width: 12px;
+                        height: 12px;
+                        display: inline-block;
+                        color: #fff;
+                        margin-right: 10px;
+                    }
+                    .offer-upload-file-list-actions-preview {
+                        cursor: pointer;
+                    }
+                    .offer-upload-file-list-actions-download {
+                        cursor: pointer;
+                    }
+                    .offer-upload-file-list-actions-delete {
+                        cursor: pointer;
+                    }
+                }
+                &:hover {
+                    .offer-upload-file-list-actions {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    .offer-upload-file-loading {
+        width: 104px;
+        height: 104px;
+        border-radius: 2px;
+        vertical-align: top;
+        border: 1px solid #d9d9d9;
+        position: relative;
+        display: inline-block;
+        margin-right: 10px;
+        text-align: center;
+        padding-top: 30px;
+        .progress-wrapper {
+            width: 80px;
+            display: inline-block;
+            .progress {
+            }
+        }
+        .uploading-note {
+            font-size: 12px;
+        }
+    }
+}
