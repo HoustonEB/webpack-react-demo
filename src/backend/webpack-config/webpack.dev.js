@@ -63,15 +63,15 @@ module.exports = merge(common, {
         port: 9000,
         inline: true,
         hot: true,
-        // proxy: [
-        //     {
-        //         context: ['/getRole', '/getList', '/getTable'],
-        //         target: 'https://example.com',
-        //         changeOrigin: true,
-        //         secure: false,
-        //         logLevel: 'debug'
-        //     },
-        // ]
+        proxy: [
+            {
+                context: ['/getRole', '/getList', '/getTable'],
+                target: 'https://example.com',
+                changeOrigin: true,
+                secure: false,
+                logLevel: 'debug'
+            },
+        ]
         // open: true,
         // openPage: 'pages/main.html',
     }

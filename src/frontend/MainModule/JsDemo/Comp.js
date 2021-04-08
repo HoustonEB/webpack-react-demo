@@ -1,8 +1,17 @@
 import React, {Component} from 'react';
-import {observable, computed, reaction, action} from 'mobx';
+import {
+    observable, 
+    computed, 
+    reaction, 
+    runInAction,
+    configure,
+    action,
+    autorun
+} from 'mobx';
 import {observer} from 'mobx-react';
 import Sort from '../DragSort/Comp.js';
-
+// useStrict(true); old api
+configure({ enforceActions: 'never' })
 @observer
 export default class View extends Component {
 
@@ -28,21 +37,26 @@ export default class View extends Component {
         // this.foo();
 
         // this.handleErrorPromise();
-        setTimeout(() => {
+        setInterval(() => {
             this.count++
+            console.log(this.count, 'setInterval-count++');
         }, 3000);
         reaction(
             () => this.count, // 数据函数
             (count, reaction) => { // 效果函数,只对数据函数中访问的数据做出反应.
-                console.log('count=', count);
+                console.log('reaction', count);
                 // reaction.dispose(); // 清理掉reaction,之后在进行count的修改,不进入这个reaction函数.
             },
             {
-                fireImmediately: true
+                fireImmediately: true // 开启第一次就运行效果函数
             }
         );
         console.log(this.name, 'con')
     }
+
+    monitorCount = autorun(() => {
+        console.log('autorun-count', this.count)
+    })
 
     get upperCaseName () {
         this.name = this.name.toUpperCase();
@@ -141,6 +155,7 @@ export default class View extends Component {
                 <Sort sortData={this.sortData} displayTitle={'name'} onChange={(data) => this.handleUpdateData(data)}/>
                 {this.renderSortContent()}
                 <button onClick={() => {console.log(this.upperCaseName, 'upperCaseName')}}>test</button>
+                <button onClick={() => {this.monitorCount()}}>clear-autorun</button>
             </div>
         )
     }

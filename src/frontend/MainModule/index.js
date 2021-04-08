@@ -5,6 +5,12 @@ import './style.main.less';
 import {getRole, getList, getTable} from '../service/common.js';
 // const Mock = require('mockjs');
 
+// getRole({
+//     userName: 'zhangsan',
+//     age: '12'
+// });
+// getList({type: 'list'});
+// getTable({num: 1});
 // Mock.mock('/getRole', {
 //     data: {
 //         ui: 1
@@ -12,8 +18,5 @@ import {getRole, getList, getTable} from '../service/common.js';
 //     status: 'ok',
 //     message: 'ui'
 // });
-// getRole({userName: 'zhangsan'});
-// getList({type: 'list'});
-// getTable({num: 1});
 
 ReactDOM.render(<App />, document.getElementById('root'));
