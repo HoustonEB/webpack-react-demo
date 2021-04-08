@@ -95,10 +95,10 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                {/* <HashRouter>
+                <HashRouter>
                     {this.renderLink()}
                     {this.renderContent()}
-                </HashRouter> */}
+                </HashRouter>
             </div>
         )
     }

@@ -57,10 +57,10 @@ module.exports = merge(common, {
     //   poll: 1000 // 每一秒检查文件是否change, true=>rebuild
     // },
     devServer: {
-        host: 'localhost',
+        host: '0.0.0.0',
         // contentBase: [config.path.src],// 对哪个目录下的文件进行热加载
         compress: false, // 是否压缩
-        port: 9000,
+        port: 3100,
         inline: true,
         hot: true,
         proxy: [
