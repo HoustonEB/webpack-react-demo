@@ -25,6 +25,7 @@ import React from './React';
 import Croppie from './Croppie';
 import Formik from './Formik';
 import CountDown from './CountDown';
+import EventLoop from './EventLoop';
 
 const routeConfig = [
     {
@@ -144,6 +145,10 @@ const routeConfig = [
     {
         path: '/count-down',
         component: CountDown
+    },
+    {
+        path: '/event-loop',
+        component: EventLoop
     }
 ];
 

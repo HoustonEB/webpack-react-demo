@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component, createRef, createElement } from 'react';
 import Button from '../Button';
 import PropTypes from 'prop-types';
 import './style.use.less';
@@ -37,14 +37,13 @@ export default class Signature extends Component {
     move;
     optimizedMove;
     degree;
-    state = {
-        degree: 0
-    }
 
     constructor(props) {
         super(props);
         this.parentEleRef = createRef();
         this.rotate = this.rotate.bind(this);
+        this.download = this.download.bind(this);
+        this.upload = this.upload.bind(this);
     }
 
     componentDidMount() {
@@ -183,14 +182,14 @@ export default class Signature extends Component {
         let w = this.pW;
         let h = this.pH;
         switch (degree) {
-          case -90:
-            length = -length;
-          case 90:
-            w = this.pH;
-            h = this.pW;
-            break;
-          default:
-            length = 0;
+            case -90:
+                length = -length;
+            case 90:
+                w = this.pH;
+                h = this.pW;
+                break;
+            default:
+                length = 0;
         }
         this.parentEle.style = `
         transform: rotate(${degree}deg) translate(${length}px,${length}px);
@@ -221,8 +220,60 @@ export default class Signature extends Component {
         this.context.clearRect(0, 0, width, height);
     }
 
+    getPNGImage(canvas = this.canvas) {
+        return canvas.toDataURL('image/png');
+    }
+
+    downloadPNGImage(image) {
+        const url = image.replace('image/png', 'image/octet-stream;Content-Disposition:attachment;filename="test.png"');
+        window.location.href = url;
+    }
+
+    download() {
+        let image = this.getPNGImage(this.canvas);
+        this.downloadPNGImage(image);
+    }
+
+    dataURLtoBlob(dataURL) {
+        const arr = dataURL.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bStr = atob(arr[1]); // atob对base64进行解码,btoa对内容进行编码
+        let n = bStr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bStr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+    }
+
+    upload(blob, url, success, failure) {
+        let image = this.getPNGImage(this.canvas);
+        blob = this.dataURLtoBlob(image);
+        const formData = new FormData();
+        const xhr = new XMLHttpRequest();
+
+        xhr.withCredentials = true;
+        formData.append('image', blob, 'sign.png'); // 第三个参数是传给服务器文件的名字
+
+        xhr.open('POST', url, true);
+        xhr.onload = () => {
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                success(xhr.responseText);
+            } else {
+                failure();
+            }
+        };
+        xhr.onerror = (e) => {
+            if (typeof failure === 'function') {
+                failure(e);
+            } else {
+                console.log(`upload img error: ${e}`);
+            }
+        };
+        xhr.send(formData);
+    }
+
     render() {
-        let { degree } = this.state;
         return (
             <div
                 className={'signature-wrapper'}
@@ -237,7 +288,9 @@ export default class Signature extends Component {
                     </select>
                     {/* <Button onClick={this.rotate}>rotate: {degree}deg</Button> */}
                     &nbsp;
-                    <Button onClick={this.clear}>clear</Button>
+                    <Button onClick={this.clear}>Clear</Button>
+                    <Button onClick={this.download}>Download</Button>
+                    <Button onClick={this.upload}>Upload</Button>
                 </div>
                 <canvas id="signature-canvas"></canvas>
             </div>

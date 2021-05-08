@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { action, observable } from 'mobx';
@@ -16,7 +16,7 @@ export default class FormikView extends Component {
     static propTypes = {};
 
     static defaultProps = {};
-
+    
     constructor(props) {
         super(props);
     }
