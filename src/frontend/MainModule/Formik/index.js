@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { action, observable } from 'mobx';
-import { 
-    Formik, 
+import {
+    Formik,
     Form,
     ErrorMessage
 } from 'formik';
 import Button from '@src/frontend/components/Button';
+import {RequestLimit} from '@src/frontend/global/utils/requestLimit';
 import './style.use.less';
-
+const limitReq = new RequestLimit(8);
+(async () => {for (let i = 0; i < 8; i++) {
+    limitReq.request(() => fetch("http://q.qlogo.cn/qqapp/100312990/DE1931D5330620DBD07FB4A5422917B6/100"));
+}})()
 @observer
 export default class FormikView extends Component {
 

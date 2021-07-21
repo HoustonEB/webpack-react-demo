@@ -57,7 +57,7 @@ module.exports = merge(common, {
     //   poll: 1000 // 每一秒检查文件是否change, true=>rebuild
     // },
     devServer: {
-        host: '0.0.0.0',
+        host: 'localhost',
         // contentBase: [config.path.src],// 对哪个目录下的文件进行热加载
         compress: false, // 是否压缩
         port: 3100,
@@ -71,8 +71,8 @@ module.exports = merge(common, {
                 secure: false,
                 logLevel: 'debug'
             },
-        ]
-        // open: true,
-        // openPage: 'pages/main.html',
+        ],
+        open: true,
+        openPage: 'pages/main.html',
     }
 });
